@@ -167,7 +167,6 @@ div[data-role=popup] p strong {
 	padding-bottom: 48px;
 }
 .ui-content h1 {
-	color: #665b00;
 	margin: 5px 0;
 	font-size: 1.6em;
 }
@@ -237,9 +236,11 @@ div.input-line label.ui-slider {
 }
 div.input-label {
 	padding: 6px 0;
+	max-width: 50%;
 }
 div.input-switch {
 	float: right;
+	max-width: 50%;
 }
 .input-switch div.ui-slider-switch {
 	margin: 0;

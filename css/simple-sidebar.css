@@ -26,7 +26,7 @@
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #EDEDED;
+    background: #9E9E9E;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -38,21 +38,22 @@
 #sidebar-wrapper li{
 	padding-top:10px;
 	padding-bottom:10px;
-	border-top:#787e22 1px solid;
-	border-bottom:#787e22 1px solid;
+	border-top:#0a4239 1px solid;
+	border-bottom:#0a4239 1px solid;
 	padding-left:15px;
 	padding-right:15px;
 	font-weight:bold;
+	background-color: #EDEDED;
 }
 #sidebar-wrapper li a{
 	color:#2e2e2e;
 }
 #sidebar-wrapper li.calculadora{
-	background-color: #C3BFBF;
+	background-color: #aed0d8;
 	color: #1a53a5;
 }
 #sidebar-wrapper li.algoritmo{
-	background-color: #D8D8D8;
+	background-color: #aed8a7;
 	color: #1a53a5;
 }
 #sidebar-wrapper li.submenu{

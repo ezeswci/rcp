@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<script src="cordova.js" type="text/javascript"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>RCP</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+	<link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css">
+	<link rel="stylesheet" href="css/main.css">
+    <script src="js/jquery-1.10.2.min.js"></script>
+	<script src="js/jquery.mobile-1.3.2.min.js"></script>
+	<script src="js/main.js"></script>
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link href="css/fibrilacion.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/font-awesome-4.6.3/css/font-awesome.min.css?33">
+   
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul>
+                <li class="calculadora txt-blue" style="text-align: center; font-size:12px; color:#007C9A;background: #cde0e5;">NEONATOLOGÍA</li>
+                <li class="calculadora"><a href="#" onClick="cambiarCalculadora('neonatologia_drogas.html');">Drogas</a></li>
+                <li class="calculadora"><a href="#" onClick="cambiarCalculadora('neonatologia_acciones.html');">Intervenciones</a></li>
+                <li class="calculadora"><a href="#" onClick="cambiarCalculadora('neonatologia_glasgow.html');">Glasgow</a></li>
+                <li class="algoritmo txt-green" style="text-align: center;font-size:12px; color:#4AB239;background: #caddc7;">PEDIATRÍA</li>
+                <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_drogas.html');">Drogas</a></li>
+                <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_acciones.html');">Intervenciones</a></li>
+                <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_glasgow.html');">Glasgow</a></li>
+                <li style="text-align: center; color:#1a53a5;font-size:12px; color:#665b00; background:#fafafa;">OTROS</li>
+                <li><a onClick="">Terminos y condiciones</li>
+                <li><a onClick="">Situaciones de uso</a></li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+        	<nav class="navbar navbar-default navbar-fixed-top" >
+                <button type="button" style="margin:7px;" class="btn btn-default btn-lg" onClick="cambiarPagina('neonatologia.html');">&lsaquo; Volver</button>
+                <a class="btn btn-default ui-link" style="border:none;position: absolute;left: 50%;transform: translate(-50%, 0);"><img src="img/simmer_logo.png" width="54" height="47" style="display:inline-block;"></a>
+                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle" style="border:none;float:right;"><img src="img/menu.png" width="52" height="47"style="display:inline-block;"></a>
+            </nav>
+            <!-- navbar -->
+            <div class="container-fluid">
+                <div class="row">
+					<div class="col-lg-12">
+						<div id="muestra_texto">
+							<div data-role="content">
+        						<h1 class="txt-blue">Neonatología</h1>
+								<h1 class="txt-blue">Intervenciones</h1>
+        						<form id="initCal">
+                                    <div class="input-line">
+                                        <div class="input-switch">
+                                            <select name="sel-type" id="sel-type">
+                                                <option value="0"> Peso </option>
+                                                <option value="1"> Edad </option>
+                                            </select>
+                                        </div>
+                                        <div class="input-label"><label for="sel-type">Resultados en base a:</label></div>                                       
+                                   </div>                                       
+                                    <div class="input-line" id="sel-kg">
+                                        <div data-role="fieldcontain">
+                                            <label for="peso">Peso (Kg)</label>
+                                            <input type="range" name="peso" id="peso" value="1" min="0.5" max="4.25">
+                                        </div>
+                                    </div>
+                                    <div class="input-line" id="sel-ag" style="display:none;">
+                                    	<div class="input-switch">
+                                            <select name="semn" id="semn">
+                                                <option value="28"> < 28 Semanas</option>
+                                                <option value="34"> 28 - 34 Semanas</option>
+                                                <option value="38"> 34 - 38 Semanas</option>
+                                                <option value="42"> 38 - 42 Semanas</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-label"><label for="semn">Edad gestasional</label></div>
+                                   </div>
+                                <!-- /inputline -->
+                                <div class="result_frame">
+                                    <div class="result_container" style="min-width:220px;width: 100%;">
+                                        <div class="result_title" style="color:#333333;">Resultados</div>
+                                        </br>
+                                        <div id="situacion" style=" text-align:left;">
+                                        
+                                        </div>     
+                                    </div>
+                                    <!-- /result_container -->
+                                    <!--p></p>
+                                </div>
+                                <!-- /result_frame -->
+							</div>
+                             <!-- /content -->
+						</div>
+                        <!-- /muestra_texto -->
+                      </div>
+                      <!-- /col-lg-12 -->
+                   </div>
+                    <!-- ./row -->
+                </div>
+                <!-- container-fluid -->
+            </div>
+            <!-- /#page-content-wrapper -->
+        </div>
+        <!-- id-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+	<!-- Propios -->
+	<script src="js/cambiarPagina.js"></script>
+	<script src="js/cambiarCalculadora.js"></script>
+
+    <!-- jQuery 
+    <script src="js/jquery.js"></script>-->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+	<!-- Calculadora -->
+
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+    <script>
+    function result_initCal() {
+	var seltype=parseInt(document.getElementById("sel-type").value); // 0-peso -- 1-edad
+	var semanas=document.getElementById("semn").value;
+	var peso=parseFloat(document.getElementById("peso").value);
+	var insert="";
+	if(seltype==0){// peso
+		$('#sel-kg').css("display", "block");
+		$('#sel-ag').css("display", "none");
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Posición de la cabeza: <b style="font-size:16px;">Olfateo</b></p>';
+        insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Técnica adecuada para realizar compresiones cardíacas: <b style="font-size:16px;">Pulgares (de elección) o 2 dedos. Tener en cuenta el tamaño del niño en relación a las manos del operador. Manos pequeñas utilizar únicamente la de los 2 dedos</b></p>';
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación compresiones / ventilaciones causa de ERP no cardíaco: <b style="font-size:16px;"> 1/3</b></p>';
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación compresiones / ventilaciones causa de ERP de origen cardíaco: <b style="font-size:16px;"> 15/2</b></p>';
+		// Tamaño de bolsa
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Tamaño de la bolsa de RCP (autoinflable): <b style="font-size:16px;">';
+			if(peso>=3){insert+='250';}else{insert+='500';}
+		insert+='ml </b></p>';
+		// Fin tamaño de la bolsa
+		// FiO2
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> FiO2 inicial (controlada con saturometría): <b style="font-size:16px;">';
+			if(peso>=2.5){insert+='0,21';}else{insert+='0,21 - 0,3';}
+		insert+='</b></p>';
+		// Fin FiO2
+		// Ramas
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Número de rama de laringoscopio recta (Miller): <b style="font-size:16px;">';
+			if(peso<=3){insert+='0';}else{insert+='0-1';}
+		insert+='</b></p>';
+		// Ramas
+		// TET
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Tamaño del TET sin manguito (mm de diámetro interno): <b style="font-size:16px;">';
+			if(peso>=2){insert+='3,5';}else{if(peso>=1){insert+='3';}else{insert+='2,5';}}
+		insert+='</b></p>';
+		//  Fin TET
+		// TET punta
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Distancia TET punta - labio (cm): <b style="font-size:16px;">';
+			insert+=parseFloat(peso+6).toFixed(2);
+		insert+='</b></p>';
+		//  Fin TET punta
+		// TET punta
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Tubo de tórax (French): <b style="font-size:16px;">';
+			if(peso>=2){if(peso>=3){insert+='9';}else{insert+='8-9';}}else{insert+='8';}
+		insert+='</b></p>';
+		//  Fin TET punta
+	}else{// edad
+		$('#sel-kg').css("display", "none");
+		$('#sel-ag').css("display", "block");
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Posición de la cabeza: <b style="font-size:16px;">Olfateo</b></p>';
+        insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Técnica adecuada para realizar compresiones cardíacas: <b style="font-size:16px;">Pulgares (de elección) o 2 dedos. Tener en cuenta el tamaño del niño en relación a las manos del operador. Manos pequeñas utilizar únicamente la de los 2 dedos</b></p>';
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación compresiones / ventilaciones causa de ERP no cardíaco: <b style="font-size:16px;"> 1/3</b></p>';
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación compresiones / ventilaciones causa de ERP de origen cardíaco: <b style="font-size:16px;"> 15/2</b></p>';
+		// Tamaño de bolsa
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Tamaño de la bolsa de RCP (autoinflable): <b style="font-size:16px;">';
+			if(semanas!=42){insert+='250';}else{insert+='500';}
+		insert+='ml </b></p>';
+		// Fin tamaño de la bolsa
+		// FiO2
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> FiO2 inicial (controlada con saturometría): <b style="font-size:16px;">';
+			if(semanas!=42 && semanas!=38){insert+='0,21 - 0,3';}else{insert+='0,21';}
+		insert+='</b></p>';
+		// Fin FiO2
+		// Ramas
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Número de rama de laringoscopio recta (Miller): <b style="font-size:16px;">';
+			if(semanas!=42){insert+='0';}else{insert+='0-1';}
+		insert+='</b></p>';
+		// Ramas
+		// TET
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Tamaño del TET sin manguito (mm de diámetro interno): <b style="font-size:16px;">';
+			if(semanas==42 || semanas==38){insert+='3,5';}else{if(semanas==34){insert+='3';}else{insert+='2,5';}}
+		insert+='</b></p>';
+		//  Fin TET
+		// TET punta
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Distancia TET punta - labio (cm): <b style="font-size:16px;">';
+			if(semanas==42 || semanas==38){if(semanas==42){insert+='9,5';}else{insert+='8,5';}}else{if(semanas==34){insert+='7,8';}else{insert+='6,8';}}
+		insert+='</b></p>';
+		//  Fin TET punta
+		// TET punta
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Tubo de tórax (French): <b style="font-size:16px;">';
+			if(semanas==42 || semanas==38){if(semanas==42){insert+='9';}else{insert+='8-9';}}else{insert+='8';}
+		insert+='</b></p>';
+		//  Fin TET punta
+	}
+	$('#situacion').html(insert);
+	
+	}
+
+	$(function () {
+		$('#initCal').off('change').on('change', result_initCal);
+		result_initCal();
+	});
+/*document.addEventListener('deviceready', function () {
+    // Analytics para club House
+	window.analytics.startTrackerWithId('UA-70907455-2');// Analytics para Fa Respuestas
+	window.analytics.trackView('Pantalla Calculadora Clearence de creatinina');
+}, false);*/
+</script>  
+    
+    
+</body>
+
+</html>
