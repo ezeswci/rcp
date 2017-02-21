@@ -261,3 +261,9 @@ select{
 .txt-blue{
 	color:#007C9A;
 }
+.txt-sector{
+    text-decoration: underline;
+}
+.navbar-default{
+	padding-top:12px;
+}
