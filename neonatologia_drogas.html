@@ -55,35 +55,72 @@
             	<button type="button" style="margin:7px;" class="btn btn-default btn-lg" onClick="cambiarPagina('neonatologia.html');">&lsaquo; Volver</button>
                 <a href="#menu-toggle" class="btn btn-default" id="menu-toggle" style="border:none;float:right;"><img src="img/menu.png" width="52" height="47"style="display:inline-block;"></a>
             </nav>
-            <div class="container-fluid">
+         
+        <div class="container-fluid">
                 <div class="row">
-<div class="col-lg-12">
-					<div id="muestra_texto">
-	<div data-role="content">
-        <h1 class="txt-blue txt-sector" style="font-size:1.9em">Neonatología</h1>
-		<h1 class="txt-blue">Drogas</h1>
-        <div class="input-line">
-				<div data-role="fieldcontain">
-					<label for="peso">Peso (Kg)</label>
-					<input type="range" name="peso" id="peso" value="1.5" min="0.5" max="4.25">
-				</div>
-		</div>
-		</div>
-
-
-
-	</div><!-- /content -->
-
-	<!-- <div data-role="footer">
-		<p>Copyright 2013 The jQuery Foundation</p>
-	</div> --><!-- /footer -->
-
+					<div class="col-lg-12">
+						<div id="muestra_texto">
+                            <div data-role="content">
+                                <h1 class="txt-blue txt-sector" style="font-size:1.9em">Neonatología</h1>
+                                <h1 class="txt-blue">Drogas</h1>
+                                <form id="initCal">
+                                    <div class="input-line">
+                                        <div data-role="fieldcontain">
+                                            <label for="peso">Peso (Kg)</label>
+                                            <input type="range" name="peso" id="peso" value="1.5" min="0.50" max="4.25">
+                                        </div>
+                                    </div>
+                                    <div class="input-line">
+                                        <div class="input-switch">
+                                            <select name="sel-type" id="sel-type">
+                                                <option value="0"> --- </option>
+                                                <option value="Adrenalina"> Adrenalina </option>
+                                                <option value="Solución fisológica"> Solución fisológica </option>
+                                                <option value="Gluconato de calcio 10%"> Gluconato de calcio 10% </option>
+                                                <option value="Dextrosado 10%"> Dextrosado 10% </option>
+                                                <option value="Naloxoma (1mg/1ml)"> Naloxoma (1mg/1ml) </option>
+                                                <option value="Naloxoma (0,4mg/1ml)"> Naloxoma (0,4mg/1ml) </option>
+                                                <option value="Fenobabital (50mg/1ml)"> Fenobabital (50mg/1ml) </option>
+                                                <option value="Bicarbonato de Sodio"> Bicarbonato de Sodio </option>
+                                                <option value="Adenosina"> Adenosina </option>
+                                            </select>      
+                                        </div>
+                                        <div class="input-label"><label for="sel-type">Droga:</label></div>                                       
+                                   </div>
+                                   <div class="input-line" id="selop-2" style="display:none;">
+                                        <div class="input-switch">
+                                            <select name="sel-type-2" id="sel-type-2">
+                                                <option value="0">op1</option>
+                                                <option value="1">op2</option>
+                                                <option value="2">op3</option>
+                                            </select>      
+                                        </div>
+                                        <div class="input-label"><label for="sel-type">Administración:</label></div>                                       
+                                   </div>  
+                                </form>
+                                <div class="result_frame" id="result-container" style="display:none;">
+                                    <div class="result_container" style="min-width:220px;width: 100%;">
+                                        <div class="result_title" style="color:#333333;">Resultados</div>
+                                        </br>
+                                        <div id="situacion" style=" text-align:left;color: #6a6a6a;">
+                                        
+                                        </div>     
+                                    </div>
+                                <!-- /result_frame -->
+                                </div>
+                            <!-- /content -->
+                            </div>
+                        <!-- /muestra_texto -->
                         </div>
-                    </div>
+                      <!-- /col-lg-12 -->
+                   </div>
+                    <!-- ./row -->
                 </div>
+                <!-- container-fluid -->
             </div>
+            <!-- /#page-content-wrapper -->
         </div>
-        <!-- /#page-content-wrapper -->
+        <!-- id-wrapper -->
 
     </div>
     <!-- /#wrapper -->
@@ -104,6 +141,93 @@
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
+	function result_initCal() {
+		var seltype=document.getElementById("sel-type").value; // El tipo seleccionado
+		var peso=parseFloat(document.getElementById("peso").value).toFixed(2);
+		var insert='';
+		if(seltype=="0"){// Opcion si eligio esto
+			document.getElementById("selop-2").style.display="none";
+			document.getElementById("result-container").style.display="none";
+		}
+		if(seltype=="Adrenalina"){// Opcion si eligio esto
+			document.getElementById("selop-2").style.display="block";
+			document.getElementById("result-container").style.display="none";
+			insert=seltype;
+		}
+		if(seltype=="Solución fisológica"){// Opcion si eligio esto
+			document.getElementById("selop-2").style.display="none";
+			document.getElementById("result-container").style.display="block";
+			var dosis=peso*10;
+			insert+='<b>Via:</b> endovenoso</br>';
+			insert+='<b>Administración:</b> lento (5 - 10 min)</br>';
+			insert+='<b>Preparación:</b> 10 ml/kg</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+' ml</br></span>';
+		}
+		if(seltype=="Gluconato de calcio 10%"){// Opcion si eligio esto
+			document.getElementById("selop-2").style.display="none";
+			document.getElementById("result-container").style.display="block";
+			var dosis=roundUp(peso);
+			insert+='<b>Via:</b> endovenoso con control de extravasación</br>';
+			insert+='<b>Administración:</b> lento con control de la frecuencia cardíaca. Dar con el mismo volumen de agua destilada</br>';
+			insert+='<b>Preparación:</b> 100 mg/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+' ml</br></span>';
+		}
+		if(seltype=="Dextrosado 10%"){// Opcion si eligio esto
+			document.getElementById("selop-2").style.display="none";
+			document.getElementById("result-container").style.display="block";
+			var dosis=roundUp(5*peso)+' ml a '+roundUp(10*peso)+' ml ';
+			insert+='<b>Via:</b> endovenoso en push con posterior plan de hidratación parenteral con flujo de glucosa alto</br>';
+			//insert+='<b>Administración:</b> lento con control de la frecuencia cardíaca. Dar con el mismo volumen de agua destilada</br>';
+			insert+='<b>Preparación:</b> 0,5 - 1 g/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+		}
+		if(seltype=="Naloxoma (1mg/1ml)"){// Opcion si eligio esto
+			document.getElementById("selop-2").style.display="block";
+			document.getElementById("result-container").style.display="none";
+			insert=seltype;
+		}
+		if(seltype=="Naloxoma (0,4mg/1ml)"){// Opcion si eligio esto
+			document.getElementById("selop-2").style.display="block";
+			document.getElementById("result-container").style.display="none";
+			insert=seltype;
+		}
+		if(seltype=="Fenobabital (50mg/1ml)"){// Opcion si eligio esto
+			document.getElementById("selop-2").style.display="none";
+			document.getElementById("result-container").style.display="block";
+			var dosis=roundUp(0.2*peso)+' ml a '+roundUp(0.4*peso)+' ml ';
+			insert+='<b>Via:</b> endovenoso o intravenoso en push lento</br>';
+			insert+='<b>Administración:</b> se puede pasar puro o diluido con igual volumen de solución fisiológica ó dextrosa 5%</br>';
+			insert+='<b>Preparación:</b> 10 - 20 mg/kg/dosis de ataque</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+		}
+		if(seltype=="Bicarbonato de Sodio"){// Opcion si eligio esto
+			document.getElementById("selop-2").style.display="none";
+			document.getElementById("result-container").style.display="block";
+			var dosis=roundUp(2*peso)+' ml';
+			insert+='<b>Administración:</b> Pasar con igual volumen de agua destilada. Con cuidado de extravasación</br>';
+			insert+='<b>Preparación:</b> 2 mEq/kg/dosis en 10 min</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+		}
+		if(seltype=="Adenosina"){// Opcion si eligio esto
+			document.getElementById("selop-2").style.display="none";
+			document.getElementById("result-container").style.display="block";
+			var dosis=roundUp(peso / 6)+' ml a '+roundUp(peso / 3)+' ml ';
+			insert+='<b>Administración:</b> En push rápido con lavado posterior con solución fisiológica. Acceso vascular lo más cercano al corazón</br>';
+			insert+='<b>Preparación:</b> 0,05 a 0,1 mg/kg/dosis. Dosis en ml de la dilución 1ml + 9 ml de agua destilada.</br>';
+			insert+='<b>Aclaración:</b> No refrigerar ampolla</br>'
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+		}
+		$('#situacion').html(insert);
+	
+	}
+	function roundUp(num) {
+	  num=Math.round(num * 10);
+	  return parseInt(num/10)+','+num%10
+	}
+	$(function () {
+		$('#initCal').off('change').on('change', result_initCal);
+		result_initCal();
+	});
     </script>
   <script>
 /*document.addEventListener('deviceready', function () {
