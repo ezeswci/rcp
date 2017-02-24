@@ -253,7 +253,7 @@ select{
 	background:#4AB239;
 }
 .txt-green{
-	color:#4AB239;
+	color:#49823f;
 }
 .bkg-blue{
 	background:#007C9A;
@@ -262,8 +262,23 @@ select{
 	color:#007C9A;
 }
 .txt-sector{
-    text-decoration: underline;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 4px;
+	border-bottom: 2px solid;
+}
+.txt-green.txt-sector{
+    margin-bottom: 15px;
+}
+.txt-blue.txt-sector{
+    margin-bottom: 15px;
 }
 .navbar-default{
-	padding-top:12px;
+	padding-top:17px;
+}
+.ui-content p {
+    color: #6a6a6a;
+}
+.ui-content p b {
+    color: #333;
 }

@@ -38,7 +38,7 @@
                 <li class="calculadora txt-blue" style="text-align: center; font-size:12px; color:#007C9A;background: #cde0e5;">NEONATOLOGÍA</li>
                 <li class="calculadora"><a href="#" onClick="cambiarCalculadora('neonatologia_acciones.html');">Intervenciones</a></li>
                 <li class="calculadora"><a href="#" onClick="cambiarCalculadora('neonatologia_drogas.html');">Drogas</a></li>
-                <li class="algoritmo txt-green" style="text-align: center;font-size:12px; color:#4AB239;background: #caddc7;">PEDIATRÍA</li>
+                <li class="algoritmo txt-green" style="text-align: center;font-size:12px; color:#49823f ;background: #caddc7;">PEDIATRÍA</li>
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_acciones.html');">Intervenciones</a></li>
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_drogas.html');">Drogas</a></li> 
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_glasgow.html');">Glasgow</a></li>
@@ -67,7 +67,7 @@
                                     <div class="input-line">
                                         <div data-role="fieldcontain">
                                             <label for="peso">Peso (Kg)</label>
-                                            <input type="range" name="peso" id="peso" value="1.5" min="0.50" max="4.25">
+                                            <input type="range" name="peso" id="peso" value="1.5" min="0.50" max="4.25"  step="0.05">
                                         </div>
                                     </div>
                                     <div class="input-line">
@@ -78,8 +78,8 @@
                                                 <option value="Solución fisológica"> Solución fisológica </option>
                                                 <option value="Gluconato de calcio 10%"> Gluconato de calcio 10% </option>
                                                 <option value="Dextrosado 10%"> Dextrosado 10% </option>
-                                                <option value="Naloxoma (1mg/1ml)"> Naloxoma (1mg/1ml) </option>
-                                                <option value="Naloxoma (0,4mg/1ml)"> Naloxoma (0,4mg/1ml) </option>
+                                                <option value="Naloxoma (1mg/1ml)"> Naloxoma (1mg/ml) </option>
+                                                <option value="Naloxoma (0,4mg/1ml)"> Naloxoma (0,4mg/ml) </option>
                                                 <option value="Fenobabital (50mg/1ml)"> Fenobabital (50mg/1ml) </option>
                                                 <option value="Bicarbonato de Sodio"> Bicarbonato de Sodio </option>
                                                 <option value="Adenosina"> Adenosina </option>
@@ -90,13 +90,13 @@
                                    <div class="input-line" id="selop-2" style="display:none;">
                                         <div class="input-switch">
                                             <select name="sel-type-2" id="sel-type-2">
-                                                <option value="0">op1</option>
-                                                <option value="1">op2</option>
-                                                <option value="2">op3</option>
+                                                <option value="0">---</option>
+                                                <option value="1">Endovenosa</option>
+                                                <option value="2">Endotraqueal</option>
                                             </select>      
                                         </div>
                                         <div class="input-label"><label for="sel-type">Administración:</label></div>                                       
-                                   </div>  
+                                   </div> 
                                 </form>
                                 <div class="result_frame" id="result-container" style="display:none;">
                                     <div class="result_container" style="min-width:220px;width: 100%;">
@@ -152,7 +152,23 @@
 		if(seltype=="Adrenalina"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="block";
 			document.getElementById("result-container").style.display="none";
-			insert=seltype;
+			var seltype2=document.getElementById("sel-type-2").value;
+			if(seltype2==1){// Endovenosa
+				document.getElementById("result-container").style.display="block";
+				var dosis=roundUp(0.1*peso)+' ml a '+roundUp(0.3*peso)+' ml ';
+				insert+='<b>Via:</b> endovenoso</br>';
+				insert+='<b>Administración:</b> diluir 1 ml + 9 ml de agua destilada</br>';
+				insert+='<b>Preparación:</b> 0,01 a 0,03 mg/kg/dosis</br>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+			}
+			if(seltype2==2){//Endotraqueal
+				document.getElementById("result-container").style.display="block";
+				var dosis=roundUp(0.5*peso)+' ml a '+roundUp(peso)+' ml ';
+				insert+='<b>Via:</b> endotraqueal</br>';
+				insert+='<b>Administración:</b>diluir 1 ml + 9 ml de agua destilada</br>';
+				insert+='<b>Preparación:</b> 0,05 a 0,1 mg/kg/dosis</br>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+			}
 		}
 		if(seltype=="Solución fisológica"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
@@ -182,14 +198,22 @@
 			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
 		}
 		if(seltype=="Naloxoma (1mg/1ml)"){// Opcion si eligio esto
-			document.getElementById("selop-2").style.display="block";
-			document.getElementById("result-container").style.display="none";
-			insert=seltype;
+			document.getElementById("selop-2").style.display="none";
+			document.getElementById("result-container").style.display="block";
+			var dosis=roundUp(peso)+' ml ';
+			insert+='<b>Via:</b> endovenoso o intravenoso</br>';
+			insert+='<b>Administración:</b> tomar 1 ml + 9 ml de agua destilada</br>';
+			insert+='<b>Preparación:</b> 0,1 mg/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
 		}
 		if(seltype=="Naloxoma (0,4mg/1ml)"){// Opcion si eligio esto
-			document.getElementById("selop-2").style.display="block";
-			document.getElementById("result-container").style.display="none";
-			insert=seltype;
+			document.getElementById("selop-2").style.display="none";
+			document.getElementById("result-container").style.display="block";
+			var dosis=roundUp(peso/4)+' ml ';
+			insert+='<b>Via:</b> endovenoso o intravenoso</br>';
+			insert+='<b>Administración:</b> tomar 1 ml + 9 ml de agua destilada</br>';
+			insert+='<b>Preparación:</b> 0,1 mg/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
 		}
 		if(seltype=="Fenobabital (50mg/1ml)"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";

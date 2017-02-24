@@ -38,7 +38,7 @@
                 <li class="calculadora txt-blue" style="text-align: center; font-size:12px; color:#007C9A;background: #cde0e5;">NEONATOLOGÍA</li>
                 <li class="calculadora"><a href="#" onClick="cambiarCalculadora('neonatologia_acciones.html');">Intervenciones</a></li>
                 <li class="calculadora"><a href="#" onClick="cambiarCalculadora('neonatologia_drogas.html');">Drogas</a></li>
-                <li class="algoritmo txt-green" style="text-align: center;font-size:12px; color:#4AB239;background: #caddc7;">PEDIATRÍA</li>
+                <li class="algoritmo txt-green" style="text-align: center;font-size:12px; color:#49823f ;background: #caddc7;">PEDIATRÍA</li>
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_acciones.html');">Intervenciones</a></li>
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_drogas.html');">Drogas</a></li> 
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_glasgow.html');">Glasgow</a></li>
@@ -62,12 +62,10 @@
 	<div data-role="content">
         <h1 class="txt-green txt-sector" style="font-size:1.9em">Pediatría</h1>
 		<h1 class="txt-green">Drogas</h1>
-        <div class="input-line">
-				<div data-role="fieldcontain">
-					<label for="peso">Peso (Kg)</label>
-					<input type="range" name="peso" id="peso" value="10" min="4" max="50">
-				</div>
-		</div>
+        <button type="button" class="btn btn-primary btn-lg btn-reg" onClick="cambiarPagina('pediatria_drogas_rcp.html');">Cardiopulmonar</button>
+        <button type="button" class="btn btn-primary btn-lg btn-reg" onClick="cambiarPagina('pediatria_drogas_con.html');">Anticonvulsivantes</button>
+        <button type="button" class="btn btn-primary btn-lg btn-reg" onClick="cambiarPagina('pediatria_drogas_arr.html');">Antiarrítmicos</button>
+        <button type="button" class="btn btn-primary btn-lg btn-reg" onClick="cambiarPagina('pediatria_drogas_sir.html');">SIR</button>
 		</div>
 
 
