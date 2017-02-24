@@ -249,6 +249,7 @@
 		}
 		if(seltype=="Bicarbonato de Sodio"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
+			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(peso)+' ml';
 			insert+='<b>Administración:</b> push lento</br>';
@@ -275,10 +276,10 @@
 				document.getElementById("result-container").style.display="block";
 				// Dosis
 				if((peso*0.2)>10){var F14=10;}else{var F14=peso*0.2;}
-				if(pub){var dosis=F14+' ml'}
+				if(pub){var dosis=roundUp(F14)+' ml'}
 				else{
 					if(F14>5){dosis='5 ml'}
-					else{var dosis=F14+' ml';}
+					else{var dosis=roundUp(F14)+' ml';}
 				} 
 				// Fin Dosis
 				insert+='<b>Via:</b> endovenoso o intraóseo, indicación en bradicardia sintomática (secundaria a fenómeno vaso vagal o bloqueo AV)</br>';
@@ -290,11 +291,11 @@
 			if(seltype3==2){//Intoxicaciones por agentes colinérgicos
 				document.getElementById("result-container").style.display="block";
 				// Dosis
-				if((peso*0.5)>20){var F14=20;}else{var F14=peso*0.5;}
-				if(pub){var dosis=F14+' ml'}
+				if((peso*0.5)>20){var F14=20;}else{var F14=roundUp(peso*0.5);}
+				if(pub){var dosis=roundUp(F14)+' ml'}
 				else{
 					if(F14>5){dosis='20 ml'}
-					else{var dosis=F14+' ml';}
+					else{var dosis=roundUp(F14)+' ml';}
 				} 
 				// Fin Dosis
 				insert+='<b>Via:</b> endovenoso o intraóseo, dosis inicial para intoxicaciones por agentes colinérgicos (organofosforados)</br>';
