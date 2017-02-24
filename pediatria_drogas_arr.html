@@ -180,7 +180,7 @@
 			if(seltype2==2){//Endotraqueal
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.1*peso)+' ml';
-				insert+='<b>Via:</b> endotraqueal</br>';
+				insert+='<b>Via:</b> intraóseo</br>';
 				insert+='<b>Administración:</b>diluir la dosis obtenida hasta 5 ml de solución fisiológica</br>';
 				insert+='<b>Preparación:</b> 0,01 mg/kg/dosis</br>';// Esta esta bien asi?
 				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
@@ -188,7 +188,7 @@
 			if(seltype2==3){//intra muscular
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.01*peso)+' ml';
-				insert+='<b>Via:</b> intra muscular</br>';
+				insert+='<b>Via:</b> endotraqueal</br>';
 				insert+='<b>Administración:</b>sin diluir</br>';
 				insert+='<b>Preparación:</b> 0,01 mg/kg/dosis</br>';
 				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
