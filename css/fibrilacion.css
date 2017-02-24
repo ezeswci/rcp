@@ -269,9 +269,11 @@ select{
 }
 .txt-green.txt-sector{
     margin-bottom: 15px;
+	margin-top: -10px;
 }
 .txt-blue.txt-sector{
     margin-bottom: 15px;
+	margin-top: -10px;
 }
 .navbar-default{
 	padding-top:17px;
