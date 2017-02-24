@@ -96,22 +96,12 @@
                                         <div class="input-switch">
                                             <select name="sel-type-2" id="sel-type-2">
                                                 <option value="0">---</option>
-                                                <option value="1">Op1</option>
-                                                <option value="2">Op2</option>
-                                                <option value="3">Op3</option>
+                                                <option value="1">De 0,2 mg/kg/dosis. EV - IO</option>
+                                                <option value="2">Hasta 0,5 mg/kg/dosis. EV - IO</option>
+                                                <option value="3">Rectal 0,5 mg/kg/dosis</option>
                                             </select>      
                                         </div>
-                                        <div class="input-label"><label for="sel-type">Administración:</label></div>                                       
-                                   </div>
-                                   <div class="input-line" id="selop-3" style="display:none;">
-                                        <div class="input-switch">
-                                            <select name="sel-type-3" id="sel-type-3">
-                                                <option value="0">---</option>
-                                                <option value="1">Op1</option>
-                                                <option value="2">Op2</option>
-                                            </select>      
-                                        </div>
-                                        <div class="input-label"><label for="sel-type">Indicación:</label></div>                                       
+                                        <div class="input-label"><label for="sel-type">Administración / Dosis:</label></div>                                       
                                    </div>  
                                 </form>
                                 <div class="result_frame" id="result-container" style="display:none;">
@@ -165,120 +155,95 @@
 		var insert='';
 		if(seltype=="0"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
-			document.getElementById("selop-3").style.display="none";
+			
 			document.getElementById("result-container").style.display="none";
 		}
 		if(seltype=="Diazepam"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="block";
-			document.getElementById("selop-3").style.display="none";
+			
 			document.getElementById("result-container").style.display="none";
 			var seltype2=document.getElementById("sel-type-2").value;
-			if(seltype2==1){// Endovenosa
+			if(seltype2==1){// 
 				document.getElementById("result-container").style.display="block";
-				var dosis=roundUp(0.1*peso)+' ml';
-				insert+='<b>Via:</b> endovenoso</br>';
-				insert+='<b>Administración:</b> diluir 1 ml + 9 ml de solución fisiológica o dextrosa 5% (1/10.000)</br>';
-				insert+='<b>Preparación:</b> 0,01 mg/kg/dosis</br>';
+				var dosis=roundUp(0.04*peso)+' ml en no menos de '+roundUp(0.1*peso)+' minutos';
+				insert+='<b>Via:</b> endovenoso o intraóseo</br>';
+				insert+='<b>Administración:</b> 1-2 mg/min</br>';
+				insert+='<b>Preparación:</b> 0,2 mg/kg/dosis</br>';
+				insert+='<b>Aclaración:</b> max 10 mg > 5 años y 5mg < 5 años </br>';
 				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
 			}
-			if(seltype2==2){//Endotraqueal
+			if(seltype2==2){//
 				document.getElementById("result-container").style.display="block";
-				var dosis=roundUp(0.1*peso)+' ml';
-				insert+='<b>Via:</b> endotraqueal</br>';
-				insert+='<b>Administración:</b>diluir la dosis obtenida hasta 5 ml de solución fisiológica</br>';
-				insert+='<b>Preparación:</b> 0,01 mg/kg/dosis</br>';// Esta esta bien asi?
+				if(peso<20){var droga=Math.min(0.1*peso, 1);}else{var droga=Math.min(0.1*peso, 2);}
+				var dosis=roundUp(droga)+' ml en no menos de '+roundUp(2.5*droga)+' minutos';
+				
+				insert+='<b>Via:</b> endovenoso o intraóseo</br>';
+				insert+='<b>Administración:</b>1-2 mg/min</br>';
+				insert+='<b>Preparación:</b> hasta 0,5 mg/kg/dosis</br>';// Esta esta bien asi?
+				insert+='<b>Aclaración:</b> max 10 mg > 5 años y 5mg < 5 años </br>';
 				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
 			}
-			if(seltype2==3){//intra muscular
+			if(seltype2==3){//
 				document.getElementById("result-container").style.display="block";
-				var dosis=roundUp(0.01*peso)+' ml';
-				insert+='<b>Via:</b> intra muscular</br>';
+				var dosis=roundUp(0.1*peso)+' ml';
+				insert+='<b>Via:</b> Rectal</br>';
 				insert+='<b>Administración:</b>sin diluir</br>';
-				insert+='<b>Preparación:</b> 0,01 mg/kg/dosis</br>';
+				insert+='<b>Preparación:</b> 0,5 mg/kg/dosis</br>';
+				insert+='<b>Aclaración:</b> dosis max. 20 mg. </br>';
+				//Rectal dosis max. 20 mg
 				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
 			}
 		}
 		if(seltype=="Midazolam"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
-			document.getElementById("selop-3").style.display="block";
-			document.getElementById("result-container").style.display="none";
-			var seltype3=document.getElementById("sel-type-3").value;
-			if(seltype3==1){// Bradicardia sintomática
-				document.getElementById("result-container").style.display="block";
-				// Dosis
-				if((peso*0.2)>10){var F14=10;}else{var F14=peso*0.2;}
-				if(pub){var dosis=F14+' ml'}
-				else{
-					if(F14>5){dosis='5 ml'}
-					else{var dosis=F14+' ml';}
-				} 
-				// Fin Dosis
-				insert+='<b>Via:</b> endovenoso o intraóseo, indicación en bradicardia sintomática (secundaria a fenómeno vaso vagal o bloqueo AV)</br>';
-				insert+='<b>Administración:</b> diluir 1 ml + 9 ml de solución fisiológica</br>';
-				insert+='<b>Preparación:</b>  0,02  mg/kg/dosis</br>';
-				insert+='<b>Aclaración:</b> mínima dosis única: 0.1 mg. Máxima dosis única: 0.5 mg en niños y 1 mg en adolescentes. Puede repetirse cada 5 min con una dosis máxima total de 1 mg en niños y 2 mg en adolescentes. </br>';
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
-			}
-			if(seltype3==2){//Intoxicaciones por agentes colinérgicos
-				document.getElementById("result-container").style.display="block";
-				// Dosis
-				if((peso*0.5)>20){var F14=20;}else{var F14=peso*0.5;}
-				if(pub){var dosis=F14+' ml'}
-				else{
-					if(F14>5){dosis='20 ml'}
-					else{var dosis=F14+' ml';}
-				} 
-				// Fin Dosis
-				insert+='<b>Via:</b> endovenoso o intraóseo, dosis inicial para intoxicaciones por agentes colinérgicos (organofosforados)</br>';
-				insert+='<b>Administración:</b> diluir 1 ml + 9 ml de solución fisiológica</br>';
-				insert+='<b>Preparación:</b>  0,05  mg/kg/dosis</br>';
-				insert+='<b>Aclaración:</b> Si la respuesta no es la adecuada se puede duplicar la dosis y repetir cada 10-20 min hasta que las secreciones bronquiales disminuyan (atropinización) (max 2 mg dosis - 20 ml de la dilución) </br>';
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
-			}
+			document.getElementById("result-container").style.display="block";
+			var dosis=roundUp(0.04*peso)+' ml en '+roundUp(0.08*peso)+' minutos';
+			insert+='<b>Via:</b> endovenoso ó intraóseo ó IR ó vía oral ó intra muscular ó intranasal </br>';
+			insert+='<b>Administración:</b> si es endovenoso en push lento velocidad 2,5 mg/min, en intraóseo velocidad 2,5 mg/min</br>';
+			insert+='<b>Aclaración:</b> Se puede repetir cada 10 a 15 minutos</br>'
+			insert+='<b>Preparación:</b> 0,2 mg/kg/dosis </br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
 		}
 		if(seltype=="Lorazepam"){// Opcion si eligio esto
-			document.getElementById("selop-2").style.display="none";
-			document.getElementById("selop-3").style.display="none";
+			document.getElementById("selop-2").style.display="none";	
 			document.getElementById("result-container").style.display="block";
-			var dosis=roundUp(5*peso)+' ml a '+roundUp(10*peso)+' ml ';
-			//insert+='<b>Via:</b> endovenoso en push con posterior plan de hidratación parenteral con flujo de glucosa alto</br>';
-			insert+='<b>Administración:</b>push lento</br>';
-			insert+='<b>Aclaración:</b> En caso de hipoglucemia documentada o con alta sospecha posterior al push lento dejar un plan de hidratación parenteral con flujo de glucosa alto y controlar</br>'
-			insert+='<b>Preparación:</b> 0,5 - 1 g/kg/dosis</br>';
+			var dosis=roundUp(Math.min(0.025*peso,1))+' ml en no menos de '+roundUp(Math.min(0.025*peso,1)*4)+' minutos';
+			insert+='<b>Via:</b> endovenoso ó intraóseo ó rectal ó intra muscular </br>';
+			insert+='<b>Administración:</b> diluir con igual volumen de solución fisiológica o dextrosa 5%  y pasar en push lento. Puede ser por intra muscular profunda sin diluir. Velocidad de infusión. endovenoso ó intraóseo en 2,5 mg/min</br>';
+			insert+='<b>Aclaración:</b> conservar en heladera. Dosis max 4 mg. Puede repetirse en 10 - 15 min</br>'
+			insert+='<b>Preparación:</b> 0,1 mg/kg/dosis</br>';
 			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
 		}
 		if(seltype=="Difenilhidantoína"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
-			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="block";
-			var dosis=roundUp(2*peso)+' ml a '+roundUp(4*peso)+' ml ';
-			//insert+='<b>Via:</b> endovenoso en push con posterior plan de hidratación parenteral con flujo de glucosa alto</br>';
-			insert+='<b>Administración:</b>push lento</br>';
+			var dosis=roundUp(0.3*peso)+' a '+roundUp(0.4*peso)+' ml + '+roundUp(4*peso)+' ml de solución fisiológica';
+			insert+='<b>Via:</b> endovenoso</br>';
+			insert+='<b>Administración:</b>Diluir con  solución fisiológica, lavar la vía con solución fisiológica antes y después de la administración. Es conveniente monitorizar T/A y ECG por arritmias. Endovenoso lento (en 15 a 20 minutos) (1mg/kg/min). [] para infusión 1- 6 mg/ml</br>';
 			insert+='<b>Aclaración:</b> En caso de hipoglucemia documentada o con alta sospecha posterior al push lento dejar un plan de hidratación parenteral con flujo de glucosa alto y controlar</br>'
-			insert+='<b>Preparación:</b> 0,5 - 1 g/kg/dosis</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+			insert+='<b>Preparación:</b> 15 a 20 mg/kg</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis: de</b> '+dosis+'</br></span>';
 		}
 		if(seltype=="Fenobarbital"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
-			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="block";
-			var dosis=peso*20;
-			//insert+='<b>Via:</b> endovenoso</br>';
-			insert+='<b>Administración:</b> lento (5 - 10 min)</br>';
-			insert+='<b>Aclaración:</b> se puede repetir la dosis</br>';
-			insert+='<b>Preparación:</b> 20 ml/kg</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+' ml</br></span>';
+			var dosis=roundUp(0.2*peso)+' a '+roundUp(0.4*peso)+' ml ';
+			insert+='<b>Via:</b> endovenoso</br>';
+			insert+='<b>Administración:</b> 1 mg/kg/min</br>';
+			insert+='<b>Aclaración:</b> diluido con igual volumen de solución fisiológica o dextrosa 5% </br>';
+			insert+='<b>Preparación:</b> 10 a 20  mg/kg (en 10 a 20 min)</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
 		}
 		if(seltype=="Tiopental"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
-			document.getElementById("selop-3").style.display="none";
+			
 			document.getElementById("result-container").style.display="block";
-			var dosis=peso*20;
-			//insert+='<b>Via:</b> endovenoso</br>';
-			insert+='<b>Administración:</b> lento (5 - 10 min)</br>';
-			insert+='<b>Aclaración:</b> se puede repetir la dosis</br>';
-			insert+='<b>Preparación:</b> 20 ml/kg</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+' ml</br></span>';
+			var dosis=roundUp(0.15*peso)+' a '+roundUp(0.25*peso)+' ml ';
+			insert+='<b>Via:</b> endovenoso</br>';
+			insert+='<b>Administración:</b> infusión intermitente 10 – 60 min</br>';
+			insert+='<b>Aclaración:</b> lento (1min x ml). No usar agua destilada para infusión contínua por riesgo de hemólisis, usar solución fisiológica  </br>';
+			insert+='<b>Preparación:</b> 3 a 5  mg/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
 		}
 
 		
