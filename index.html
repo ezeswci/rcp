@@ -26,7 +26,15 @@
 
 <body>
     <script>
-    window.location="home.html";
+	window.onload=setTimeout(function(){ irASiguiente(); }, 500);
+	function irASiguiente(){
+		var value = window.localStorage.getItem("login");
+		if(value=="true"){
+			window.location="home.html";
+		}else{
+			window.location="preguntas_iniciales.html";
+		}
+	}
     </script>
 </body>
 

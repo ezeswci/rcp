@@ -38,7 +38,7 @@
                 <li class="calculadora txt-blue" style="text-align: center; font-size:12px; color:#007C9A;background: #cde0e5;">NEONATOLOGÍA</li>
                 <li class="calculadora"><a href="#" onClick="cambiarCalculadora('neonatologia_acciones.html');">Intervenciones</a></li>
                 <li class="calculadora"><a href="#" onClick="cambiarCalculadora('neonatologia_drogas.html');">Drogas</a></li>
-                <li class="algoritmo txt-green" style="text-align: center;font-size:12px; color:#4AB239;background: #caddc7;">PEDIATRÍA</li>
+                <li class="algoritmo txt-green" style="text-align: center;font-size:12px; color:#4AB239;background: #b6bcce;">PEDIATRÍA</li>
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_acciones.html');">Intervenciones</a></li>
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_drogas.html');">Drogas</a></li> 
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_glasgow.html');">Glasgow</a></li>
@@ -67,7 +67,7 @@
                                     <div class="input-line">
                                         <div data-role="fieldcontain">
                                             <label for="peso">Peso (Kg)</label>
-                                            <input type="range" name="peso" id="peso" value="7" min="4" max="50"  step="0.05">
+                                            <input type="range" name="peso" id="peso" value="7" min="4" max="50"  step="1">
                                         </div>
                                     </div>
                                     <div class="input-line">
@@ -160,6 +160,8 @@
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(0.1*peso)+' ml ';
+			insert+='<b>Amiodarona 150 mg/3ml</b> para niños de <b>'+peso+' kg ';
+			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			insert+='<b>Via:</b> endovenoso</br>';
 			insert+='<b>Administración:</b> lento o en push según gravedad (sin pulso).</br>';
 			insert+='<b>Aclaración:</b> no diluír 150 mg/3ml, max 300 mg</br>'
@@ -170,11 +172,13 @@
 			document.getElementById("selop-2").style.display="block";
 			document.getElementById("result-container").style.display="none";
 			var seltype2=document.getElementById("sel-type-2").value;
+			insert+='<b>Lidocaína sin epinefrina 1% en bolo</b> para niños de <b>'+peso+' kg ';
+			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			if(seltype2==1){// Endovenosa
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.1*peso)+' ml';
 				insert+='<b>Via:</b> endovenoso</br>';
-				insert+='<b>Aclaración:</b> lidocaína sin epinefrina 1% en bolo</br>';
+				//insert+='<b>Aclaración:</b> lidocaína sin epinefrina 1% en bolo</br>';
 				insert+='<b>Preparación:</b> dosis de carga 1 mg/Kg</br>';
 				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
 			}
@@ -182,7 +186,7 @@
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.1*peso)+' ml';
 				insert+='<b>Via:</b> intraóseo</br>';
-				insert+='<b>Aclaración:</b> lidocaína sin epinefrina 1% en bolo</br>';
+				//insert+='<b>Aclaración:</b> lidocaína sin epinefrina 1% en bolo</br>';
 				insert+='<b>Preparación:</b> dosis de carga 1 mg/Kg</br>';
 				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
 			}
@@ -190,7 +194,7 @@
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.2*peso)+' ml a '+roundUp(0.3*peso)+' ml ';
 				insert+='<b>Via:</b> endotraqueal</br>';
-				insert+='<b>Aclaración:</b> lidocaína sin epinefrina 1% en bolo</br>';
+				//insert+='<b>Aclaración:</b> lidocaína sin epinefrina 1% en bolo</br>';
 				insert+='<b>Preparación:</b> dosis de carga 2 a 3  mg/Kg</br>';
 				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
 			}
@@ -199,6 +203,8 @@
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(0.1/3*peso)+' ml a '+roundUp(0.2/3*peso)+' ml ';
+			insert+='<b>Adenosina</b> para niños de <b>'+peso+' kg ';
+			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			//insert+='<b>Via:</b> endovenoso en push con posterior plan de hidratación parenteral con flujo de glucosa alto</br>';
 			insert+='<b>Administración:</b>intraóseo o intravenoso en push rápido (2ml=6 mg)</br>';
 			insert+='<b>Aclaración:</b> No refrigerar ampolla, lavar con solución fisiológica inmediatamente (llave de 3 vías)</br>'
@@ -209,6 +215,8 @@
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(0.1*peso)+' ml a '+roundUp(Math.min(0.2*peso, 8))+' ml ';
+			insert+='<b>Sulfato de Magnesio 25% (amp 5 ml)</b> para niños de <b>'+peso+' kg ';
+			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			//insert+='<b>Via:</b> endovenoso</br>';
 			insert+='<b>Administración:</b> lento (5 - 10 min)</br>';
 			insert+='<b>Aclaración:</b> se puede repetir la dosis</br>';

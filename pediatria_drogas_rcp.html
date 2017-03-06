@@ -38,7 +38,7 @@
                 <li class="calculadora txt-blue" style="text-align: center; font-size:12px; color:#007C9A;background: #cde0e5;">NEONATOLOGÍA</li>
                 <li class="calculadora"><a href="#" onClick="cambiarCalculadora('neonatologia_acciones.html');">Intervenciones</a></li>
                 <li class="calculadora"><a href="#" onClick="cambiarCalculadora('neonatologia_drogas.html');">Drogas</a></li>
-                <li class="algoritmo txt-green" style="text-align: center;font-size:12px; color:#4AB239;background: #caddc7;">PEDIATRÍA</li>
+                <li class="algoritmo txt-green" style="text-align: center;font-size:12px; color:#4AB239;background: #b6bcce;">PEDIATRÍA</li>
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_acciones.html');">Intervenciones</a></li>
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_drogas.html');">Drogas</a></li> 
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_glasgow.html');">Glasgow</a></li>
@@ -67,7 +67,7 @@
                                     <div class="input-line">
                                         <div data-role="fieldcontain">
                                             <label for="peso">Peso (Kg)</label>
-                                            <input type="range" name="peso" id="peso" value="7" min="4" max="50"  step="0.05">
+                                            <input type="range" name="peso" id="peso" value="7" min="4" max="50"  step="1">
                                         </div>
                                     </div>
                                     <div class="input-line">
@@ -178,6 +178,8 @@
 			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(5*peso)+' ml a '+roundUp(10*peso)+' ml ';
+			insert+='<b>Dextrosa 10%</b> para niños de <b>'+peso+' kg ';
+			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			//insert+='<b>Via:</b> endovenoso en push con posterior plan de hidratación parenteral con flujo de glucosa alto</br>';
 			insert+='<b>Administración:</b>push lento</br>';
 			insert+='<b>Aclaración:</b> En caso de hipoglucemia documentada o con alta sospecha posterior al push lento dejar un plan de hidratación parenteral con flujo de glucosa alto y controlar</br>'
@@ -189,6 +191,8 @@
 			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(2*peso)+' ml a '+roundUp(4*peso)+' ml ';
+			insert+='<b>Dextrosa 25%</b> para niños de <b>'+peso+' kg ';
+			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			//insert+='<b>Via:</b> endovenoso en push con posterior plan de hidratación parenteral con flujo de glucosa alto</br>';
 			insert+='<b>Administración:</b>push lento</br>';
 			insert+='<b>Aclaración:</b> En caso de hipoglucemia documentada o con alta sospecha posterior al push lento dejar un plan de hidratación parenteral con flujo de glucosa alto y controlar</br>'
@@ -201,6 +205,8 @@
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(peso*20);
 			//insert+='<b>Via:</b> endovenoso</br>';
+			insert+='<b>Solución fisiológica</b> para niños de <b>'+peso+' kg ';
+			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			insert+='<b>Administración:</b> lento (5 - 10 min)</br>';
 			insert+='<b>Aclaración:</b> se puede repetir la dosis</br>';
 			insert+='<b>Preparación:</b> 20 ml/kg</br>';
@@ -211,6 +217,8 @@
 			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(peso*20);
+			insert+='<b>Ringer lactato</b> para niños de <b>'+peso+' kg ';
+			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			//insert+='<b>Via:</b> endovenoso</br>';
 			insert+='<b>Administración:</b> lento (5 - 10 min)</br>';
 			insert+='<b>Aclaración:</b> se puede repetir la dosis</br>';
@@ -223,6 +231,8 @@
 			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="none";
 			var seltype2=document.getElementById("sel-type-2").value;
+			insert+='<b>Adrenalina</b> para niños de <b>'+peso+' kg ';
+			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			if(seltype2==1){// Endovenosa
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.1*peso)+' ml';
@@ -253,6 +263,8 @@
 			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(peso)+' ml';
+			insert+='<b>Bicarbonato de sodio 1 M</b> para niños de <b>'+peso+' kg ';
+			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			insert+='<b>Administración:</b> push lento</br>';
 			insert+='<b>Preparación:</b> 1 mEq/ kg/ dosis </br>';
 			insert+='<b>Aclaración:</b> con lavado previo y posterior con solución fisiológica Según indicaciones precisas: acidosis metabólica severa (RCP prolongado) con ventilación adecuada. Hiperkalemia - hipermagnesemia. Intoxicación con bloqueantes de los canales de sodio (antidepresivos tricíclicos). Algunos pasan diluido al medio en agua destilada</br>';
@@ -264,6 +276,8 @@
 			document.getElementById("result-container").style.display="block";
 			if(peso<20){var dosis=roundUp(peso/4)+' ml '}else{var dosis='5 ml'}
 			//insert+='<b>Via:</b> endovenoso o intravenoso</br>';
+			insert+='<b>Naloxoma (0,4mg/ml)</b> para niños de <b>'+peso+' kg ';
+			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			if(peso<20){insert+='<b>Preparación:</b> si el paciente es menor a 5 Años 0,1 mg/kg/dosis sino 2 mg/kg/dosis</br>';}
 			else{insert+='<b>Preparación:</b> 2 mg/kg/dosis</br>';}
 			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
@@ -272,6 +286,8 @@
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("selop-3").style.display="block";
 			document.getElementById("result-container").style.display="none";
+			insert+='<b>Atropina (1mg/ml)</b> para niños de <b>'+peso+' kg ';
+			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			var seltype3=document.getElementById("sel-type-3").value;
 			if(seltype3==1){// Bradicardia sintomática
 				document.getElementById("result-container").style.display="block";
@@ -314,7 +330,8 @@
 			var dosis1=Math.min(0.6*peso, 30);
 			var dosis2=Math.min(peso, 30);
 			if(dosis1!=dosis2){var dosis=roundUp(dosis1)+' ml a '+roundUp(dosis2)+' ml ';}else{var dosis='30 ml ';}
-			
+			insert+='<b>Gluconato de calcio 10%</b> para niños de <b>'+peso+' kg ';
+			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			insert+='<b>Via:</b> endovenoso ó intraóseo</br>';
 			insert+='<b>Administración:</b> dar endo venoso lento (tener máximo cuidado a infiltraciones) o  intraóseo. Sin diluír ó al medio. A pasar en 5 -10 minutos. Dosis máxima 3 g</br>';
 			insert+='<b>Preparación:</b> 60 - 100 mg/kg/dosis</br>';
@@ -325,6 +342,8 @@
 			document.getElementById("result-container").style.display="block";
 			document.getElementById("selop-3").style.display="none";
 			var dosis=roundUp(0.2*peso)+' ml ';
+			insert+='<b>Cloruro de calcio 10%</b> para niños de <b>'+peso+' kg ';
+			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			insert+='<b>Via:</b> endovenoso</br>';
 			insert+='<b>Administración:</b> lento (tener máximo cuidado a infiltraciones). Preferible vía central.</br>';
 			insert+='<b>Preparación:</b> 20 mg/kg/dosis</br>';

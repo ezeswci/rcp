@@ -38,13 +38,13 @@
                 <li class="calculadora txt-blue" style="text-align: center; font-size:12px; color:#007C9A;background: #cde0e5;">NEONATOLOGÍA</li>
                 <li class="calculadora"><a href="#" onClick="cambiarCalculadora('neonatologia_acciones.html');">Intervenciones</a></li>
                 <li class="calculadora"><a href="#" onClick="cambiarCalculadora('neonatologia_drogas.html');">Drogas</a></li>
-                <li class="algoritmo txt-green" style="text-align: center;font-size:12px; color:#49823f ;background: #caddc7;">PEDIATRÍA</li>
+                <li class="algoritmo txt-green" style="text-align: center;font-size:12px; color:#04142b ;background: #b6bcce;">PEDIATRÍA</li>
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_acciones.html');">Intervenciones</a></li>
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_drogas.html');">Drogas</a></li> 
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_glasgow.html');">Glasgow</a></li>
                 <li style="text-align: center; color:#1a53a5;font-size:12px; color:#665b00; background:#fafafa;">OTROS</li>
-                <li><a onClick="">Términos y condiciones</li>
-                <li><a onClick="">Situaciones de uso</a></li>
+                <li><a onClick="cambiarCalculadora('terminos.html');">Términos y condiciones</li>
+                <li><a onClick="cambiarCalculadora('situaciones.html');">Situaciones de uso</a></li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -162,6 +162,7 @@
 		var peso=parseFloat(document.getElementById("peso").value);
 		$('#sel-kg').css("display", "block");
 		$('#sel-ag').css("display", "none");
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciónes para  niños de <b style="font-size:16px;">'+peso+' kg</b></p>';
 		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Posición de la cabeza: <b style="font-size:16px;">Olfateo</b></p>';
 		// Toma de pulso
 		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Lugar de toma de pulsos: <b style="font-size:16px;">';
@@ -312,8 +313,10 @@
 		// Else
 	}else{// edad
 		var peso=parseFloat(document.getElementById("semn").value);// Por como esta armado el Excel las tablas coinciden! 
+		var edad=document.getElementById("semn").options[document.getElementById("semn").selectedIndex].innerHTML;
 		$('#sel-kg').css("display", "none");
 		$('#sel-ag').css("display", "block");
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciones para niños de <b style="font-size:16px;"> '+edad+'</b></p>';
 		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Posición de la cabeza: <b style="font-size:16px;">Olfateo</b></p>';
 		// Toma de pulso
 		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Lugar de toma de pulsos: <b style="font-size:16px;">';
