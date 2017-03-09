@@ -160,17 +160,17 @@
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.1*peso)+' ml a '+roundUp(0.3*peso)+' ml ';
 				insert+='<b>Via:</b> endovenoso</br>';
-				insert+='<b>Administración:</b> diluir 1 ml + 9 ml de agua destilada</br>';
-				insert+='<b>Preparación:</b> 0,01 a 0,03 mg/kg/dosis</br>';
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+				insert+='<b>Preparación:</b> diluir 1 ml + 9 ml de agua destilada</br>';
+				insert+='<b>Dosis:</b> 0,01 a 0,03 mg/kg/dosis</br>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 			}
 			if(seltype2==2){//Endotraqueal
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.5*peso)+' ml a '+roundUp(peso)+' ml ';
 				insert+='<b>Via:</b> endotraqueal</br>';
-				insert+='<b>Administración:</b>diluir 1 ml + 9 ml de agua destilada</br>';
-				insert+='<b>Preparación:</b> 0,05 a 0,1 mg/kg/dosis</br>';
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+				insert+='<b>Preparación:</b>diluir 1 ml + 9 ml de agua destilada</br>';
+				insert+='<b>Dosis:</b> 0,05 a 0,1 mg/kg/dosis</br>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 			}
 		}
 		if(seltype=="Solución fisológica"){// Opcion si eligio esto
@@ -180,9 +180,9 @@
 			insert+='<b>Solución fisiológica</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
 			insert+='<b>Indicación:</b> hipovolemia</br>';
 			insert+='<b>Via:</b> endovenoso</br>';
-			insert+='<b>Administración:</b> lento (5 - 10 min)</br>';
-			insert+='<b>Preparación:</b> 10 ml/kg</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+' ml</br></span>';
+			insert+='<b>Preparación:</b> lento (5 - 10 min)</br>';
+			insert+='<b>Dosis:</b> 10 ml/kg</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+' ml</br></span>';
 		}
 		if(seltype=="Gluconato de calcio 10%"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
@@ -191,9 +191,9 @@
 			insert+='<b>Gluconato de calcio 10%</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
 			insert+='<b>Indicación:</b> hipocalcemia</br>';
 			insert+='<b>Via:</b> endovenoso con control de extravasación</br>';
-			insert+='<b>Administración:</b> lento con control de la frecuencia cardíaca. Dar con el mismo volumen de agua destilada</br>';
-			insert+='<b>Preparación:</b> 100 mg/kg/dosis</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+' ml</br></span>';
+			insert+='<b>Preparación:</b> lento con control de la frecuencia cardíaca. Dar con el mismo volumen de agua destilada</br>';
+			insert+='<b>Dosis:</b> 100 mg/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+' ml</br></span>';
 		}
 		if(seltype=="Dextrosado 10%"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
@@ -202,9 +202,9 @@
 			insert+='<b>Dextrosado 10%</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
 			insert+='<b>Indicación:</b> hipocalcemia</br>';
 			insert+='<b>Via:</b> endovenoso en push con posterior plan de hidratación parenteral con flujo de glucosa alto</br>';
-			//insert+='<b>Administración:</b> lento con control de la frecuencia cardíaca. Dar con el mismo volumen de agua destilada</br>';
-			insert+='<b>Preparación:</b> 0,5 - 1 g/kg/dosis</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+			//insert+='<b>Preparación:</b> lento con control de la frecuencia cardíaca. Dar con el mismo volumen de agua destilada</br>';
+			insert+='<b>Dosis:</b> 0,5 - 1 g/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 		}
 		if(seltype=="Naloxona (1mg/1ml)"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
@@ -213,9 +213,9 @@
 			insert+='<b>Naloxona (1mg/ 1ml)</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
 			insert+='<b>Indicación:</b> depresión SNC por derivados de morfina</br>';
 			insert+='<b>Via:</b> endovenoso o intramuscular</br>';
-			insert+='<b>Administración:</b> tomar 1 ml + 9 ml de agua destilada</br>';
-			insert+='<b>Preparación:</b> 0,1 mg/kg/dosis</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+			insert+='<b>Preparación:</b> tomar 1 ml + 9 ml de agua destilada</br>';
+			insert+='<b>Dosis:</b> 0,1 mg/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 		}
 		if(seltype=="Naloxona (0,4mg/1ml)"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
@@ -224,9 +224,9 @@
 			insert+='<b>Naloxona (0,4mg / 1ml)</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
 			insert+='<b>Indicación:</b> depresión SNC por derivados de morfina</br>';
 			insert+='<b>Via:</b> endovenoso o intramuscular</br>';
-			insert+='<b>Administración:</b> tomar 1 ml + 9 ml de agua destilada</br>';
-			insert+='<b>Preparación:</b> 0,1 mg/kg/dosis</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+			insert+='<b>Preparación:</b> tomar 1 ml + 9 ml de agua destilada</br>';
+			insert+='<b>Dosis:</b> 0,1 mg/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 		}
 		if(seltype=="Fenobabital (50mg/1ml)"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
@@ -235,9 +235,9 @@
 			insert+='<b>Fenobabital (50mg / 1ml)</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
 			insert+='<b>Indicación:</b> estado convulsivo</br>';
 			insert+='<b>Via:</b> endovenoso o intramuscular en push lento</br>';
-			insert+='<b>Administración:</b> se puede pasar puro o diluido con igual volumen de solución fisiológica ó dextrosa 5%</br>';
-			insert+='<b>Preparación:</b> 10 - 20 mg/kg/dosis de ataque</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+			insert+='<b>Preparación:</b> se puede pasar puro o diluido con igual volumen de solución fisiológica ó dextrosa 5%</br>';
+			insert+='<b>Dosis:</b> 10 - 20 mg/kg/dosis de ataque</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 		}
 		if(seltype=="Bicarbonato de Sodio"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
@@ -245,9 +245,9 @@
 			var dosis=roundUp(2*peso)+' ml';
 			insert+='<b>Bicarbonato de Sodio 1 M</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
 			insert+='<b>Indicación:</b> acidosis metabólica con buen control respiratorio</br>';
-			insert+='<b>Administración:</b> Pasar con igual volumen de agua destilada. Con cuidado de extravasación</br>';
-			insert+='<b>Preparación:</b> 2 mEq/kg/dosis en 10 min</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+			insert+='<b>Preparación:</b> Pasar con igual volumen de agua destilada. Con cuidado de extravasación</br>';
+			insert+='<b>Dosis:</b> 2 mEq/kg/dosis en 10 min</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 		}
 		if(seltype=="Adenosina"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
@@ -255,10 +255,10 @@
 			var dosis=roundUp(peso / 6)+' ml a '+roundUp(peso / 3)+' ml ';
 			insert+='<b>Adenosina (ampollas 2ml=6mg)</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
 			insert+='<b>Indicación:</b> taquicardia paroxística supraventricular</br>';
-			insert+='<b>Administración:</b> En push rápido con lavado posterior con solución fisiológica. Acceso vascular lo más cercano al corazón</br>';
-			insert+='<b>Preparación:</b> 0,05 a 0,1 mg/kg/dosis. Dosis en ml de la dilución 1ml + 9 ml de agua destilada.</br>';
+			insert+='<b>Preparación:</b> En push rápido con lavado posterior con solución fisiológica. Acceso vascular lo más cercano al corazón</br>';
+			insert+='<b>Dosis:</b> 0,05 a 0,1 mg/kg/dosis. Dosis en ml de la dilución 1ml + 9 ml de agua destilada.</br>';
 			insert+='<b>Aclaración:</b> No refrigerar ampolla</br>'
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 		}
 		$('#situacion').html(insert);
 	

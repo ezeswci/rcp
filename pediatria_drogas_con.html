@@ -170,10 +170,10 @@
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.04*peso)+' ml en no menos de '+roundUp(0.1*peso)+' minutos';
 				insert+='<b>Via:</b> endovenoso o intraóseo</br>';
-				insert+='<b>Administración:</b> 1-2 mg/min</br>';
-				insert+='<b>Preparación:</b> 0,2 mg/kg/dosis</br>';
+				insert+='<b>Preparación:</b> 1-2 mg/min</br>';
+				insert+='<b>Dosis:</b> 0,2 mg/kg/dosis</br>';
 				insert+='<b>Aclaración:</b> max 10 mg > 5 años y 5mg < 5 años </br>';
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 			}
 			if(seltype2==2){//
 				document.getElementById("result-container").style.display="block";
@@ -181,20 +181,20 @@
 				var dosis=roundUp(droga)+' ml en no menos de '+roundUp(2.5*droga)+' minutos';
 				
 				insert+='<b>Via:</b> endovenoso o intraóseo</br>';
-				insert+='<b>Administración:</b>1-2 mg/min</br>';
-				insert+='<b>Preparación:</b> hasta 0,5 mg/kg/dosis</br>';// Esta esta bien asi?
+				insert+='<b>Preparación:</b>1-2 mg/min</br>';
+				insert+='<b>Dosis:</b> hasta 0,5 mg/kg/dosis</br>';// Esta esta bien asi?
 				insert+='<b>Aclaración:</b> max 10 mg > 5 años y 5mg < 5 años </br>';
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 			}
 			if(seltype2==3){//
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.1*peso)+' ml';
 				insert+='<b>Via:</b> Rectal</br>';
-				insert+='<b>Administración:</b>sin diluir</br>';
-				insert+='<b>Preparación:</b> 0,5 mg/kg/dosis</br>';
+				insert+='<b>Preparación:</b>sin diluir</br>';
+				insert+='<b>Dosis:</b> 0,5 mg/kg/dosis</br>';
 				insert+='<b>Aclaración:</b> dosis max. 20 mg. </br>';
 				//Rectal dosis max. 20 mg
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 			}
 		}
 		if(seltype=="Midazolam"){// Opcion si eligio esto
@@ -204,10 +204,10 @@
 			insert+='<b>Midazolam (15 mg/ 3ml)</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			insert+='<b>Via:</b> endovenoso ó intraóseo ó IR ó vía oral ó intra muscular ó intranasal </br>';
-			insert+='<b>Administración:</b> si es endovenoso en push lento velocidad 2,5 mg/min, en intraóseo velocidad 2,5 mg/min</br>';
+			insert+='<b>Preparación:</b> si es endovenoso en push lento velocidad 2,5 mg/min, en intraóseo velocidad 2,5 mg/min</br>';
 			insert+='<b>Aclaración:</b> Se puede repetir cada 10 a 15 minutos</br>'
-			insert+='<b>Preparación:</b> 0,2 mg/kg/dosis </br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+			insert+='<b>Dosis:</b> 0,2 mg/kg/dosis </br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 		}
 		if(seltype=="Lorazepam"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";	
@@ -216,10 +216,10 @@
 			insert+='<b>Lorazepam (4mg/ml)</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			insert+='<b>Via:</b> endovenoso ó intraóseo ó rectal ó intra muscular </br>';
-			insert+='<b>Administración:</b> diluir con igual volumen de solución fisiológica o dextrosa 5%  y pasar en push lento. Puede ser por intra muscular profunda sin diluir. Velocidad de infusión. endovenoso ó intraóseo en 2,5 mg/min</br>';
+			insert+='<b>Preparación:</b> diluir con igual volumen de solución fisiológica o dextrosa 5%  y pasar en push lento. Puede ser por intra muscular profunda sin diluir. Velocidad de infusión. endovenoso ó intraóseo en 2,5 mg/min</br>';
 			insert+='<b>Aclaración:</b> conservar en heladera. Dosis max 4 mg. Puede repetirse en 10 - 15 min</br>'
-			insert+='<b>Preparación:</b> 0,1 mg/kg/dosis</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+			insert+='<b>Dosis:</b> 0,1 mg/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 		}
 		if(seltype=="Difenilhidantoína"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
@@ -228,9 +228,9 @@
 			insert+='<b>Difenilhidantoína (fenitoina) (50 mg/ml) ampollas de 2 ml</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			insert+='<b>Via:</b> endovenoso</br>';
-			insert+='<b>Administración:</b>Diluir con  solución fisiológica, lavar la vía con solución fisiológica antes y después de la administración. Es conveniente monitorizar TA y ECG por arritmias. Endovenoso lento (en 15 a 20 minutos) (1mg/kg/min). [] para infusión 1- 6 mg/ml</br>';
+			insert+='<b>Preparación:</b>Diluir con  solución fisiológica, lavar la vía con solución fisiológica antes y después de la administración. Es conveniente monitorizar TA y ECG por arritmias. Endovenoso lento (en 15 a 20 minutos) (1mg/kg/min). [] para infusión 1- 6 mg/ml</br>';
 			insert+='<b>Aclaración:</b> En caso de hipoglucemia documentada o con alta sospecha posterior al push lento dejar un plan de hidratación parenteral con flujo de glucosa alto y controlar</br>'
-			insert+='<b>Preparación:</b> 15 a 20 mg/kg</br>';
+			insert+='<b>Dosis:</b> 15 a 20 mg/kg</br>';
 			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis: de</b> '+dosis+'</br></span>';
 		}
 		if(seltype=="Fenobarbital"){// Opcion si eligio esto
@@ -240,10 +240,10 @@
 			insert+='<b>Fenobarbital (50 mg/ml) ampollas de 2 ml</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			insert+='<b>Via:</b> endovenoso</br>';
-			insert+='<b>Administración:</b> 1 mg/kg/min</br>';
+			insert+='<b>Preparación:</b> 1 mg/kg/min</br>';
 			insert+='<b>Aclaración:</b> diluido con igual volumen de solución fisiológica o dextrosa 5% </br>';
-			insert+='<b>Preparación:</b> 10 a 20  mg/kg (en 10 a 20 min)</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+			insert+='<b>Dosis:</b> 10 a 20  mg/kg (en 10 a 20 min)</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 		}
 		if(seltype=="Tiopental"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
@@ -253,10 +253,10 @@
 			insert+='<b>Tiopental (frasco ampolla 1 g/50 ml) (20 mg/ml)</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			insert+='<b>Via:</b> endovenoso</br>';
-			insert+='<b>Administración:</b> infusión intermitente 10 – 60 min</br>';
+			insert+='<b>Preparación:</b> infusión intermitente 10 – 60 min</br>';
 			insert+='<b>Aclaración:</b> lento (1min x ml). No usar agua destilada para infusión contínua por riesgo de hemólisis, usar solución fisiológica  </br>';
-			insert+='<b>Preparación:</b> 3 a 5  mg/kg/dosis</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+			insert+='<b>Dosis:</b> 3 a 5  mg/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 		}
 
 		

@@ -163,10 +163,10 @@
 			insert+='<b>Amiodarona 150 mg/3ml</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			insert+='<b>Via:</b> endovenoso</br>';
-			insert+='<b>Administración:</b> lento o en push según gravedad (sin pulso).</br>';
+			insert+='<b>Preparación:</b> lento o en push según gravedad (sin pulso).</br>';
 			insert+='<b>Aclaración:</b> no diluír 150 mg/3ml, max 300 mg</br>'
-			insert+='<b>Preparación:</b> 5mg/kg/dosis </br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+			insert+='<b>Dosis:</b> 5mg/kg/dosis </br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 		}
 		if(seltype=="Lidocaína"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="block";
@@ -179,24 +179,24 @@
 				var dosis=roundUp(0.1*peso)+' ml';
 				insert+='<b>Via:</b> endovenoso</br>';
 				//insert+='<b>Aclaración:</b> lidocaína sin epinefrina 1% en bolo</br>';
-				insert+='<b>Preparación:</b> dosis de carga 1 mg/Kg</br>';
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+				insert+='<b>Dosis:</b> dosis de carga 1 mg/Kg</br>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 			}
 			if(seltype2==2){//Endotraqueal
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.1*peso)+' ml';
 				insert+='<b>Via:</b> intraóseo</br>';
 				//insert+='<b>Aclaración:</b> lidocaína sin epinefrina 1% en bolo</br>';
-				insert+='<b>Preparación:</b> dosis de carga 1 mg/Kg</br>';
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+				insert+='<b>Dosis:</b> dosis de carga 1 mg/Kg</br>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 			}
 			if(seltype2==3){//intra muscular
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.2*peso)+' ml a '+roundUp(0.3*peso)+' ml ';
 				insert+='<b>Via:</b> endotraqueal</br>';
 				//insert+='<b>Aclaración:</b> lidocaína sin epinefrina 1% en bolo</br>';
-				insert+='<b>Preparación:</b> dosis de carga 2 a 3  mg/Kg</br>';
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+				insert+='<b>Dosis:</b> dosis de carga 2 a 3  mg/Kg</br>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 			}
 		}
 		if(seltype=="Adenosina"){// Opcion si eligio esto
@@ -206,10 +206,10 @@
 			insert+='<b>Adenosina</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			//insert+='<b>Via:</b> endovenoso en push con posterior plan de hidratación parenteral con flujo de glucosa alto</br>';
-			insert+='<b>Administración:</b>intraóseo o intravenoso en push rápido (2ml=6 mg)</br>';
+			insert+='<b>Preparación:</b>intraóseo o intravenoso en push rápido (2ml=6 mg)</br>';
 			insert+='<b>Aclaración:</b> No refrigerar ampolla, lavar con solución fisiológica inmediatamente (llave de 3 vías)</br>'
-			insert+='<b>Preparación:</b> 0,1 a 0,2 mg/kg/dosis</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+			insert+='<b>Dosis:</b> 0,1 a 0,2 mg/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 		}
 		if(seltype=="Sulfato de Magnesio"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
@@ -218,10 +218,10 @@
 			insert+='<b>Sulfato de Magnesio 25% (amp 5 ml)</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			//insert+='<b>Via:</b> endovenoso</br>';
-			insert+='<b>Administración:</b> lento (5 - 10 min)</br>';
+			insert+='<b>Preparación:</b> lento (5 - 10 min)</br>';
 			insert+='<b>Aclaración:</b> se puede repetir la dosis</br>';
-			insert+='<b>Preparación:</b> 20 ml/kg</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Dosis:</b> '+dosis+'</br></span>';
+			insert+='<b>Dosis:</b> 20 ml/kg</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
 		}
 		$('#situacion').html(insert);
 	
