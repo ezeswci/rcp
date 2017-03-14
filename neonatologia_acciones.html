@@ -190,6 +190,14 @@
 			if(peso>=2){if(peso>=3){insert+='9';}else{insert+='8-9';}}else{insert+='8';}
 		insert+='</b></p>';
 		//  Fin TET punta
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Desfibrilación (2 - 4 joules/kg): <b style="font-size:16px;">';
+			insert+=parseInt(peso*2)+' a '+parseInt(peso*4)+' joules';
+		insert+='</b></p>';
+		//  Fin TET punta
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Cardioversión  (0,5 - 1 joules/kg): <b style="font-size:16px;">';
+			insert+=parseInt(peso*0.5)+' a '+parseInt(peso)+' joules';
+		insert+='</b></p>';
+		//  Fin TET punta
 	}else{// edad
 		$('#sel-kg').css("display", "none");
 		$('#sel-ag').css("display", "block");
