@@ -1,9 +1,8 @@
-<?xml version='1.0' encoding='utf-8' ?>
+﻿<?xml version='1.0' encoding='utf-8' ?>
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.RCP"
-		versionCode="91"
-        version   = "2.4.0">
+        id        = "com.cenpecRcp"
+        version   = "1.0.3">
 
     <name>RCP</name>
 
@@ -54,24 +53,17 @@
 	<icon src="img/logo76.png"            gap:platform="ios"        width="76" height="76" />
     <icon src="img/logo120.png"         gap:platform="ios"        width="120" height="120" />
     <icon src="img/logo152.png"         gap:platform="ios"        width="152" height="152" />
-	<icon src="img/logo72.png"   gap:platform="android"    gap:density="ldpi" />
-    <icon src="img/logo72.png"   gap:platform="android"    gap:density="mdpi" />
-    <icon src="img/logo114.png"   gap:platform="android"    gap:density="hdpi" />
-    <icon src="img/logo144.png"  gap:platform="android"    gap:density="xhdpi" />
 
     <!-- Define app splash screen for each platform. -->
 
     <gap:splash src="img/Default.png"    gap:platform="ios"     width="320" height="480" />
+	<gap:splash src="img/Default5.png"    gap:platform="ios"     width="320" height="568" />
     <gap:splash src="img/Default@2x.png" gap:platform="ios"     width="640" height="960" />
     <gap:splash src="img/Default-Portrait.png"      gap:platform="ios"     width="768" height="1024" />
 	<gap:splash src="img/Default-Portrait@2x.png"      gap:platform="ios"     width="1536" height="2048" />
     <gap:splash src="img/Default-Landscape.png"     gap:platform="ios"     width="1024" height="768" />
 	<gap:splash src="img/Default-LandscapeLeft@2x.png"     gap:platform="ios"     width="2048" height="1536" />
 	<gap:splash src="img/Default-568h@2x.png" gap:platform="ios" width="640" height="1136" />
-	<gap:splash src="img/Default@2x.png"       gap:platform="android" gap:qualifier="port-ldpi" />
-    <gap:splash src="img/Default@2x.png"       gap:platform="android" gap:qualifier="port-mdpi" />
-    <gap:splash src="img/Default-Portrait.png"       gap:platform="android" gap:qualifier="port-hdpi" />
-    <gap:splash src="img/Default-Portrait@2x.png"      gap:platform="android" gap:qualifier="port-xhdpi" />
 
     <access origin="*"/>
 	
