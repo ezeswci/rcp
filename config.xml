@@ -2,7 +2,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.cenpecRcp"
-        version   = "1.0.3">
+        version   = "1.0.4">
 
     <name>RCP</name>
 
@@ -57,7 +57,6 @@
     <!-- Define app splash screen for each platform. -->
 
     <gap:splash src="img/Default.png"    gap:platform="ios"     width="320" height="480" />
-	<gap:splash src="img/Default5.png"    gap:platform="ios"     width="320" height="568" />
     <gap:splash src="img/Default@2x.png" gap:platform="ios"     width="640" height="960" />
     <gap:splash src="img/Default-Portrait.png"      gap:platform="ios"     width="768" height="1024" />
 	<gap:splash src="img/Default-Portrait@2x.png"      gap:platform="ios"     width="1536" height="2048" />
