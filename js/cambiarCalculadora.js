@@ -84,7 +84,7 @@ function daysToRun(){
     var date2 = new Date();
     var timeDiff = Math.abs(date2.getTime() - date1.getTime());
     var diffDays = Math.ceil(timeDiff / (86400000)); 
-    return(diffDays);
+    return(31-diffDays);
 }
 function hasToCheck(){
 	var date1 = new Date(JSON.parse(getCookie("dateChecked")));
