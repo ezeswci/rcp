@@ -23,6 +23,8 @@
 	<script src="js/main.js"></script>
     <link href="css/simple-sidebar.css" rel="stylesheet">
     <link href="css/fibrilacion.css" rel="stylesheet">
+     
+       
 	<link rel="stylesheet" href="css/font-awesome-4.6.3/css/font-awesome.min.css?33">
    
 
@@ -68,22 +70,22 @@
                                     <div class="input-line">
                                         <div data-role="fieldcontain">
                                             <label for="peso">Peso (Kg)</label>
-                                            <input type="range" name="peso" id="peso" value="1.5" min="0.50" max="4.25"  step="0.25">
+                                            <input type="range" name="peso" id="peso" value="0" min="0.50" max="4.25"  step="0.25">
                                         </div>
                                     </div>
                                     <div class="input-line">
                                         <div class="input-switch drogas" style="width: 98%;max-width: 98%;">
                                             <select name="sel-type" id="sel-type">
                                                 <option value="0"> Droga </option>
-                                                <option value="Adrenalina"> Adrenalina </option>
-                                                <option value="Solución fisológica"> Solución fisológica </option>
                                                 <option value="Adenosina"> Adenosina </option>
+                                                <option value="Adrenalina"> Adrenalina </option>
                                                 <option value="Bicarbonato de Sodio"> Bicarbonato de Sodio </option>
-                                                <option value="Dextrosado 10%"> Dextrosado 10% </option>
-                                                <option value="Fenobabital (50mg/1ml)"> Fenobabital (50mg/1ml) </option>
+                                               	<option value="Dextrosado 10%"> Dextrosado 10% </option>
+                                                <option value="Fenobabital (50 mg/ml)"> Fenobabital (50 mg/ml) </option>
                                                 <option value="Gluconato de calcio 10%"> Gluconato de calcio 10% </option>
-                                                <option value="Naloxona (0,4mg/1ml)"> Naloxona (0,4mg/ml) </option>
-                                                <option value="Naloxona (1mg/1ml)"> Naloxona (1mg/ml) </option>  
+                                                <option value="Naloxona (0,4 mg/ml)"> Naloxona (0,4 mg/ml) </option>
+                                                <option value="Naloxona (1 mg/ml)"> Naloxona (1 mg/ml) </option>
+                                                <option value="Solución fisológica"> Solución fisológica </option>      
                                             </select>      
                                         </div>
                                         <div class="input-label" style="color: transparent;width: 1px;"><label for="sel-type">.</label></div>                                       
@@ -96,7 +98,7 @@
                                                 <option value="2">Endotraqueal</option>
                                             </select>      
                                         </div>
-                                        <div class="input-label"><label for="sel-type">Administración:</label></div>                                       
+                                        <div class="input-label"><label for="sel-type">Administración: </label></div>                                       
                                    </div> 
                                 </form>
                                 <div class="result_frame" id="result-container" style="display:none;">
@@ -144,128 +146,132 @@
     });
 	function result_initCal() {
 		var seltype=document.getElementById("sel-type").value; // El tipo seleccionado
-		var peso=parseFloat(document.getElementById("peso").value).toFixed(2);
+		var peso=parseFloat(document.getElementById("peso").value);
 		var insert='';
 		if(seltype=="0"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("result-container").style.display="none";
 		}
-		if(seltype=="Adrenalina"){// Opcion si eligio esto
+		if(seltype=="Adrenalina" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="block";
 			document.getElementById("result-container").style.display="none";
 			var seltype2=document.getElementById("sel-type-2").value;
 			insert+='<b>Adrenalina</b> amp. 1/1000 para  recién nacidos de <b>'+peso+' kg</b></br>';
-			insert+='<b>Indicación:</b> asistolia</br>';
+			insert+='<b>Indicación: </b> asistolia</br>';
 			if(seltype2==1){// Endovenosa
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.1*peso)+' ml a '+roundUp(0.3*peso)+' ml ';
-				insert+='<b>Via:</b> endovenoso</br>';
-				insert+='<b>Preparación:</b> diluir 1 ml + 9 ml de agua destilada</br>';
-				insert+='<b>Dosis:</b> 0,01 a 0,03 mg/kg/dosis</br>';
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+				insert+='<b>Via: </b> endovenoso</br>';
+				insert+='<b>Preparación: </b> diluir 1 ml + 9 ml de agua destilada</br>';
+				insert+='<b>Dosis: </b> 0,01 a 0,03 mg/kg/dosis</br>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 			}
 			if(seltype2==2){//Endotraqueal
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.5*peso)+' ml a '+roundUp(peso)+' ml ';
-				insert+='<b>Via:</b> endotraqueal</br>';
-				insert+='<b>Preparación:</b>diluir 1 ml + 9 ml de agua destilada</br>';
-				insert+='<b>Dosis:</b> 0,05 a 0,1 mg/kg/dosis</br>';
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+				insert+='<b>Via: </b> endotraqueal</br>';
+				insert+='<b>Preparación: </b>diluir 1 ml + 9 ml de agua destilada</br>';
+				insert+='<b>Dosis: </b> 0,05 a 0,1 mg/kg/dosis</br>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 			}
 		}
-		if(seltype=="Solución fisológica"){// Opcion si eligio esto
+		if(seltype=="Solución fisológica" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=peso*10;
 			insert+='<b>Solución fisiológica</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
-			insert+='<b>Indicación:</b> hipovolemia</br>';
-			insert+='<b>Via:</b> endovenoso</br>';
-			insert+='<b>Preparación:</b> lento (5 - 10 min)</br>';
-			insert+='<b>Dosis:</b> 10 ml/kg</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+' ml</br></span>';
+			insert+='<b>Indicación: </b> hipovolemia</br>';
+			insert+='<b>Via: </b> endovenoso</br>';
+			insert+='<b>Administración: </b> lento (5 - 10 min)</br>';
+			insert+='<b>Dosis: </b> 10 ml/kg</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+' ml</br></span>';
 		}
-		if(seltype=="Gluconato de calcio 10%"){// Opcion si eligio esto
+		if(seltype=="Gluconato de calcio 10%" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(peso);
 			insert+='<b>Gluconato de calcio 10%</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
-			insert+='<b>Indicación:</b> hipocalcemia</br>';
-			insert+='<b>Via:</b> endovenoso con control de extravasación</br>';
-			insert+='<b>Preparación:</b> lento con control de la frecuencia cardíaca. Dar con el mismo volumen de agua destilada</br>';
-			insert+='<b>Dosis:</b> 100 mg/kg/dosis</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+' ml</br></span>';
+			insert+='<b>Indicación: </b> hipoglucemia</br>';
+			insert+='<b>Via: </b> endovenoso con control de extravasación</br>';
+			insert+='<b>Administración: </b> lento con control de la frecuencia cardíaca. Dar con el mismo volumen de agua destilada</br>';
+			insert+='<b>Dosis: </b> 100 mg/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+' ml</br></span>';
 		}
-		if(seltype=="Dextrosado 10%"){// Opcion si eligio esto
+		if(seltype=="Dextrosado 10%" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(5*peso)+' ml a '+roundUp(10*peso)+' ml ';
 			insert+='<b>Dextrosado 10%</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
-			insert+='<b>Indicación:</b> hipocalcemia</br>';
-			insert+='<b>Via:</b> endovenoso en push con posterior plan de hidratación parenteral con flujo de glucosa alto</br>';
-			//insert+='<b>Preparación:</b> lento con control de la frecuencia cardíaca. Dar con el mismo volumen de agua destilada</br>';
-			insert+='<b>Dosis:</b> 0,5 - 1 g/kg/dosis</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+			insert+='<b>Indicación: </b> hipoglucemia</br>';
+			insert+='<b>Via: </b> endovenoso en push con posterior plan de hidratación parenteral con flujo de glucosa alto</br>';
+			//insert+='<b>Preparación: </b> lento con control de la frecuencia cardíaca. Dar con el mismo volumen de agua destilada</br>';
+			insert+='<b>Dosis: </b> 0,5 - 1 g/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 		}
-		if(seltype=="Naloxona (1mg/1ml)"){// Opcion si eligio esto
+		if(seltype=="Naloxona (1 mg/ml)" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(peso)+' ml ';
-			insert+='<b>Naloxona (1mg/ 1ml)</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
-			insert+='<b>Indicación:</b> depresión SNC por derivados de morfina</br>';
-			insert+='<b>Via:</b> endovenoso o intramuscular</br>';
-			insert+='<b>Preparación:</b> tomar 1 ml + 9 ml de agua destilada</br>';
-			insert+='<b>Dosis:</b> 0,1 mg/kg/dosis</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+			insert+='<b>Naloxona (1 mg/ml)</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
+			insert+='<b>Indicación: </b> depresión SNC por derivados de morfina</br>';
+			insert+='<b>Via: </b> endovenoso en push lento o intramuscular</br>';
+			insert+='<b>Preparación: </b> tomar 1 ml + 9 ml de agua destilada</br>';
+			insert+='<b>Dosis: </b> 0,1 mg/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 		}
-		if(seltype=="Naloxona (0,4mg/1ml)"){// Opcion si eligio esto
+		if(seltype=="Naloxona (0,4 mg/ml)" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(peso/4)+' ml ';
-			insert+='<b>Naloxona (0,4mg / 1ml)</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
-			insert+='<b>Indicación:</b> depresión SNC por derivados de morfina</br>';
-			insert+='<b>Via:</b> endovenoso o intramuscular</br>';
-			insert+='<b>Preparación:</b> tomar 1 ml + 9 ml de agua destilada</br>';
-			insert+='<b>Dosis:</b> 0,1 mg/kg/dosis</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+			insert+='<b>Naloxona (0,4 mg/ml)</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
+			insert+='<b>Indicación: </b> depresión SNC por derivados de morfina</br>';
+			insert+='<b>Via: </b> endovenoso en push lento o intramuscular</br>';
+			insert+='<b>Dosis: </b> 0,1 mg/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 		}
-		if(seltype=="Fenobabital (50mg/1ml)"){// Opcion si eligio esto
+		if(seltype=="Fenobabital (50 mg/ml)" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(0.2*peso)+' ml a '+roundUp(0.4*peso)+' ml ';
-			insert+='<b>Fenobabital (50mg / 1ml)</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
-			insert+='<b>Indicación:</b> estado convulsivo</br>';
-			insert+='<b>Via:</b> endovenoso o intramuscular en push lento</br>';
-			insert+='<b>Preparación:</b> se puede pasar puro o diluido con igual volumen de solución fisiológica ó dextrosa 5%</br>';
-			insert+='<b>Dosis:</b> 10 - 20 mg/kg/dosis de ataque</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+			insert+='<b>Fenobabital (50 mg/ml)</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
+			insert+='<b>Indicación: </b> estado convulsivo</br>';
+			insert+='<b>Via: </b> endovenoso o intramuscular en push lento</br>';
+			insert+='<b>Administración: </b> se puede pasar puro o diluido con igual volumen de solución fisiológica ó dextrosa 5%</br>';
+			insert+='<b>Dosis: </b> 10 - 20 mg/kg/dosis de ataque</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 		}
-		if(seltype=="Bicarbonato de Sodio"){// Opcion si eligio esto
+		if(seltype=="Bicarbonato de Sodio" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(2*peso)+' ml';
 			insert+='<b>Bicarbonato de Sodio 1 M</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
-			insert+='<b>Indicación:</b> acidosis metabólica con buen control respiratorio</br>';
-			insert+='<b>Preparación:</b> Pasar con igual volumen de agua destilada. Con cuidado de extravasación</br>';
-			insert+='<b>Dosis:</b> 2 mEq/kg/dosis en 10 min</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+			insert+='<b>Indicación: </b> acidosis metabólica con buen control respiratorio</br>';
+			insert+='<b>Administración: </b> Pasar con igual volumen de agua destilada en <b>10 min</b>. Con cuidado de extravasación</br>';
+			insert+='<b>Dosis: </b> 2 mEq/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 		}
-		if(seltype=="Adenosina"){// Opcion si eligio esto
+		if(seltype=="Adenosina" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(peso / 6)+' ml a '+roundUp(peso / 3)+' ml ';
 			insert+='<b>Adenosina (ampollas 2ml=6mg)</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
-			insert+='<b>Indicación:</b> taquicardia paroxística supraventricular</br>';
-			insert+='<b>Preparación:</b> En push rápido con lavado posterior con solución fisiológica. Acceso vascular lo más cercano al corazón</br>';
-			insert+='<b>Dosis:</b> 0,05 a 0,1 mg/kg/dosis. Dosis en ml de la dilución 1ml + 9 ml de agua destilada.</br>';
-			insert+='<b>Aclaración:</b> No refrigerar ampolla</br>'
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+			insert+='<b>Indicación: </b> taquicardia paroxística supraventricular</br>';
+			insert+='<b>Administración: </b> En push rápido con lavado posterior con solución fisiológica. Acceso vascular lo más cercano al corazón</br>';
+			insert+='<b>Dosis: </b> 0,05 a 0,1 mg/kg/dosis. Dosis en ml de la dilución 1ml + 9 ml de agua destilada.</br>';
+			insert+='<b>Aclaración: </b> No refrigerar ampolla</br>'
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 		}
 		$('#situacion').html(insert);
 	
 	}
 	function roundUp(num) {
+		// return Math.round(num);
 	  num=Math.round(num * 10);
-	  return parseInt(num/10)+','+num%10
+	  if((num%10)>0){
+	  	return parseInt(num/10)+','+num%10;
+	  }else{
+		 return parseInt(num/10);
+	  }
 	}
 	$(function () {
 		$('#initCal').off('change').on('change', result_initCal);
@@ -282,5 +288,7 @@
     
     
 </body>
+<link href="plugins/dialog-master/css/bootstrap-dialog.css" rel="stylesheet" type="text/css" />
+<script src="plugins/dialog-master/js/bootstrap-dialog.js?190417"></script>
 
 </html>

@@ -71,6 +71,7 @@
                                                 <option value="0">---</option>
                                                 <option value="1">Lactante</option>
                                                 <option value="2">Niño</option>
+                                                <option value="3">Adolecente</option>
                                             </select>
                                         </div>
                                         <div class="input-label"><label for="glas0">Edad</label></div>                                       
@@ -160,6 +161,48 @@
                                             <div class="input-label"><label for="glasn3">Mejor respuesta Motora</label></div>
                                         </div>
                                     </div>
+                                    <div id="Adl-vars" style="display:none;">
+                                        <div class="input-line">
+                                            
+                                            <div class="input-switch">
+                                                <select name="glasa1" id="glasa1">
+                                                    <option value="0">---</option>
+                                                    <option value="4">Espontánea</option>
+                                                    <option value="3">A la voz</option>
+                                                    <option value="2">Al dolor</option>
+                                                    <option value="1">Sin respuesta</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-label"><label for="glasa1">Apertura Ocular</label></div>                                       
+                                        </div>
+                                        <div class="input-line">                              	
+                                            <div class="input-switch">
+                                                <select name="glasa2" id="glasa2">
+                                                    <option value="0">---</option>
+                                                    <option value="5">Orientada</option>
+                                                    <option value="4">Confusa</option>
+                                                    <option value="3">Palabras inapropiadas</option>
+                                                    <option value="2">Sonidos incomprensibles</option>
+                                                    <option value="1">Ninguna</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-label"><label for="glasa2">Mejor respuesta Verbal</label></div>
+                                        </div>
+                                        <div class="input-line">
+                                            <div class="input-switch">
+                                                <select name="glasa3" id="glasa3">
+                                                    <option value="0">---</option>
+                                                    <option value="6">Obedece</option>
+                                                    <option value="5">Localiza</option>
+                                                    <option value="4">Retira</option>
+                                                    <option value="3">Flexión normal</option>
+                                                    <option value="2">Respuesta extensora</option>
+                                                    <option value="1">Ninguna</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-label"><label for="glasa3">Mejor respuesta Motora</label></div>
+                                        </div>
+                                    </div>
                                      <!-- /nino-vars -->
                                 </form>
                                 <!-- /inputline -->
@@ -217,10 +260,13 @@
 	var glasn1=document.getElementById("glasn1").value;
 	var glasn2=document.getElementById("glasn2").value;
 	var glasn3=document.getElementById("glasn3").value;
+	var glasa1=document.getElementById("glasa1").value;
+	var glasa2=document.getElementById("glasa2").value;
+	var glasa3=document.getElementById("glasa3").value;
 	//alert('creatinina =  '+creatinina+' Farmaco = '+farmaco+' Intervencion = '+intervencion);
 		if(glas0==0){$('#nin-vars').css("display", "none");$('#lact-vars').css("display", "none");}
 		if(glas0==1){
-			$('#nin-vars').css("display", "none");$('#lact-vars').css("display", "block");
+			$('#nin-vars').css("display", "none");$('#lact-vars').css("display", "block");$('#Adl-vars').css("display", "none");
 			if(glasl1!=0&&glasl2!=0&&glasl3!=0){
 				var puntaje=parseInt(glasl1)+parseInt(glasl2)+parseInt(glasl3);
 				$('#puntaje').html("Puntaje total: <span style=\"font-size: 18px;\"><b>"+puntaje+"</b></span>");
@@ -241,9 +287,30 @@
 			}
 		}
 		if(glas0==2){
-			$('#nin-vars').css("display", "block");$('#lact-vars').css("display", "none");
+			$('#nin-vars').css("display", "block");$('#lact-vars').css("display", "none");$('#Adl-vars').css("display", "none");
 			if(glasn1!=0&&glasn2!=0&&glasn3!=0){
 				var puntaje=parseInt(glasn1)+parseInt(glasn2)+parseInt(glasn3);
+				$('#puntaje').html("Puntaje total: <span style=\"font-size: 18px;\"><b>"+puntaje+"</b></span>");
+				if(puntaje>12){
+					$('#situacion').text("Leve-Normal");
+					$('#situacion').parent().css("background-color", "#BAFFA3");				
+				}else if(puntaje>8){
+					$('#situacion').text("Moderado");
+					$('#situacion').parent().css("background-color", "#FFFFA3");
+				}else{
+					$('#situacion').text("Grave");
+					$('#situacion').parent().css("background-color", "#FFA3A3");
+				}
+			}else{
+				$('#puntaje').text(" ");
+				$('#situacion').text(" ");
+				$('#situacion').parent().css("background-color", "#FFF");
+			}
+		}
+		if(glas0==3){
+			$('#nin-vars').css("display", "none");$('#lact-vars').css("display", "none");$('#Adl-vars').css("display", "block");
+			if(glasa1!=0&&glasa2!=0&&glasa3!=0){
+				var puntaje=parseInt(glasa1)+parseInt(glasa2)+parseInt(glasa3);
 				$('#puntaje').html("Puntaje total: <span style=\"font-size: 18px;\"><b>"+puntaje+"</b></span>");
 				if(puntaje>12){
 					$('#situacion').text("Leve-Normal");
@@ -276,5 +343,7 @@
     
     
 </body>
+<link href="plugins/dialog-master/css/bootstrap-dialog.css" rel="stylesheet" type="text/css" />
+<script src="plugins/dialog-master/js/bootstrap-dialog.js?190417"></script>
 
 </html>

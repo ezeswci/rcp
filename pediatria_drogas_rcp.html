@@ -22,7 +22,7 @@
 	<script src="js/jquery.mobile-1.3.2.min.js"></script>
 	<script src="js/main.js"></script>
     <link href="css/simple-sidebar.css" rel="stylesheet">
-    <link href="css/fibrilacion.css" rel="stylesheet">
+    <link href="css/fibrilacion.css" rel="stylesheet">       
 	<link rel="stylesheet" href="css/font-awesome-4.6.3/css/font-awesome.min.css?33">
    
 
@@ -67,7 +67,7 @@
                                     <div class="input-line">
                                         <div data-role="fieldcontain">
                                             <label for="peso">Peso (Kg)</label>
-                                            <input type="range" name="peso" id="peso" value="7" min="4" max="50"  step="1">
+                                            <input type="range" name="peso" id="peso" value="0" min="4" max="50"  step="1">
                                         </div>
                                     </div>
                                     <div class="input-line">
@@ -77,22 +77,23 @@
                                                 <option value="si">Si</option>
                                             </select>      
                                         </div>
-                                        <div class="input-label"><label for="sel-type">Signos de pubertad:</label></div>                                       
+                                        <div class="input-label"><label for="sel-type">Signos de pubertad: </label></div>
+                                        <p style="color: red; display:none;" id="Ppub">Considere mejor alguna de sus opciones, es extraño que pese menos de 25 Kg y tenga signos de pubertad. </p>                                       
                                    </div> 
                                     <div class="input-line">
                                         <div class="input-switch drogas" style="width: 98%;max-width: 98%;">
                                             <select name="sel-type" id="sel-type">
                                                 <option value="0"> Droga </option>
+                                                <option value="Adrenalina"> Adrenalina </option>
+                                                <option value="Atropina (1 mg/ml)"> Atropina (1 mg/ml) </option>
+                                                <option value="Bicarbonato de Sodio"> Bicarbonato de Sodio 1 M </option>
+                                                <option value="Cloruro de calcio 10%"> Cloruro de calcio 10% </option>
                                                 <option value="Dextrosa 10%"> Dextrosa 10% </option>
                                                 <option value="Dextrosa 25%"> Dextrosa 25% </option>
-                                                <option value="Solución fisológica"> Solución fisológica </option>
+                                                <option value="Gluconato de calcio 10%"> Gluconato de calcio 10% (calcio elemental 9 mg/ml)</option>
+                                                <option value="Naloxona (0,4mg/ml)"> Naloxona (0,4mg/ml) </option>
                                                 <option value="Ringer lactato"> Ringer lactato </option>
-                                                <option value="Adrenalina"> Adrenalina </option>
-                                                <option value="Bicarbonato de Sodio"> Bicarbonato de Sodio 1 M </option>
-                                                <option value="Naloxoma (0,4mg/ml)"> Naloxoma (0,4mg/ml) </option>
-                                                <option value="Atropina (1mg/ml)"> Atropina (1mg/ml) </option>
-                                                <option value="Gluconato de calcio 10%"> Gluconato de calcio 10% </option>
-                                                <option value="Cloruro de calcio 10%"> Cloruro de calcio 10% </option>
+                                                <option value="Solución fisológica"> Solución fisológica </option>                                                    
                                             </select>      
                                         </div>
                                         <div class="input-label" style="color: transparent;width: 1px;"><label for="sel-type">.</label></div>                                       
@@ -106,7 +107,7 @@
                                                 <option value="3">Intra muscular</option>
                                             </select>      
                                         </div>
-                                        <div class="input-label"><label for="sel-type">Administración:</label></div>                                       
+                                        <div class="input-label"><label for="sel-type">Administración: </label></div>                                       
                                    </div>
                                    <div class="input-line" id="selop-3" style="display:none;">
                                         <div class="input-switch">
@@ -116,7 +117,7 @@
                                                 <option value="2">Intoxicaciones por agentes colinérgicos</option>
                                             </select>      
                                         </div>
-                                        <div class="input-label"><label for="sel-type">Indicación:</label></div>                                       
+                                        <div class="input-label"><label for="sel-type">Indicación: </label></div>                                       
                                    </div>  
                                 </form>
                                 <div class="result_frame" id="result-container" style="display:none;">
@@ -142,8 +143,8 @@
             <!-- /#page-content-wrapper -->
         </div>
         <!-- id-wrapper -->
-
-    </a></div><a onClick="">
+	<!-- Modal -->
+    </div>
     <!-- /#wrapper -->
 	<!-- Propios -->
 	<script src="js/cambiarPagina.js"></script>
@@ -165,68 +166,69 @@
 	function result_initCal() {
 		// <25 y pubertad considerar mejor alguno de los datos incorporados
 		var seltype=document.getElementById("sel-type").value; // El tipo seleccionado
-		var peso=parseFloat(document.getElementById("peso").value).toFixed(2);
+		var peso=parseFloat(document.getElementById("peso").value);
 		if(document.getElementById("sel-type-pub").value=="si"){var pub=true;}else{var pub=false;}
+		if(peso<25 && pub==true){document.getElementById("Ppub").style.display="block";}else{document.getElementById("Ppub").style.display="none";}// Ppub
 		var insert='';
 		if(seltype=="0"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="none";
 		}
-		if(seltype=="Dextrosa 10%"){// Opcion si eligio esto
+		if(seltype=="Dextrosa 10%" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(5*peso)+' ml a '+roundUp(10*peso)+' ml ';
 			insert+='<b>Dextrosa 10%</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
-			//insert+='<b>Via:</b> endovenoso en push con posterior plan de hidratación parenteral con flujo de glucosa alto</br>';
-			insert+='<b>Preparación:</b>push lento</br>';
-			insert+='<b>Aclaración:</b> En caso de hipoglucemia documentada o con alta sospecha posterior al push lento dejar un plan de hidratación parenteral con flujo de glucosa alto y controlar</br>'
-			insert+='<b>Dosis:</b> 0,5 - 1 g/kg/dosis</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+			//insert+='<b>Via: </b> endovenoso en push con posterior plan de hidratación parenteral con flujo de glucosa alto</br>';
+			insert+='<b>Administración: </b>push lento</br>';
+			insert+='<b>Aclaración: </b> En caso de hipoglucemia documentada o con alta sospecha. Posterior al push lento dejar un plan de hidratación parenteral con flujo de glucosa alto y controlar</br>'
+			insert+='<b>Dosis: </b> 0,5 - 1 g/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 		}
-		if(seltype=="Dextrosa 25%"){// Opcion si eligio esto
+		if(seltype=="Dextrosa 25%" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(2*peso)+' ml a '+roundUp(4*peso)+' ml ';
 			insert+='<b>Dextrosa 25%</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
-			//insert+='<b>Via:</b> endovenoso en push con posterior plan de hidratación parenteral con flujo de glucosa alto</br>';
-			insert+='<b>Preparación:</b>push lento</br>';
-			insert+='<b>Aclaración:</b> En caso de hipoglucemia documentada o con alta sospecha posterior al push lento dejar un plan de hidratación parenteral con flujo de glucosa alto y controlar</br>'
-			insert+='<b>Dosis:</b> 0,5 - 1 g/kg/dosis</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+			//insert+='<b>Via: </b> endovenoso en push con posterior plan de hidratación parenteral con flujo de glucosa alto</br>';
+			insert+='<b>Administración: </b>push lento. Considerar via central.</br>';
+			insert+='<b>Aclaración: </b> En caso de hipoglucemia documentada o con alta sospecha. Posterior al push lento dejar un plan de hidratación parenteral con flujo de glucosa alto y controlar</br>'
+			insert+='<b>Dosis: </b> 0,5 - 1 g/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 		}
-		if(seltype=="Solución fisológica"){// Opcion si eligio esto
+		if(seltype=="Solución fisológica" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(peso*20);
-			//insert+='<b>Via:</b> endovenoso</br>';
+			//insert+='<b>Via: </b> endovenoso</br>';
 			insert+='<b>Solución fisiológica</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
-			insert+='<b>Preparación:</b> lento (5 - 10 min)</br>';
-			insert+='<b>Aclaración:</b> se puede repetir la dosis</br>';
-			insert+='<b>Dosis:</b> 20 ml/kg</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+' ml</br></span>';
+			insert+='<b>Administración: </b> lento (5 - 10 min)</br>';
+			insert+='<b>Aclaración: </b> se puede repetir la dosis</br>';
+			insert+='<b>Dosis: </b> 20 ml/kg</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+' ml</br></span>';
 		}
-		if(seltype=="Ringer lactato"){// Opcion si eligio esto
+		if(seltype=="Ringer lactato" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(peso*20);
 			insert+='<b>Ringer lactato</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
-			//insert+='<b>Via:</b> endovenoso</br>';
-			insert+='<b>Preparación:</b> lento (5 - 10 min)</br>';
-			insert+='<b>Aclaración:</b> se puede repetir la dosis</br>';
-			insert+='<b>Dosis:</b> 20 ml/kg</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+' ml</br></span>';
+			//insert+='<b>Via: </b> endovenoso</br>';
+			insert+='<b>Administración: </b> lento (5 - 10 min)</br>';
+			insert+='<b>Aclaración: </b> se puede repetir la dosis</br>';
+			insert+='<b>Dosis: </b> 20 ml/kg</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+' ml</br></span>';
 		}
 
-		if(seltype=="Adrenalina"){// Opcion si eligio esto
+		if(seltype=="Adrenalina" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="block";
 			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="none";
@@ -236,57 +238,60 @@
 			if(seltype2==1){// Endovenosa
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.1*peso)+' ml';
-				insert+='<b>Via:</b> endovenoso</br>';
-				insert+='<b>Preparación:</b> diluir 1 ml + 9 ml de solución fisiológica o dextrosa 5% (1/10.000)</br>';
-				insert+='<b>Dosis:</b> 0,01 mg/kg/dosis</br>';
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+				insert+='<b>Via: </b> endovenoso</br>';
+				insert+='<b>Preparación: </b> diluir 1 ml + 9 ml de solución fisiológica o dextrosa 5% (1/10.000)</br>';
+				insert+='<b>Dosis: </b> 0,01 mg/kg/dosis</br>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 			}
 			if(seltype2==2){//Endotraqueal
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.1*peso)+' ml';
-				insert+='<b>Via:</b> endotraqueal</br>';
-				insert+='<b>Preparación:</b>diluir la dosis obtenida hasta 5 ml de solución fisiológica</br>';
-				insert+='<b>Dosis:</b> 0,01 mg/kg/dosis</br>';// Esta esta bien asi?
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+				insert+='<b>Via: </b> endotraqueal</br>';
+				insert+='<b>Dosis: </b> 0,01 mg/kg/dosis</br>';// Esta esta bien asi?
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
+				insert+='<b>Aclaración: </b>Posterior a la administración seguir con 1 a 5 ml de solución fisiológica en base al tamaño del paciente.</br>';
 			}
-			if(seltype2==3){//intra muscular
+			if(seltype2==3){//intramuscular
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.01*peso)+' ml';
-				insert+='<b>Via:</b> intra muscular</br>';
-				insert+='<b>Preparación:</b>sin diluir</br>';
-				insert+='<b>Dosis:</b> 0,01 mg/kg/dosis</br>';
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+				insert+='<b>Via: </b> intramuscular</br>';
+				insert+='<b>Preparación: </b>sin diluir</br>';
+				insert+='<b>Dosis: </b> 0,01 mg/kg/dosis</br>';
+				insert+='<b>Indicación: </b>Anafilaxia</br>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 			}
 		}
-		if(seltype=="Bicarbonato de Sodio"){// Opcion si eligio esto
+		if(seltype=="Bicarbonato de Sodio" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(peso)+' ml';
 			insert+='<b>Bicarbonato de sodio 1 M</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
-			insert+='<b>Preparación:</b> push lento</br>';
-			insert+='<b>Dosis:</b> 1 mEq/ kg/ dosis </br>';
-			insert+='<b>Aclaración:</b> con lavado previo y posterior con solución fisiológica Según indicaciones precisas: acidosis metabólica severa (RCP prolongado) con ventilación adecuada. Hiperkalemia - hipermagnesemia. Intoxicación con bloqueantes de los canales de sodio (antidepresivos tricíclicos). Algunos pasan diluido al medio en agua destilada</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+			insert+='<b>Administración: </b> push lento</br>';
+			insert+='<b>Dosis: </b> 1 mEq/ kg/ dosis </br>';
+			insert+='<b>Indicación: </b> acidosis </br>';
+			insert+='<b>Aclaración: </b> con lavado previo y posterior con solución fisiológica Según indicaciones precisas: acidosis metabólica severa (RCP prolongado) con ventilación adecuada. Hiperkalemia - hipermagnesemia. Intoxicación con bloqueantes de los canales de sodio (antidepresivos tricíclicos). Puede pasarse diluido al medio en agua destilada</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 		}
-		if(seltype=="Naloxoma (0,4mg/ml)"){// Opcion si eligio esto
+		if(seltype=="Naloxona (0,4mg/ml)" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			if(peso<20){var dosis=roundUp(peso/4)+' ml '}else{var dosis='5 ml'}
-			//insert+='<b>Via:</b> endovenoso o intravenoso</br>';
-			insert+='<b>Naloxoma (0,4mg/ml)</b> para niños de <b>'+peso+' kg ';
+			//insert+='<b>Via: </b> endovenoso o intravenoso</br>';
+			insert+='<b>Naloxona (0,4mg/ml)</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
-			if(peso<20){insert+='<b>Dosis:</b> si el paciente es menor a 5 Años 0,1 mg/kg/dosis sino 2 mg/kg/dosis</br>';}
-			else{insert+='<b>Dosis:</b> 2 mg/kg/dosis</br>';}
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+			if(peso<20){insert+='<b>Dosis: </b> 0,1 mg/kg/dosis en menores de 5 años si no 2 mg/kg/dosis</br>';}
+			else{insert+='<b>Dosis: </b> 2 mg/kg/dosis</br>';}
+			insert+='<b>Indicación: </b> Intoxicación por derivados morfinicos </br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 		}
-		if(seltype=="Atropina (1mg/ml)"){// Opcion si eligio esto
+		if(seltype=="Atropina (1 mg/ml)" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("selop-3").style.display="block";
 			document.getElementById("result-container").style.display="none";
-			insert+='<b>Atropina (1mg/ml)</b> para niños de <b>'+peso+' kg ';
+			insert+='<b>Atropina (1 mg/ml)</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			var seltype3=document.getElementById("sel-type-3").value;
 			if(seltype3==1){// Bradicardia sintomática
@@ -299,62 +304,66 @@
 					else{var dosis=roundUp(F14)+' ml';}
 				} 
 				// Fin Dosis
-				insert+='<b>Via:</b> endovenoso o intraóseo, indicación en bradicardia sintomática (secundaria a fenómeno vaso vagal o bloqueo AV)</br>';
-				insert+='<b>Preparación:</b> diluir 1 ml + 9 ml de solución fisiológica</br>';
-				insert+='<b>Dosis:</b>  0,02  mg/kg/dosis</br>';
-				insert+='<b>Aclaración:</b> mínima dosis única: 0.1 mg. Máxima dosis única: 0.5 mg en niños y 1 mg en adolescentes. Puede repetirse cada 5 min con una dosis máxima total de 1 mg en niños y 2 mg en adolescentes. </br>';
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+				insert+='<b>Via: </b> endovenoso o intraóseo, indicación en bradicardia sintomática (secundaria a fenómeno vaso vagal o bloqueo AV)</br>';
+				insert+='<b>Preparación: </b> diluir 1 ml + 9 ml de solución fisiológica</br>';
+				insert+='<b>Dosis: </b>  0,02  mg/kg/dosis</br>';
+				insert+='<b>Aclaración: </b> mínima dosis única: 0.1 mg. Máxima dosis única: 0.5 mg en niños y 1 mg en adolescentes. Puede repetirse cada 5 min con una dosis máxima total de 1 mg en niños y 2 mg en adolescentes. </br>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 			}
 			if(seltype3==2){//Intoxicaciones por agentes colinérgicos
 				document.getElementById("result-container").style.display="block";
 				// Dosis
-				if((peso*0.5)>20){var F14=20;}else{var F14=roundUp(peso*0.5);}
+				if((peso*0.5)>20){var F14=20;}else{var F14=peso*0.5;}
 				if(pub){var dosis=roundUp(F14)+' ml'}
 				else{
 					if(F14>5){dosis='20 ml'}
 					else{var dosis=roundUp(F14)+' ml';}
 				} 
 				// Fin Dosis
-				insert+='<b>Via:</b> endovenoso o intraóseo, dosis inicial para intoxicaciones por agentes colinérgicos (organofosforados)</br>';
-				insert+='<b>Preparación:</b> diluir 1 ml + 9 ml de solución fisiológica</br>';
-				insert+='<b>Dosis:</b>  0,05  mg/kg/dosis</br>';
-				insert+='<b>Aclaración:</b> Si la respuesta no es la adecuada se puede duplicar la dosis y repetir cada 10-20 min hasta que las secreciones bronquiales disminuyan (atropinización) (max 2 mg dosis - 20 ml de la dilución) </br>';
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+				insert+='<b>Via: </b> endovenoso o intraóseo, dosis inicial para intoxicaciones por agentes colinérgicos (organos fosforados)</br>';
+				insert+='<b>Preparación: </b> diluir 1 ml + 9 ml de solución fisiológica</br>';
+				insert+='<b>Dosis: </b>  0,05  mg/kg/dosis</br>';
+				insert+='<b>Aclaración: </b> Si la respuesta no es la adecuada se puede duplicar la dosis y repetir cada 10-20 min hasta que las secreciones bronquiales disminuyan (atropinización) (max 2 mg dosis - 20 ml de la dilución) </br>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 			}
 		}
-		if(seltype=="Gluconato de calcio 10%"){// Opcion si eligio esto
+		if(seltype=="Gluconato de calcio 10%" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			document.getElementById("selop-3").style.display="none";
-			// max dosis 30 de 0.6 a peso
+			// máx dosis 30 de 0.6 a peso
 			var dosis1=Math.min(0.6*peso, 30);
 			var dosis2=Math.min(peso, 30);
 			if(dosis1!=dosis2){var dosis=roundUp(dosis1)+' ml a '+roundUp(dosis2)+' ml ';}else{var dosis='30 ml ';}
-			insert+='<b>Gluconato de calcio 10%</b> para niños de <b>'+peso+' kg ';
+			insert+='<b>Gluconato de calcio 10% (calcio elemental 9 mg/ml)</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
-			insert+='<b>Via:</b> endovenoso ó intraóseo</br>';
-			insert+='<b>Preparación:</b> dar endo venoso lento (tener máximo cuidado a infiltraciones) o  intraóseo. Sin diluír ó al medio. A pasar en 5 -10 minutos. Dosis máxima 3 g</br>';
-			insert+='<b>Dosis:</b> 60 - 100 mg/kg/dosis</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+			insert+='<b>Via: </b> endovenoso ó intraóseo</br>';
+			insert+='<b>Administración: </b> dar endo venoso lento (tener máximo cuidado a infiltraciones) o  intraóseo. Sin diluír ó al medio. A pasar en 5 -10 minutos. Dosis máxima 3 g</br>';
+			insert+='<b>Dosis: </b> 60 - 100 mg/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 		}
-		if(seltype=="Cloruro de calcio 10%"){// Opcion si eligio esto
+		if(seltype=="Cloruro de calcio 10%" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			document.getElementById("selop-3").style.display="none";
 			var dosis=roundUp(0.2*peso)+' ml ';
 			insert+='<b>Cloruro de calcio 10%</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
-			insert+='<b>Via:</b> endovenoso</br>';
-			insert+='<b>Preparación:</b> lento (tener máximo cuidado a infiltraciones). Preferible vía central.</br>';
-			insert+='<b>Dosis:</b> 20 mg/kg/dosis</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+' </br></span>';
+			insert+='<b>Via: </b> endovenoso</br>';
+			insert+='<b>Administración: </b> lento (tener máximo cuidado a infiltraciones). Preferible vía central.</br>';
+			insert+='<b>Dosis: </b> 20 mg/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+' </br></span>';
 		}
 		$('#situacion').html(insert);
 	
 	}
 	function roundUp(num) {
 	  num=Math.round(num * 10);
-	  return parseInt(num/10)+','+num%10
+	  if((num%10)>0){
+	  	return parseInt(num/10)+','+num%10;
+	  }else{
+		 return parseInt(num/10);
+	  }
 	}
 	$(function () {
 		$('#initCal').off('change').on('change', result_initCal);
@@ -371,5 +380,7 @@
 	window.analytics.trackView('Pantalla Calculadora Clearence de creatinina');
 }, false);*/
 </script></body>
+<link href="plugins/dialog-master/css/bootstrap-dialog.css" rel="stylesheet" type="text/css" />
+<script src="plugins/dialog-master/js/bootstrap-dialog.js?190417"></script>
 
 </html>

@@ -23,6 +23,8 @@
 	<script src="js/main.js"></script>
     <link href="css/simple-sidebar.css" rel="stylesheet">
     <link href="css/fibrilacion.css" rel="stylesheet">
+     
+       
 	<link rel="stylesheet" href="css/font-awesome-4.6.3/css/font-awesome.min.css?33">
    
 
@@ -69,7 +71,7 @@
                                         <div class="input-switch">
                                             <select name="sel-type" id="sel-type">
                                                 <option value="0"> Peso </option>
-                                                <option value="1"> Edad </option>
+                                                <option value="1"> Edad gestacional </option>
                                             </select>
                                         </div>
                                         <div class="input-label"><label for="sel-type">Resultados en base a:</label></div>                                       
@@ -77,7 +79,7 @@
                                     <div class="input-line" id="sel-kg">
                                         <div data-role="fieldcontain">
                                             <label for="peso">Peso (Kg)</label>
-                                            <input type="range" name="peso" id="peso" value="1" min="0.5" max="4.25" step="0.25">
+                                            <input type="range" name="peso" id="peso" value="0" min="0.5" max="4.25" step="0.25">
                                         </div>
                                     </div>
                                     <div class="input-line" id="sel-ag" style="display:none;">
@@ -152,20 +154,23 @@
 	if(seltype==0){// peso
 		$('#sel-kg').css("display", "block");
 		$('#sel-ag').css("display", "none");
-		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciónes para  recién nacidos de <b style="font-size:16px;">'+peso+' kg</b></p>';
+		if(peso==0){
+			insert+="";
+		}else{
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciones para  recién nacidos de <b style="font-size:16px;">'+peso+' kg</b></p>';
 		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Posición de la cabeza: <b style="font-size:16px;">Olfateo</b></p>';
-        insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Técnica adecuada para realizar compresiones cardíacas: <b style="font-size:16px;">Pulgares (de elección) o 2 dedos. </b>Tener en cuenta el tamaño del niño en relación a las manos del operador. Manos pequeñas utilizar únicamente la de los 2 dedos</p>';
+        insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Técnica adecuada para realizar compresiones cardíacas: <b style="font-size:16px;">Pulgares (de elección) o 2 dedos. </b>Tener en cuenta el tamaño del niño en relación a las manos del operador.  </p>';
 		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación compresiones / ventilaciones causa de paro cardio respiratorio no cardíaco: <b style="font-size:16px;"> 3/1</b></p>';
 		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación compresiones / ventilaciones causa de paro cardio respiratorio de origen cardíaco: <b style="font-size:16px;"> 15/2</b></p>';
 		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>Profundidad de las compresiones torácicas (del diámetro anteroposterior del tórax): <b style="font-size:16px;"> 1/3</b></p>';
 		// Tamaño de bolsa
 		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Tamaño de la bolsa de RCP (autoinflable): <b style="font-size:16px;">';
-			if(peso<=3){insert+='250';}else{insert+='500';}
+			if(peso<3){insert+='250';}else{insert+='500';}
 		insert+='ml </b></p>';
 		// Fin tamaño de la bolsa
 		// FiO2
 		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> FiO2 inicial (controlada con saturometría): <b style="font-size:16px;">';
-			if(peso>=2.5){insert+='0,21';}else{insert+='0,21 - 0,3';}
+			if(peso<=1.5){insert+='0,3';}else{insert+='0,21';}
 		insert+='</b></p>';
 		// Fin FiO2
 		// Ramas
@@ -181,7 +186,7 @@
 		// TET punta
 		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Distancia TET punta - labio (cm): <b style="font-size:16px;">';
 			if((peso)==parseInt(peso)){
-			insert+=parseInt(peso+6);}else{insert+=parseFloat(peso+6).toFixed(2);
+			insert+=parseInt(peso+6);}else{insert+=parseFloat(peso+6);
 			}
 		insert+='</b></p>';
 		//  Fin TET punta
@@ -190,13 +195,7 @@
 			if(peso>=2){if(peso>=3){insert+='9';}else{insert+='8-9';}}else{insert+='8';}
 		insert+='</b></p>';
 		//  Fin TET punta
-		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Desfibrilación (2 - 4 joules/kg): <b style="font-size:16px;">';
-			insert+=parseInt(peso*2)+' a '+parseInt(peso*4)+' joules';
-		insert+='</b></p>';
-		//  Fin TET punta
-		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Cardioversión  (0,5 - 1 joules/kg): <b style="font-size:16px;">';
-			insert+=parseInt(peso*0.5)+' a '+parseInt(peso)+' joules';
-		insert+='</b></p>';
+		}
 		//  Fin TET punta
 	}else{// edad
 		$('#sel-kg').css("display", "none");
@@ -206,19 +205,22 @@
 		}else{
 			if(semanas==28){
 				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciones en <b style="font-size:16px;">menores de 28 semanas de gestación</b></p>';
+				peso=0;
 			}
 			if(semanas==34){
 				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciones para<b style="font-size:16px;"> 28 - 34 semanas de gestación</b></p>';
+				peso=0;
 			}
 			if(semanas==38){
 				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciones para<b style="font-size:16px;"> 34 - 38 semanas de gestación</b></p>';
+				peso=0;
 			}
 			if(semanas==42){
 				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciones para<b style="font-size:16px;"> 38 - 42 semanas de gestación</b></p>';
+				peso=0;
 			}
-			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciónes para  recién nacidos de <b style="font-size:16px;">'+peso+' kg</b></p>';
 			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Posición de la cabeza: <b style="font-size:16px;">Olfateo</b></p>';
-			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Técnica adecuada para realizar compresiones cardíacas: <b style="font-size:16px;">Pulgares (de elección) o 2 dedos. </b>Tener en cuenta el tamaño del niño en relación a las manos del operador. Manos pequeñas utilizar únicamente la de los 2 dedos</p>';
+			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Técnica adecuada para realizar compresiones cardíacas: <b style="font-size:16px;">Pulgares (de elección) o 2 dedos. </b>Tener en cuenta el tamaño del niño en relación a las manos del operador.  </p>';
 			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación compresiones / ventilaciones causa de paro cardio respiratorio no cardíaco: <b style="font-size:16px;"> 3/1</b></p>';
 			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación compresiones / ventilaciones causa de paro cardio respiratorio de origen cardíaco: <b style="font-size:16px;"> 15/2</b></p>';
 			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>Profundidad de las compresiones torácicas (del diámetro anteroposterior del tórax): <b style="font-size:16px;"> 1/3</b></p>';
@@ -229,7 +231,7 @@
 			// Fin tamaño de la bolsa
 			// FiO2
 			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> FiO2 inicial (controlada con saturometría): <b style="font-size:16px;">';
-				if(semanas!=42 && semanas!=38){insert+='0,21 - 0,3';}else{insert+='0,21';}
+				if(semanas!=42 && semanas!=38){insert+='0,3';}else{insert+='0,21';}
 			insert+='</b></p>';
 			if(semanas==34){
 				insert+='<p style="text-align:left;"><b style="font-size:16px;">*</b><b style="font-size:16px;">Aclaración FiO2 inicial: </b>';
@@ -273,5 +275,7 @@
 	window.analytics.trackView('Pantalla Calculadora Clearence de creatinina');
 }, false);*/
 </script></body>
+<link href="plugins/dialog-master/css/bootstrap-dialog.css" rel="stylesheet" type="text/css" />
+<script src="plugins/dialog-master/js/bootstrap-dialog.js?190417"></script>
 
 </html>

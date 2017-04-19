@@ -298,3 +298,6 @@ select{
 .ui-content p b {
     color: #333;
 }
+.bootstrap-dialog .modal-header{
+	text-align:center;
+}

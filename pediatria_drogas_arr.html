@@ -23,6 +23,8 @@
 	<script src="js/main.js"></script>
     <link href="css/simple-sidebar.css" rel="stylesheet">
     <link href="css/fibrilacion.css" rel="stylesheet">
+     
+       
 	<link rel="stylesheet" href="css/font-awesome-4.6.3/css/font-awesome.min.css?33">
    
 
@@ -67,7 +69,7 @@
                                     <div class="input-line">
                                         <div data-role="fieldcontain">
                                             <label for="peso">Peso (Kg)</label>
-                                            <input type="range" name="peso" id="peso" value="7" min="4" max="50"  step="1">
+                                            <input type="range" name="peso" id="peso" value="0" min="4" max="50"  step="1">
                                         </div>
                                     </div>
                                     <div class="input-line">
@@ -77,15 +79,16 @@
                                                 <option value="si">Si</option>
                                             </select>      
                                         </div>
-                                        <div class="input-label"><label for="sel-type">Signos de pubertad:</label></div>                                       
+                                        <div class="input-label"><label for="sel-type">Signos de pubertad: </label></div>
+                                         <p style="color: red; display:none;" id="Ppub">Considere mejor alguna de sus opciones, es extraño que pese menos de 25 Kg y tenga signos de pubertad. </p>                                       
                                    </div> 
                                     <div class="input-line">
                                         <div class="input-switch drogas" style="width: 98%;max-width: 98%;">
                                             <select name="sel-type" id="sel-type">
                                                 <option value="0"> Droga </option>
                                                 <option value="Amiodarona"> Amiodarona </option>
-                                                <option value="Lidocaína"> Lidocaína </option>
                                                 <option value="Adenosina"> Adenosina </option>
+                                                <option value="Lidocaína"> Lidocaína </option>
                                                 <option value="Sulfato de Magnesio"> Sulfato de Magnesio </option>
                                             </select>      
                                         </div>
@@ -100,7 +103,18 @@
                                                 <option value="3">Endotraqueal</option>
                                             </select>      
                                         </div>
-                                        <div class="input-label"><label for="sel-type">Administración:</label></div>                                       
+                                        <div class="input-label"><label for="sel-type">Administración: </label></div>                                       
+                                   </div>
+                                   <div class="input-line" id="selop-3" style="display:none;">
+                                        <div class="input-switch">
+                                            <select name="sel-type-3" id="sel-type-3">
+                                                <option value="0">---</option>
+                                                <option value="1">Sin pulso</option>
+                                                <option value="2">Con pulso</option>
+                                                <option value="3">Asma grave</option>
+                                            </select>      
+                                        </div>
+                                        <div class="input-label"><label for="sel-type">Indicación: </label></div>                                       
                                    </div>
                                 </form>
                                 <div class="result_frame" id="result-container" style="display:none;">
@@ -149,86 +163,121 @@
 	function result_initCal() {
 		// <25 y pubertad considerar mejor alguno de los datos incorporados
 		var seltype=document.getElementById("sel-type").value; // El tipo seleccionado
-		var peso=parseFloat(document.getElementById("peso").value).toFixed(2);
+		var peso=parseFloat(document.getElementById("peso").value);
 		if(document.getElementById("sel-type-pub").value=="si"){var pub=true;}else{var pub=false;}
+		if(peso<25 && pub==true){document.getElementById("Ppub").style.display="block";}else{document.getElementById("Ppub").style.display="none";}
 		var insert='';
 		if(seltype=="0"){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
+			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="none";
 		}
-		if(seltype=="Amiodarona"){// Opcion si eligio esto
+		if(seltype=="Amiodarona" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
+			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(0.1*peso)+' ml ';
 			insert+='<b>Amiodarona 150 mg/3ml</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
-			insert+='<b>Via:</b> endovenoso</br>';
-			insert+='<b>Preparación:</b> lento o en push según gravedad (sin pulso).</br>';
-			insert+='<b>Aclaración:</b> no diluír 150 mg/3ml, max 300 mg</br>'
-			insert+='<b>Dosis:</b> 5mg/kg/dosis </br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+			insert+='<b>Via: </b> endovenoso</br>';
+			insert+='<b>Administración: </b> lento o en push según gravedad (sin pulso).</br>';
+			insert+='<b>Aclaración: </b> no diluír 150 mg/3ml, máx 300 mg</br>'
+			insert+='<b>Dosis: </b> 5mg/kg/dosis </br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 		}
-		if(seltype=="Lidocaína"){// Opcion si eligio esto
+		if(seltype=="Lidocaína" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="block";
+			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="none";
 			var seltype2=document.getElementById("sel-type-2").value;
-			insert+='<b>Lidocaína sin epinefrina 1% en bolo</b> para niños de <b>'+peso+' kg ';
+			insert+='<b>Lidocaína sin epinefrina 1% en bolo</b></br>';
+			insert+='<b>Indicaciones: </b> para niños de '+peso+' kg</br>';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			if(seltype2==1){// Endovenosa
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.1*peso)+' ml';
-				insert+='<b>Via:</b> endovenoso</br>';
-				//insert+='<b>Aclaración:</b> lidocaína sin epinefrina 1% en bolo</br>';
-				insert+='<b>Dosis:</b> dosis de carga 1 mg/Kg</br>';
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+				insert+='<b>Via: </b> endovenoso</br>';
+				//insert+='<b>Aclaración: </b> lidocaína sin epinefrina 1% en bolo</br>';
+				insert+='<b>Dosis: </b> dosis de carga 1 mg/Kg</br>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 			}
 			if(seltype2==2){//Endotraqueal
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.1*peso)+' ml';
-				insert+='<b>Via:</b> intraóseo</br>';
-				//insert+='<b>Aclaración:</b> lidocaína sin epinefrina 1% en bolo</br>';
-				insert+='<b>Dosis:</b> dosis de carga 1 mg/Kg</br>';
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+				insert+='<b>Via: </b> intraóseo</br>';
+				//insert+='<b>Aclaración: </b> lidocaína sin epinefrina 1% en bolo</br>';
+				insert+='<b>Dosis: </b> dosis de carga 1 mg/Kg</br>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 			}
-			if(seltype2==3){//intra muscular
+			if(seltype2==3){//intramuscular
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.2*peso)+' ml a '+roundUp(0.3*peso)+' ml ';
-				insert+='<b>Via:</b> endotraqueal</br>';
-				//insert+='<b>Aclaración:</b> lidocaína sin epinefrina 1% en bolo</br>';
-				insert+='<b>Dosis:</b> dosis de carga 2 a 3  mg/Kg</br>';
-				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+				insert+='<b>Via: </b> endotraqueal</br>';
+				//insert+='<b>Aclaración: </b> lidocaína sin epinefrina 1% en bolo</br>';
+				insert+='<b>Dosis: </b> dosis de carga 2 a 3  mg/Kg</br>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 			}
 		}
-		if(seltype=="Adenosina"){// Opcion si eligio esto
+		if(seltype=="Adenosina" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
+			document.getElementById("selop-3").style.display="none";
 			document.getElementById("result-container").style.display="block";
 			var dosis=roundUp(0.1/3*peso)+' ml a '+roundUp(0.2/3*peso)+' ml ';
 			insert+='<b>Adenosina</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
-			//insert+='<b>Via:</b> endovenoso en push con posterior plan de hidratación parenteral con flujo de glucosa alto</br>';
-			insert+='<b>Preparación:</b>intraóseo o intravenoso en push rápido (2ml=6 mg)</br>';
-			insert+='<b>Aclaración:</b> No refrigerar ampolla, lavar con solución fisiológica inmediatamente (llave de 3 vías)</br>'
-			insert+='<b>Dosis:</b> 0,1 a 0,2 mg/kg/dosis</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+			//insert+='<b>Via: </b> endovenoso en push con posterior plan de hidratación parenteral con flujo de glucosa alto</br>';
+			insert+='<b>Administración: </b>intravenoso ó intraóseo en push rápido (2ml=6 mg)</br>';
+			insert+='<b>Aclaración: </b> No refrigerar ampolla, lavar con solución fisiológica inmediatamente (llave de 3 vías)</br>'
+			insert+='<b>Dosis: </b> 0,1 a 0,2 mg/kg/dosis</br>';
+			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 		}
-		if(seltype=="Sulfato de Magnesio"){// Opcion si eligio esto
+		if(seltype=="Sulfato de Magnesio" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
-			document.getElementById("result-container").style.display="block";
+			document.getElementById("selop-3").style.display="block";
+			document.getElementById("result-container").style.display="none";
+			var seltype3=document.getElementById("sel-type-3").value;
 			var dosis=roundUp(0.1*peso)+' ml a '+roundUp(Math.min(0.2*peso, 8))+' ml ';
-			insert+='<b>Sulfato de Magnesio 25% (amp 5 ml)</b> para niños de <b>'+peso+' kg ';
-			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
-			//insert+='<b>Via:</b> endovenoso</br>';
-			insert+='<b>Preparación:</b> lento (5 - 10 min)</br>';
-			insert+='<b>Aclaración:</b> se puede repetir la dosis</br>';
-			insert+='<b>Dosis:</b> 20 ml/kg</br>';
-			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administración:</b>'+dosis+'</br></span>';
+			if(seltype3==1){// Sin pulso
+				document.getElementById("result-container").style.display="block";
+				insert+='<b>Sulfato de Magnesio 25% (amp 5 ml)</b> para niños de <b>'+peso+' kg ';
+				if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
+				//insert+='<b>Via: </b> endovenoso</br>';
+				//insert+='<b>Administración: </b> lento (5 - 10 min)</br>';
+				insert+='<b>Aclaración: </b> dosis máxima 2 g</br>';
+				insert+='<b>Dosis: </b> 20 ml/kg para TV sin pulsos por Torsade de Pointes</br>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
+			}
+			if(seltype3==2){//con pulso
+				document.getElementById("result-container").style.display="block";
+				insert+='<b>Sulfato de Magnesio 25% (amp 5 ml)</b> para niños de <b>'+peso+' kg ';
+				if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
+				//insert+='<b>Via: </b> endovenoso</br>';
+				insert+='<b>Administración: </b> en 10 a 20 minutos</br>';
+				insert+='<b>Aclaración: </b> dosis máxima 2 g</br>';
+				insert+='<b>Dosis: </b> 20 ml/kg para TV con pulsos por hipomagnesemia</br>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
+			}
+			if(seltype3==3){//asma grave
+				document.getElementById("result-container").style.display="block";
+				insert+='<b>Sulfato de Magnesio 25% (amp 5 ml)</b> para niños de <b>'+peso+' kg ';
+				if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
+				//insert+='<b>Via: </b> endovenoso</br>';
+				insert+='<b>Administración: </b> en 15 a 30 minutos</br>';
+				insert+='<b>Aclaración: </b> dosis máxima 2 g</br>';
+				insert+='<b>Dosis: </b> 20 ml/kg para asma grave</br>';
+				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
+			}
 		}
 		$('#situacion').html(insert);
 	
 	}
 	function roundUp(num) {
 	  num=Math.round(num * 10);
-	  return parseInt(num/10)+','+num%10
+	  if((num%10)>0){
+	  	return parseInt(num/10)+','+num%10;
+	  }else{
+		 return parseInt(num/10);
+	  }
 	}
 	$(function () {
 		$('#initCal').off('change').on('change', result_initCal);
@@ -245,5 +294,7 @@
 	window.analytics.trackView('Pantalla Calculadora Clearence de creatinina');
 }, false);*/
 </script></body>
+<link href="plugins/dialog-master/css/bootstrap-dialog.css" rel="stylesheet" type="text/css" />
+<script src="plugins/dialog-master/js/bootstrap-dialog.js?190417"></script>
 
 </html>
