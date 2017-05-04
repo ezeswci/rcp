@@ -262,6 +262,24 @@ select{
 	margin-top:40px;
 	width:100%;
 }
+.btn-reg.ped{
+	color: #fff;
+    background-color: #575e65;
+    border-color: #152432;
+	height:90px;
+	margin-top:20px;
+	width:100%;
+}
+@media (max-width:340px){
+.btn-reg.ped{
+	color: #fff;
+    background-color: #575e65;
+    border-color: #152432;
+	height:80px;
+	margin-top:15px;
+	width:100%;
+}
+}
 /* Nuevo Simmers */
 .bkg-green{
 	background:#4AB239;

@@ -86,10 +86,10 @@
                                     	<div class="input-switch">
                                             <select name="semn" id="semn">
                                             	<option value="1"> ---- </option>
-                                                <option value="28"> < 28 Semanas</option>
-                                                <option value="34"> 28 - 34 Semanas</option>
-                                                <option value="38"> 34 - 38 Semanas</option>
-                                                <option value="42"> 38 - 42 Semanas</option>
+                                                <option value="28"> < 28 Semanas</option> 0.5/0.75
+                                                <option value="34"> 28 - 34 Semanas</option>1/1.75
+                                                <option value="38"> 34 - 38 Semanas</option> 2.5/2.75
+                                                <option value="42"> 38 - 42 Semanas</option> 3/4.25
                                             </select>
                                         </div>
                                         <div class="input-label"><label for="semn">Edad gestacional</label></div>
@@ -188,7 +188,7 @@
 			if((peso)==parseInt(peso)){
 			insert+=parseInt(peso+6);}else{insert+=parseFloat(peso+6);
 			}
-		insert+='</b></p>';
+		insert+='</b> (Confirmar según evolución clínica)</p>';
 		//  Fin TET punta
 		// TET punta
 		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Tubo de tórax (French): <b style="font-size:16px;">';
@@ -204,19 +204,19 @@
 			insert+="";
 		}else{
 			if(semanas==28){
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciones en <b style="font-size:16px;">menores de 28 semanas de gestación</b></p>';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciones en <b style="font-size:16px;">menores de 28 semanas de gestación con peso estimado entre 0,5 y 0.75 kg</b></p>';
 				peso=0;
 			}
 			if(semanas==34){
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciones para<b style="font-size:16px;"> 28 - 34 semanas de gestación</b></p>';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciones para<b style="font-size:16px;"> 28 - 34 semanas de gestación con peso estimado entre 1 y 1.75 kg</b></p>';
 				peso=0;
 			}
 			if(semanas==38){
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciones para<b style="font-size:16px;"> 34 - 38 semanas de gestación</b></p>';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciones para<b style="font-size:16px;"> 34 - 38 semanas de gestación con peso estimado entre 2,5 y 2.75 kg</b></p>';
 				peso=0;
 			}
 			if(semanas==42){
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciones para<b style="font-size:16px;"> 38 - 42 semanas de gestación</b></p>';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciones para<b style="font-size:16px;"> 38 - 42 semanas de gestación con peso estimado entre 3 y 4.25 kg</b></p>';
 				peso=0;
 			}
 			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Posición de la cabeza: <b style="font-size:16px;">Olfateo</b></p>';
@@ -252,7 +252,7 @@
 			// TET punta
 			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Distancia TET punta - labio (cm): <b style="font-size:16px;">';
 				if(semanas==42 || semanas==38){if(semanas==42){insert+='9,5';}else{insert+='8,5';}}else{if(semanas==34){insert+='7,75';}else{insert+='6,75';}}
-			insert+='</b></p>';
+			insert+='</b> (Confirmar según evolución clínica)</p>';
 			//  Fin TET punta
 			// TET punta
 			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Tubo de tórax (French): <b style="font-size:16px;">';

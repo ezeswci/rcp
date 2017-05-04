@@ -1,7 +1,7 @@
 function cambiarCalculadora(pagina)
 { 
- // window.location=pagina;
- avisarPremium();
+  window.location=pagina;
+ //avisarPremium();
 } 
 function avisarPremium(){
 BootstrapDialog.show({

@@ -161,7 +161,7 @@
 			if(seltype2==1){// Endovenosa
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.1*peso)+' ml a '+roundUp(0.3*peso)+' ml ';
-				insert+='<b>Via: </b> endovenoso</br>';
+				insert+='<b>Vía: </b> endovenoso</br>';
 				insert+='<b>Preparación: </b> diluir 1 ml + 9 ml de agua destilada</br>';
 				insert+='<b>Dosis: </b> 0,01 a 0,03 mg/kg/dosis</br>';
 				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
@@ -169,7 +169,7 @@
 			if(seltype2==2){//Endotraqueal
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.5*peso)+' ml a '+roundUp(peso)+' ml ';
-				insert+='<b>Via: </b> endotraqueal</br>';
+				insert+='<b>Vía: </b> endotraqueal</br>';
 				insert+='<b>Preparación: </b>diluir 1 ml + 9 ml de agua destilada</br>';
 				insert+='<b>Dosis: </b> 0,05 a 0,1 mg/kg/dosis</br>';
 				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
@@ -181,7 +181,7 @@
 			var dosis=peso*10;
 			insert+='<b>Solución fisiológica</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
 			insert+='<b>Indicación: </b> hipovolemia</br>';
-			insert+='<b>Via: </b> endovenoso</br>';
+			insert+='<b>Vía: </b> endovenoso</br>';
 			insert+='<b>Administración: </b> lento (5 - 10 min)</br>';
 			insert+='<b>Dosis: </b> 10 ml/kg</br>';
 			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+' ml</br></span>';
@@ -192,7 +192,7 @@
 			var dosis=roundUp(peso);
 			insert+='<b>Gluconato de calcio 10%</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
 			insert+='<b>Indicación: </b> hipoglucemia</br>';
-			insert+='<b>Via: </b> endovenoso con control de extravasación</br>';
+			insert+='<b>Vía: </b> endovenoso con control de extravasación</br>';
 			insert+='<b>Administración: </b> lento con control de la frecuencia cardíaca. Dar con el mismo volumen de agua destilada</br>';
 			insert+='<b>Dosis: </b> 100 mg/kg/dosis</br>';
 			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+' ml</br></span>';
@@ -203,7 +203,7 @@
 			var dosis=roundUp(5*peso)+' ml a '+roundUp(10*peso)+' ml ';
 			insert+='<b>Dextrosado 10%</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
 			insert+='<b>Indicación: </b> hipoglucemia</br>';
-			insert+='<b>Via: </b> endovenoso en push con posterior plan de hidratación parenteral con flujo de glucosa alto</br>';
+			insert+='<b>Vía: </b> endovenoso en push con posterior plan de hidratación parenteral con flujo de glucosa alto</br>';
 			//insert+='<b>Preparación: </b> lento con control de la frecuencia cardíaca. Dar con el mismo volumen de agua destilada</br>';
 			insert+='<b>Dosis: </b> 0,5 - 1 g/kg/dosis</br>';
 			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
@@ -214,7 +214,7 @@
 			var dosis=roundUp(peso)+' ml ';
 			insert+='<b>Naloxona (1 mg/ml)</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
 			insert+='<b>Indicación: </b> depresión SNC por derivados de morfina</br>';
-			insert+='<b>Via: </b> endovenoso en push lento o intramuscular</br>';
+			insert+='<b>Vía: </b> endovenoso en push lento o intramuscular</br>';
 			insert+='<b>Preparación: </b> tomar 1 ml + 9 ml de agua destilada</br>';
 			insert+='<b>Dosis: </b> 0,1 mg/kg/dosis</br>';
 			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
@@ -225,7 +225,7 @@
 			var dosis=roundUp(peso/4)+' ml ';
 			insert+='<b>Naloxona (0,4 mg/ml)</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
 			insert+='<b>Indicación: </b> depresión SNC por derivados de morfina</br>';
-			insert+='<b>Via: </b> endovenoso en push lento o intramuscular</br>';
+			insert+='<b>Vía: </b> endovenoso en push lento o intramuscular</br>';
 			insert+='<b>Dosis: </b> 0,1 mg/kg/dosis</br>';
 			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 		}
@@ -235,7 +235,7 @@
 			var dosis=roundUp(0.2*peso)+' ml a '+roundUp(0.4*peso)+' ml ';
 			insert+='<b>Fenobabital (50 mg/ml)</b> para  recién nacidos de <b>'+peso+' kg</b></br>';
 			insert+='<b>Indicación: </b> estado convulsivo</br>';
-			insert+='<b>Via: </b> endovenoso o intramuscular en push lento</br>';
+			insert+='<b>Vía: </b> endovenoso o intramuscular en push lento</br>';
 			insert+='<b>Administración: </b> se puede pasar puro o diluido con igual volumen de solución fisiológica ó dextrosa 5%</br>';
 			insert+='<b>Dosis: </b> 10 - 20 mg/kg/dosis de ataque</br>';
 			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';

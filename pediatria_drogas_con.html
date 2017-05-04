@@ -80,7 +80,7 @@
                                             </select>      
                                         </div>
                                         <div class="input-label"><label for="sel-type">Signos de pubertad: </label></div> 
-                                         <p style="color: red; display:none;" id="Ppub">Considere mejor alguna de sus opciones, es extraño que pese menos de 25 Kg y tenga signos de pubertad. </p>                                      
+                                         <p style="color: red; display:none;" id="Ppub">Considere mejor alguna de sus opciones, no es común que pese menos de 25 Kg y tenga signos de pubertad. </p>                                      
                                    </div> 
                                     <div class="input-line">
                                         <div class="input-switch drogas" style="width: 98%;max-width: 98%;">
@@ -100,8 +100,7 @@
                                         <div class="input-switch">
                                             <select name="sel-type-2" id="sel-type-2">
                                                 <option value="0">---</option>
-                                                <option value="1">De 0,2 mg/kg/dosis. EV - IO</option>
-                                                <option value="2">Hasta 0,5 mg/kg/dosis. EV - IO</option>
+                                                <option value="1">EV/IO De 0,2 hasta 0,5 mg/kg/dosis</option>
                                                 <option value="3">Rectal 0,5 mg/kg/dosis</option>
                                             </select>      
                                         </div>
@@ -172,28 +171,29 @@
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
 			if(seltype2==1){// 
 				document.getElementById("result-container").style.display="block";
-				var dosis=roundUp(0.04*peso)+' ml en no menos de '+tiempo(0.1*peso);
-				insert+='<b>Via: </b> endovenoso o intraóseo</br>';
+				if(peso<20){var droga2=Math.min(0.1*peso, 1);}else{var droga2=Math.min(0.1*peso, 2);}				
+				var dosis=roundUp(0.04*peso)+' ml a '+roundUp(droga2)+' ml en no menos de '+tiempo(2.5*droga2);
+				insert+='<b>Vía: </b> endovenoso o intraóseo</br>';
 				insert+='<b>Administración: </b> 1-2 mg/min</br>';
-				insert+='<b>Dosis: </b> 0,2 mg/kg/dosis</br>';
+				insert+='<b>Dosis: </b> 0,2 a 0,5 mg/kg/dosis</br>';
 				insert+='<b>Aclaración: </b> máx 10 mg > 5 años y 5mg < 5 años </br>';
 				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 			}
-			if(seltype2==2){//
+			/*if(seltype2==2){// Esta no esta mas 
 				document.getElementById("result-container").style.display="block";
 				if(peso<20){var droga=Math.min(0.1*peso, 1);}else{var droga=Math.min(0.1*peso, 2);}
 				var dosis=roundUp(droga)+' ml en no menos de '+tiempo(2.5*droga);
 				
-				insert+='<b>Via: </b> endovenoso o intraóseo</br>';
+				insert+='<b>Vía: </b> endovenoso o intraóseo</br>';
 				insert+='<b>Administración: </b>1-2 mg/min</br>';
 				insert+='<b>Dosis: </b> hasta 0,5 mg/kg/dosis</br>';// Esta esta bien asi?
 				insert+='<b>Aclaración: </b> máx 10 mg > 5 años y 5mg < 5 años </br>';
 				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
-			}
+			}*/
 			if(seltype2==3){//
 				document.getElementById("result-container").style.display="block";
 				var dosis=roundUp(0.1*peso)+' ml';
-				insert+='<b>Via: </b> Rectal</br>';
+				insert+='<b>Vía: </b> Rectal</br>';
 				insert+='<b>Administración: </b>sin diluir</br>';
 				insert+='<b>Dosis: </b> 0,5 mg/kg/dosis</br>';
 				insert+='<b>Aclaración: </b> dosis máxima 20 mg. </br>';
@@ -207,7 +207,7 @@
 			var dosis=roundUp(0.04*peso)+' ml en '+roundUp(0.08*peso)+' minutos';
 			insert+='<b>Midazolam (15 mg/ 3ml)</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
-			insert+='<b>Via: </b> endovenoso ó IR ó vía oral ó intramuscular ó intranasal </br>';
+			insert+='<b>Vía: </b> endovenoso ó IR ó vía oral ó intramuscular ó intranasal </br>';
 			insert+='<b>Administración: </b> si es endovenoso en push lento velocidad 2,5 mg/min</br>';
 			insert+='<b>Aclaración: </b> Se puede repetir cada 10 a 15 minutos</br>'
 			insert+='<b>Dosis: </b> 0,2 mg/kg/dosis </br>';
@@ -219,7 +219,7 @@
 			var dosis=roundUp(Math.min(0.025*peso,1))+' ml en no menos de '+roundUp(Math.min(0.025*peso,1)*4)+' minutos';
 			insert+='<b>Lorazepam (4mg/ml)</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
-			insert+='<b>Via: </b> endovenoso ó intraóseo ó rectal ó intramuscular </br>';
+			insert+='<b>Vía: </b> endovenoso ó intraóseo ó rectal ó intramuscular </br>';
 			insert+='<b>Administración: </b> diluir con igual volumen de solución fisiológica o dextrosa 5%  y pasar en push lento. Puede ser por intramuscular profunda sin diluir. Velocidad de infusión. endovenoso ó intraóseo en 2,5 mg/min</br>';
 			insert+='<b>Aclaración: </b> conservar en heladera. Dosis máx 4 mg. Puede repetirse en 10 - 15 min</br>'
 			insert+='<b>Dosis: </b> 0,1 mg/kg/dosis</br>';
@@ -231,7 +231,7 @@
 			var dosis=roundUp(0.3*peso)+' a '+roundUp(0.4*peso)+' ml + '+roundUp(4*peso)+' ml de solución fisiológica';
 			insert+='<b>Difenilhidantoína (fenitoína) (50 mg/ml) ampollas de 2 ml</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
-			insert+='<b>Via: </b> endovenoso</br>';
+			insert+='<b>Vía: </b> endovenoso</br>';
 			insert+='<b>Administración: </b>Diluir con  solución fisiológica. Lavar la vía con solución fisiológica antes y después de la administración. Es conveniente monitorizar TA y ECG por arritmias. Endovenoso lento (en 15 a 20 minutos) (1mg/kg/min). Para infusión 1- 6 mg/ml</br>';
 			insert+='<b>Aclaración: </b> En caso de hipoglucemia documentada o con alta sospecha posterior al push lento dejar un plan de hidratación parenteral con flujo de glucosa alto y controlar</br>'
 			insert+='<b>Dosis: </b> 15 a 20 mg/kg</br>';
@@ -243,11 +243,11 @@
 			var dosis=roundUp(0.2*peso)+' a '+roundUp(0.4*peso)+' ml ';
 			insert+='<b>Fenobarbital (50 mg/ml) ampollas de 2 ml</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
-			insert+='<b>Via: </b> endovenoso</br>';
+			insert+='<b>Vía: </b> endovenoso</br>';
 			insert+='<b>Administración: </b> 1 mg/kg/min concentración para diluir con igual volumen de solución fisiológica o dextrosa 5%</br>';
 			insert+='<b>Dosis: </b> 10 a 20  mg/kg (en 10 a 20 min)</br>';
 			insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
-			insert+='<b>Aclaración: </b> Si es necesario repetir en 15 minutos con igual dosis. Máxima dosis letal 40 mg/kg. </br>';
+			insert+='<b>Aclaración: </b> Si es necesario repetir en 15 minutos con igual dosis. Máxima dosis 40 mg/kg. </br>';
 		}
 		if(seltype=="Tiopental" && peso>=0.2){// Opcion si eligio esto
 			document.getElementById("selop-2").style.display="none";
@@ -256,7 +256,7 @@
 			var dosis=roundUp(0.15*peso)+' a '+roundUp(0.25*peso)+' ml ';
 			insert+='<b>Tiopental (frasco ampolla 1 g/50 ml) (20 mg/ml)</b> para niños de <b>'+peso+' kg ';
 			if(pub){insert+='con signos de pubertad</b></br>';}else{insert+='sin signos de pubertad</b></br>';}
-			insert+='<b>Via: </b> endovenoso</br>';
+			insert+='<b>Vía: </b> endovenoso</br>';
 			insert+='<b>Administración: </b> infusión intermitente 10 – 60 min</br>';
 			insert+='<b>Aclaración: </b> lento (1min x ml). No usar agua destilada para infusión contínua por riesgo de hemólisis, usar solución fisiológica  </br>';
 			insert+='<b>Dosis: </b> 3 a 5  mg/kg/dosis</br>';
