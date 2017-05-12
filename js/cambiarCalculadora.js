@@ -4,7 +4,7 @@ function cambiarCalculadora(pagina)
  //avisarPremium();
 } 
 function avisarPremium(){
-BootstrapDialog.show({
+/*BootstrapDialog.show({
 			type:BootstrapDialog.TYPE_INFO,
 			closable: false,
 			 title: "Versión de prueba",
@@ -22,23 +22,23 @@ BootstrapDialog.show({
                     comprobarClave(dialogItself);
                 },
             }]		 
-		 });
+		 });*/
 }
 function continuarPrueba(dialog){
-	var now= new Date();
+	/*var now= new Date();
 	setCookie("dateChecked", JSON.stringify(now));
-	dialog.close();
+	dialog.close();*/
 }
 function comprobarClave(dialog){
-	if(document.getElementById("pass-sim").value=="12345678"){
+	/*if(document.getElementById("pass-sim").value=="12345678"){
 		setCookie("enterPassword", JSON.stringify(true));
 		dialog.close();
 	}else{
 		codigoErroneo();
-	}
+	}*/
 }
 function codigoErroneo(){
-	BootstrapDialog.show({
+	/*BootstrapDialog.show({
 			 type:BootstrapDialog.TYPE_WARNING,
 			 closable: false,
 			 title: "Código invalido",
@@ -51,10 +51,10 @@ function codigoErroneo(){
                     dialogItself.close();
                 },
             }]		 
-		 });
+		 });*/
 }
 function finVersionDePrueba(){
-	BootstrapDialog.show({
+	/*BootstrapDialog.show({
 			 title: "",
             message: "",
 			buttons: [{
@@ -64,12 +64,12 @@ function finVersionDePrueba(){
                     dialogItself.close();
                 },
             }]		 
-		 });
+		 });*/
 }
 function resetTimeOfLastTableAskToServer(){
-	window.lastTableCheck= new Date();
+	/*window.lastTableCheck= new Date();
 	var jsonUpdt=JSON.stringify(window.lastTableCheck);
-	setCookie("tablesToPlay-lastCheck-Jp"+getUserJugaplayId(), jsonUpdt, 120);
+	setCookie("tablesToPlay-lastCheck-Jp"+getUserJugaplayId(), jsonUpdt, 120);*/
 }
 function updateTablesFromServer(){// Veo si lo traigo de memoria o no
 	if(secondsFromNow(window.lastTableCheck)>300){// Si tiene mas de 5 minutos 300 segundos
@@ -138,9 +138,9 @@ function delete_cookie( cname ) {
 	}
 }
 // <input type="text" id="pass-sim" placeholder="CÓDIGO">
-setTimeout(function(){verificarPassword();}, 1000);
+//setTimeout(function(){verificarPassword();}, 1000);
 function verificarPassword(){
-	if(getCookie("dateInstall")!=""){// Esta instaladas
+	/*if(getCookie("dateInstall")!=""){// Esta instaladas
 		var enterPassword=JSON.parse(getCookie("enterPassword"));
 		if(hasToCheck()&&!enterPassword){
 			avisarPremium();
@@ -152,5 +152,5 @@ function verificarPassword(){
 		setCookie("dateChecked", JSON.stringify(op));
 		setCookie("enterPassword", JSON.stringify(false));
 		avisarPremium();
-	}
+	}*/
 }
