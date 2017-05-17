@@ -315,8 +315,8 @@
 				// Dosis
 				if((peso*0.5)>20){var F14=20;}else{var F14=peso*0.5;}
 				if(pub){var dosis=roundUp(F14)+' ml'}
-				else{
-					if(F14>5){dosis='20 ml'}
+				else{ // Es no pubertad
+					if(F14>20){dosis='20 ml'}
 					else{var dosis=roundUp(F14)+' ml';}
 				} 
 				// Fin Dosis
