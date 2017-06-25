@@ -42,9 +42,14 @@
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_acciones.html');">Intervenciones</a></li>
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_drogas.html');">Drogas</a></li> 
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_glasgow.html');">Glasgow</a></li>
-                <li style="text-align: center; color:#1a53a5;font-size:12px; color:#665b00; background:#fafafa;">OTROS</li>
-                <li><a onClick="cambiarCalculadora('terminos.html');">Términos y condiciones</li>
+                <li style="text-align: center; color:#1a53a5;font-size:12px; color:#665b00; background:#fafafa;">OTROS</li>      
                 <li><a onClick="cambiarCalculadora('situaciones.html');">Situaciones de uso</a></li>
+                <li><a onClick="cambiarCalculadora('autores.html');">Autores</a></li> 
+                <li><a onClick="cambiarCalculadora('bibliografia.html');">Bibliografía</a></li>
+                <li><a onClick="cambiarCalculadora('sugerencias.html');">Sugerencias y comentarios</a></li>
+                <li><a onClick="cambiarCalculadora('terminos.html');">Términos y condiciones</a></li>
+                <li><a onClick="cambiarCalculadora('privacidad.html');">Política de privacidad</a></li>
+                <li><a onClick="cambiarCalculadora('copyright.html');">Derecho de autor</a></li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -71,7 +76,7 @@
                                                 <option value="0">---</option>
                                                 <option value="1">Lactante</option>
                                                 <option value="2">Niño</option>
-                                                <option value="3">Adolecente / Adulto</option>
+                                                <option value="3">Adolescente / Adulto</option>
                                             </select>
                                         </div>
                                         <div class="input-label"><label for="glas0">Edad</label></div>                                       
@@ -213,7 +218,7 @@
                                         <div id="situacion" style="text-align: center; font-size: 24px;"></div>     
                                     </div>
                                     <!-- /result_container -->
-                                    <p></p>
+                                    <p id="extra"></p>
                                 </div>
                                 <!-- /result_frame -->
 							</div>
@@ -272,12 +277,15 @@
 				$('#puntaje').html("Puntaje total: <span style=\"font-size: 18px;\"><b>"+puntaje+"</b></span>");
 				if(puntaje>12){
 					$('#situacion').text("Leve-Normal");
+					$('#extra').text("");
 					$('#situacion').parent().css("background-color", "#BAFFA3");				
 				}else if(puntaje>8){
 					$('#situacion').text("Moderado");
+					$('#extra').text("");
 					$('#situacion').parent().css("background-color", "#FFFFA3");
 				}else{
 					$('#situacion').text("Grave");
+					$('#extra').text("Considerar intubación endotraqueal");
 					$('#situacion').parent().css("background-color", "#FFA3A3");
 				}
 			}else{
@@ -293,12 +301,15 @@
 				$('#puntaje').html("Puntaje total: <span style=\"font-size: 18px;\"><b>"+puntaje+"</b></span>");
 				if(puntaje>12){
 					$('#situacion').text("Leve-Normal");
+					$('#extra').text("");
 					$('#situacion').parent().css("background-color", "#BAFFA3");				
 				}else if(puntaje>8){
 					$('#situacion').text("Moderado");
+					$('#extra').text("");
 					$('#situacion').parent().css("background-color", "#FFFFA3");
 				}else{
 					$('#situacion').text("Grave");
+					$('#extra').text("Considerar intubación endotraqueal");
 					$('#situacion').parent().css("background-color", "#FFA3A3");
 				}
 			}else{
@@ -314,12 +325,15 @@
 				$('#puntaje').html("Puntaje total: <span style=\"font-size: 18px;\"><b>"+puntaje+"</b></span>");
 				if(puntaje>12){
 					$('#situacion').text("Leve-Normal");
+					$('#extra').text("");
 					$('#situacion').parent().css("background-color", "#BAFFA3");				
 				}else if(puntaje>8){
 					$('#situacion').text("Moderado");
+					$('#extra').text("");
 					$('#situacion').parent().css("background-color", "#FFFFA3");
 				}else{
 					$('#situacion').text("Grave");
+					$('#extra').text("Considerar intubación endotraqueal");
 					$('#situacion').parent().css("background-color", "#FFA3A3");
 				}
 			}else{

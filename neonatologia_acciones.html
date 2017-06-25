@@ -45,10 +45,14 @@
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_drogas.html');">Drogas</a></li> 
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_glasgow.html');">Glasgow</a></li>
                 <li style="text-align: center; color:#1a53a5;font-size:12px; color:#665b00; background:#fafafa;">OTROS</li>
-                <li><a onClick="">Términos y condiciones</a></li><a onClick="">
-                <li><a onClick="">Situaciones de uso</a></li>
-            </a></ul>
-        </div><a onClick="">
+                <li><a onClick="cambiarCalculadora('situaciones.html');">Situaciones de uso</a></li>
+                <li><a onClick="cambiarCalculadora('autores.html');">Autores</a></li> 
+                <li><a onClick="cambiarCalculadora('bibliografia.html');">Bibliografía</a></li>
+                <li><a onClick="cambiarCalculadora('sugerencias.html');">Sugerencias y comentarios</a></li>
+                <li><a onClick="cambiarCalculadora('terminos.html');">Términos y condiciones</a></li>
+                <li><a onClick="cambiarCalculadora('privacidad.html');">Política de privacidad</a></li>
+                <li><a onClick="cambiarCalculadora('copyright.html');">Derecho de autor</a></li></ul>
+        </div>
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
@@ -70,6 +74,7 @@
                                     <div class="input-line">
                                         <div class="input-switch">
                                             <select name="sel-type" id="sel-type">
+                                            	<option value="2"> ... </option>
                                                 <option value="0"> Peso </option>
                                                 <option value="1"> Edad gestacional </option>
                                             </select>
@@ -151,20 +156,25 @@
 	var semanas=document.getElementById("semn").value;
 	var peso=parseFloat(document.getElementById("peso").value);
 	var insert="";
-	if(seltype==0){// peso
+	if(seltype==0 || seltype==2){// peso
+		if(seltype!=2){
+		var peso=parseFloat(document.getElementById("peso").value);
 		$('#sel-kg').css("display", "block");
+		$('#sel-ag').css("display", "none");}else{
+		$('#sel-kg').css("display", "none");
 		$('#sel-ag').css("display", "none");
-		if(peso==0){
+		}
+		if(peso==0 || seltype==2){
 			insert+="";
 		}else{
 		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciones para  recién nacidos de <b style="font-size:16px;">'+peso+' kg</b></p>';
-		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Posición de la cabeza: <b style="font-size:16px;">Olfateo</b></p>';
-        insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Técnica adecuada para realizar compresiones cardíacas: <b style="font-size:16px;">Pulgares (de elección) o 2 dedos. </b>Tener en cuenta el tamaño del niño en relación a las manos del operador.  </p>';
-		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación compresiones / ventilaciones causa de paro cardio respiratorio no cardíaco: <b style="font-size:16px;"> 3/1</b></p>';
-		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación compresiones / ventilaciones causa de paro cardio respiratorio de origen cardíaco: <b style="font-size:16px;"> 15/2</b></p>';
-		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>Profundidad de las compresiones torácicas (del diámetro anteroposterior del tórax): <b style="font-size:16px;"> 1/3</b></p>';
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Posición de la <b style="color: #004150;">cabeza</b>: <b style="font-size:16px;">Olfateo</b></p>';
+        insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Técnica adecuada para realizar <b style="color: #004150;">compresiones cardiacas</b>: <b style="font-size:16px;">Pulgares (de elección) o 2 dedos. </b>Tener en cuenta el tamaño del niño en relación a las manos del operador.  </p>';
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación <b style="color: #004150;">compresiones / <b style="color: #004150;">ventilaciones</b></b> causa de paro cardio respiratorio no cardíaco: <b style="font-size:16px;"> 3/1</b></p>';
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación <b style="color: #004150;">compresiones / <b style="color: #004150;">ventilaciones</b></b> causa de paro cardio respiratorio de origen cardíaco: <b style="font-size:16px;"> 15/2</b></p>';
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b><b style="color: #004150;">Profundidad de las compresiones</b> torácicas (del diámetro anteroposterior del tórax): <b style="font-size:16px;"> 1/3</b></p>';
 		// Tamaño de bolsa
-		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Tamaño de la bolsa de RCP (autoinflable): <b style="font-size:16px;">';
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Tamaño de la <b style="color: #004150;">bolsa</b> de RCP (autoinflable): <b style="font-size:16px;">';
 			if(peso<3){insert+='250';}else{insert+='500';}
 		insert+='ml </b></p>';
 		// Fin tamaño de la bolsa
@@ -174,24 +184,24 @@
 		insert+='</b></p>';
 		// Fin FiO2
 		// Ramas
-		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Número de rama de laringoscopio recta (Miller): <b style="font-size:16px;">';
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Número de rama de <b style="color: #004150;">laringoscopio</b> recta (Miller): <b style="font-size:16px;">';
 			if(peso<=3){insert+='0';}else{insert+='0-1';}
 		insert+='</b></p>';
 		// Ramas
 		// TET
-		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Tamaño del TET sin manguito (mm de diámetro interno): <b style="font-size:16px;">';
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Tamaño del <b style="color: #004150;">TET sin manguito</b> (mm de diámetro interno): <b style="font-size:16px;">';
 			if(peso>=2){insert+='3,5';}else{if(peso>=1){insert+='3';}else{insert+='2,5';}}
 		insert+='</b></p>';
 		//  Fin TET
 		// TET punta
-		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Distancia TET punta - labio (cm): <b style="font-size:16px;">';
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Distancia <b style="color: #004150;">TET punta - labio</b> (cm): <b style="font-size:16px;">';
 			if((peso)==parseInt(peso)){
 			insert+=parseInt(peso+6);}else{insert+=parseFloat(peso+6);
 			}
 		insert+='</b> (Confirmar según evolución clínica)</p>';
 		//  Fin TET punta
 		// TET punta
-		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Tubo de tórax (French): <b style="font-size:16px;">';
+		insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> <b style="color: #004150;">Tubo</b> de tórax (French): <b style="font-size:16px;">';
 			if(peso>=2){if(peso>=3){insert+='9';}else{insert+='8-9';}}else{insert+='8';}
 		insert+='</b></p>';
 		//  Fin TET punta
@@ -219,13 +229,13 @@
 				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciones para<b style="font-size:16px;"> 38 - 42 semanas de gestación con peso estimado entre 3 y 4.25 kg</b></p>';
 				peso=0;
 			}
-			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Posición de la cabeza: <b style="font-size:16px;">Olfateo</b></p>';
-			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Técnica adecuada para realizar compresiones cardíacas: <b style="font-size:16px;">Pulgares (de elección) o 2 dedos. </b>Tener en cuenta el tamaño del niño en relación a las manos del operador.  </p>';
-			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación compresiones / ventilaciones causa de paro cardio respiratorio no cardíaco: <b style="font-size:16px;"> 3/1</b></p>';
-			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación compresiones / ventilaciones causa de paro cardio respiratorio de origen cardíaco: <b style="font-size:16px;"> 15/2</b></p>';
-			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>Profundidad de las compresiones torácicas (del diámetro anteroposterior del tórax): <b style="font-size:16px;"> 1/3</b></p>';
+			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Posición de la <b style="color: #004150;">cabeza</b>: <b style="font-size:16px;">Olfateo</b></p>';
+			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Técnica adecuada para realizar <b style="color: #004150;">compresiones cardiacas</b>: <b style="font-size:16px;">Pulgares (de elección) o 2 dedos. </b>Tener en cuenta el tamaño del niño en relación a las manos del operador.  </p>';
+			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación <b style="color: #004150;">compresiones / <b style="color: #004150;">ventilaciones</b></b> causa de paro cardio respiratorio no cardíaco: <b style="font-size:16px;"> 3/1</b></p>';
+			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación <b style="color: #004150;">compresiones / <b style="color: #004150;">ventilaciones</b></b> causa de paro cardio respiratorio de origen cardíaco: <b style="font-size:16px;"> 15/2</b></p>';
+			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b><b style="color: #004150;">Profundidad de las compresiones</b> torácicas (del diámetro anteroposterior del tórax): <b style="font-size:16px;"> 1/3</b></p>';
 			// Tamaño de bolsa
-			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Tamaño de la bolsa de RCP (autoinflable): <b style="font-size:16px;">';
+			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Tamaño de la <b style="color: #004150;">bolsa</b> de RCP (autoinflable): <b style="font-size:16px;">';
 				if(semanas!=42){insert+='250';}else{insert+='500';}
 			insert+='ml </b></p>';
 			// Fin tamaño de la bolsa
@@ -240,22 +250,22 @@
 			}
 			// Fin FiO2
 			// Ramas
-			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Número de rama de laringoscopio recta (Miller): <b style="font-size:16px;">';
+			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Número de rama de <b style="color: #004150;">laringoscopio</b> recta (Miller): <b style="font-size:16px;">';
 				if(semanas!=42){insert+='0';}else{insert+='0-1';}
 			insert+='</b></p>';
 			// Ramas
 			// TET
-			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Tamaño del TET sin manguito (mm de diámetro interno): <b style="font-size:16px;">';
+			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Tamaño del <b style="color: #004150;">TET sin manguito</b> (mm de diámetro interno): <b style="font-size:16px;">';
 				if(semanas==42 || semanas==38){insert+='3,5';}else{if(semanas==34){insert+='3';}else{insert+='2,5';}}
 			insert+='</b></p>';
 			//  Fin TET
 			// TET punta
-			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Distancia TET punta - labio (cm): <b style="font-size:16px;">';
+			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Distancia <b style="color: #004150;">TET punta - labio</b> (cm): <b style="font-size:16px;">';
 				if(semanas==42 || semanas==38){if(semanas==42){insert+='9,5';}else{insert+='8,5';}}else{if(semanas==34){insert+='7,75';}else{insert+='6,75';}}
 			insert+='</b> (Confirmar según evolución clínica)</p>';
 			//  Fin TET punta
 			// TET punta
-			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Tubo de tórax (French): <b style="font-size:16px;">';
+			insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> <b style="color: #004150;">Tubo</b> de tórax (French): <b style="font-size:16px;">';
 				if(semanas==42 || semanas==38){if(semanas==42){insert+='9';}else{insert+='8-9';}}else{insert+='8';}
 			insert+='</b></p>';
 			//  Fin TET punta

@@ -44,9 +44,14 @@
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_acciones.html');">Intervenciones</a></li>
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_drogas.html');">Drogas</a></li> 
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_glasgow.html');">Glasgow</a></li>
-                <li style="text-align: center; color:#1a53a5;font-size:12px; color:#665b00; background:#fafafa;">OTROS</li>
-                <li><a onClick="cambiarCalculadora('terminos.html');">Términos y condiciones</li>
+                <li style="text-align: center; color:#1a53a5;font-size:12px; color:#665b00; background:#fafafa;">OTROS</li>      
                 <li><a onClick="cambiarCalculadora('situaciones.html');">Situaciones de uso</a></li>
+                <li><a onClick="cambiarCalculadora('autores.html');">Autores</a></li> 
+                <li><a onClick="cambiarCalculadora('bibliografia.html');">Bibliografía</a></li>
+                <li><a onClick="cambiarCalculadora('sugerencias.html');">Sugerencias y comentarios</a></li>
+                <li><a onClick="cambiarCalculadora('terminos.html');">Términos y condiciones</a></li>
+                <li><a onClick="cambiarCalculadora('privacidad.html');">Política de privacidad</a></li>
+                <li><a onClick="cambiarCalculadora('copyright.html');">Derecho de autor</a></li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -70,6 +75,7 @@
                                     <div class="input-line">
                                         <div class="input-switch">
                                             <select name="sel-type" id="sel-type">
+                                            	<option value="2"> ...  </option>
                                                 <option value="0"> Peso </option>
                                                 <option value="1"> Edad </option>
                                             </select>
@@ -161,56 +167,60 @@
     function result_initCal() {
 	var seltype=parseInt(document.getElementById("sel-type").value); // 0-peso -- 1-edad
 	var insert="";
-	if(seltype==0){// peso
+	if(seltype==0 || seltype==2){// peso
+		if(seltype!=2){
 		var peso=parseFloat(document.getElementById("peso").value);
 		$('#sel-kg').css("display", "block");
+		$('#sel-ag').css("display", "none");}else{
+		$('#sel-kg').css("display", "none");
 		$('#sel-ag').css("display", "none");
-		if(peso==0){
+		}
+		if(peso==0 || seltype==2){
 			insert+="";
 			}else{
 				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciones para  niños de <b style="font-size:16px;">'+peso+' kg</b></p>';
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Posición de la cabeza: <b style="font-size:16px;">Olfateo</b></p>';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Posición de la <b style="color: #004150;">cabeza</b>: <b style="font-size:16px;">Olfateo</b></p>';
 				// Toma de pulso
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Lugar de toma de pulsos: <b style="font-size:16px;">';
-					if(peso>=12.5){insert+='Carotídeo o femoral';}else{insert+='Braquial o femora';}
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Lugar de toma de <b style="color: #004150;">cabeza</b>: <b style="font-size:16px;">';
+					if(peso>=12.5){insert+='Carotídeo o femoral';}else{insert+='Braquial o femoral';}
 				insert+=' </b></p>';
 				// Fin Toma de pulso
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Frecuencia para las compresiones cardíacas: <b style="font-size:16px;"> De 100 a 120 por minuto (con la menor cantidad de interrupciones) </b></p>';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Frecuencia para las <b style="color: #004150;">compresiones cardiacas</b>: <b style="font-size:16px;"> De 100 a 120 por minuto (con la menor cantidad de interrupciones) </b></p>';
 				// Frecuencia para VE paro
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Frecuencia de ventilaciones exclusivas  (paro respiratorio): <b style="font-size:16px;">';
-					if(peso>=40){insert+='8 a 10 por minuto (1 cada 6 - 8 seg)';}else{insert+='De 12 a 20 ventilaciones por minuto. Es decir 1 ventilación cada 3 a 5 segundos. Duracción de cada ventilación 1 segundo';}
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Frecuencia de <b style="color: #004150;">ventilaciones</b> exclusivas  (paro respiratorio): <b style="font-size:16px;">';
+					if(peso>=40){insert+='8 a 10 por minuto (1 cada 6 - 8 seg)';}else{insert+='De 12 a 20 <b style="color: #004150;">ventilaciones</b> por minuto. Es decir 1 ventilación cada 3 a 5 segundos. Duracción de cada ventilación 1 segundo';}
 				insert+=' </b></p>';
 				// Frecuencia para Frecuencia para VE paro
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Frecuencia ventilaciones con dispositivo avanzado de vía aérea: <b style="font-size:16px;"> De 8 a 10 ventilaciones por minuto. Es decir 1 ventilación cada 6 a 8 segundos. Duración de cada ventilación 1 segundo.</b></p>';
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación compresiones cardíacas / ventilaciones 1 reanimador, sin dispositivo avanzado de vía aérea colocado : <b style="font-size:16px;"> 30/2 </b></p>';
-				// Comp Card / ventilaciones
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Relación compresiones cardíacas / ventilaciones 2 reanimadores, sin dispositivo avanzado de vía aérea colocado :  <b style="font-size:16px;">';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Frecuencia <b style="color: #004150;">ventilaciones</b> con dispositivo avanzado de vía aérea: <b style="font-size:16px;"> De 8 a 10 <b style="color: #004150;">ventilaciones</b> por minuto. Es decir 1 ventilación cada 6 a 8 segundos. Duración de cada ventilación 1 segundo.</b></p>';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación <b style="color: #004150;">compresiones cardiacas</b> / <b style="color: #004150;"><b style="color: #004150;">ventilaciones</b> 1</b> reanimador, sin dispositivo avanzado de vía aérea colocado : <b style="font-size:16px;"> 30/2 </b></p>';
+				// Comp Card / <b style="color: #004150;">ventilaciones</b>
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Relación <b style="color: #004150;">compresiones cardiacas</b> / <b style="color: #004150;"><b style="color: #004150;">ventilaciones</b> 2</b> reanimadores, sin dispositivo avanzado de vía aérea colocado :  <b style="font-size:16px;">';
 					if(peso>=40){insert+='30/2';}else{insert+='15/2';}
 				insert+=' </b></p>';
-				// Fin Comp Card / ventilaciones
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Profundidad de las compresiones cardíacas (del diámetro anteroposterior del tórax): <b style="font-size:16px;"> desde 1/3 hasta 1/2 </b></p>';
+				// Fin Comp Card / <b style="color: #004150;">ventilaciones</b>
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Profundidad de las <b style="color: #004150;">compresiones cardiacas</b> (del diámetro anteroposterior del tórax): <b style="font-size:16px;"> desde 1/3 hasta 1/2 </b></p>';
 				// Tamaño bolsa
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Tamaño de la bolsa de RCP (autoinflable):  <b style="font-size:16px;">';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Tamaño de la <b style="color: #004150;">bolsa</b> de RCP (autoinflable):  <b style="font-size:16px;">';
 					if(peso>=40){insert+='1500ml';}else{insert+='500ml';}
 				insert+=' </b></p>';
 				// Fin Tamaño bolsa
 				// Num ramas Laring
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Número de rama de laringoscopio recta (Miller):  <b style="font-size:16px;">';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Número de rama de <b style="color: #004150;">laringoscopio</b> recta (Miller):  <b style="font-size:16px;">';
 					if(peso>=40){insert+='3';}else{if(peso>=12.5){insert+='2';}else{insert+='1';}}
 				insert+=' </b></p>';
 				// Fin Num ramas Laring
 				// Num ramas Macin
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Número de rama de laringoscopio curva (Macintosh):  <b style="font-size:16px;">';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Número de rama de <b style="color: #004150;">laringoscopio</b> curva (Macintosh):  <b style="font-size:16px;">';
 					if(peso>=30){insert+='3';}else{if(peso>=12.5){insert+='2';}else{insert+='-';}}
 				insert+=' </b></p>';
 				// Fin Num ramas Macin
 				// Tamaño del TET Sin
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Tamaño del TET sin manguito (mm de diámetro interno):  <b style="font-size:16px;">';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Tamaño del <b style="color: #004150;">TET sin manguito</b> (mm de diámetro interno):  <b style="font-size:16px;">';
 					if(peso>=22.5){insert+='-';}else{if(peso<=7.5){insert+='3,5';}else{ if(peso>=20){insert+='5,5';}else{ if(peso>=15){insert+='5';}else{if(peso>=12.5){insert+='4,5';}else{insert+='4';} } } } }
 				insert+=' </b></p>';
 				// Fin Tamaño del TET Sin
-				// Tamaño del TET con manguito
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Tamaño del TET con manguito (mm de diámetro interno):  <b style="font-size:16px;">';
+				// Tamaño del <b style="color: #004150;">TET con manguito</b>
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Tamaño del <b style="color: #004150;">TET con manguito</b> (mm de diámetro interno):  <b style="font-size:16px;">';
 					if(peso>=30){insert+='6,5';}else{
 							if(peso>=25){insert+='6';}else{
 								if(peso>=20){insert+='5';}else{
@@ -225,9 +235,9 @@
 							}
 						}
 				insert+=' </b></p>';
-				// Fin Tamaño del TET con manguito
+				// Fin Tamaño del <b style="color: #004150;">TET con manguito</b>
 				// Distancia punta TET
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Distancia punta TET  - labio. Fórmula tubo x3 (profundidad) :  <b style="font-size:16px;">';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Distancia <b style="color: #004150;">Punta TET-labio</b>. Fórmula <b style="color: #004150;">tubo</b> x3 (profundidad) :  <b style="font-size:16px;">';
 					if(peso>=30){insert+='19,5';}else{
 							if(peso>=25){insert+='18';}else{
 								if(peso>=20){insert+='16,5';}else{
@@ -243,8 +253,8 @@
 						}
 				insert+=' cm</b>, chequear siempre con la clínica</p>';
 				// Fin Distancia punta TET
-				// Máscara laríngea número
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Máscara laríngea número:  <b style="font-size:16px;">';
+				// <b style="color: #004150;">Máscara</b> laríngea número
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  <b style="color: #004150;">Máscara</b> laríngea número:  <b style="font-size:16px;">';
 					if(peso>=32.5){insert+='3';}else{
 							if(peso>=30){insert+='2 1/2 - 3';}else{
 								if(peso>=22.5){insert+='2 1/2';}else{
@@ -259,9 +269,9 @@
 							}
 						}
 				insert+=' </b></p>';
-				// Fin Máscara laríngea número
-				// Máscara laríngea volumen
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Máscara laríngea volumen de insuflación máx. para no superar los 60 cm H2O :  <b style="font-size:16px;">';
+				// Fin <b style="color: #004150;">Máscara</b> laríngea número
+				// <b style="color: #004150;">Máscara</b> laríngea <b style="color: #004150;">volumen</b>
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  <b style="color: #004150;">Máscara</b> laríngea <b style="color: #004150;">volumen</b> de insuflación máx. para no superar los 60 cm H2O :  <b style="font-size:16px;">';
 					if(peso>=32.5){insert+='20';}else{
 							if(peso>=30){insert+='14 - 20';}else{
 								if(peso>=22.5){insert+='14';}else{
@@ -278,9 +288,9 @@
 							}
 						}
 				insert+=' ml</b>, corroborar con las indicaciones del fabricante</p>';
-				// Fin Máscara laríngea volumen
-				//  Tubo pleural (French)
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Tubo pleural (French):  <b style="font-size:16px;">';
+				// Fin <b style="color: #004150;">Máscara</b> laríngea <b style="color: #004150;">volumen</b>
+				//  <b style="color: #004150;">Tubo</b> pleural (French)
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  <b style="color: #004150;">Tubo</b> pleural (French):  <b style="font-size:16px;">';
 					if(peso>=30){insert+='20';}else{
 							if(peso>=22.5){insert+='14';}else{
 								if(peso>=10){insert+='10';}else{
@@ -289,9 +299,9 @@
 							}
 						}
 				insert+=' </b></p>';
-				// Fin Tubo pleural (French)
+				// Fin <b style="color: #004150;">Tubo</b> pleural (French)
 				// Tensión arterial sistólica
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Tensión arterial sistólica para considerar hipotensión:  <b style="font-size:16px;">';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Tensión arterial sistólica para considerar <b style="color: #004150;">hipotensión</b>:  <b style="font-size:16px;">';
 					if(peso>=32.5){insert+='<90';}else{
 							if(peso>=30){insert+='<88';}else{
 								if(peso>=25){insert+='<86';}else{
@@ -315,11 +325,11 @@
 						}
 				insert+=' </b></p>';
 				// Fin Tensión arterial sistólica
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Desfibrilación (2 - 4 joules/kg): <b style="font-size:16px;">';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> <b style="color: #004150;">Desfibrilación</b> (2 - 4 joules/kg): <b style="font-size:16px;">';
 					insert+=parseInt(peso*2)+' a '+parseInt(peso*4)+' joules';
 				insert+='</b></p>';
 				//  Fin TET punta
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Cardioversión  (0,5 - 1 joules/kg): <b style="font-size:16px;">';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> <b style="color: #004150;">Cardioversión</b>  (0,5 - 1 joules/kg): <b style="font-size:16px;">';
 					insert+=parseInt(peso*0.5)+' a '+parseInt(peso)+' joules';
 				insert+='</b></p>';
 			}// peso 0
@@ -333,48 +343,48 @@
 					insert+="";
 				}else{
 				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Intervenciones para niños de <b style="font-size:16px;"> '+edad+'</b>  con peso estimado de '+peso+' kg</p>';
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Posición de la cabeza: <b style="font-size:16px;">Olfateo</b></p>';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Posición de la <b style="color: #004150;">cabeza</b>: <b style="font-size:16px;">Olfateo</b></p>';
 				// Toma de pulso
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Lugar de toma de pulsos: <b style="font-size:16px;">';
-					if(peso>=12.5){insert+='Carotídeo o femoral';}else{insert+='Braquial o femora';}
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Lugar de toma de <b style="color: #004150;">cabeza</b>: <b style="font-size:16px;">';
+					if(peso>=12.5){insert+='Carotídeo o femoral';}else{insert+='Braquial o femoral';}
 				insert+=' </b></p>';
 				// Fin Toma de pulso
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Frecuencia para las compresiones cardíacas: <b style="font-size:16px;"> De 100 a 120 por minuto (con la menor cantidad de interrupciones) </b></p>';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Frecuencia para las <b style="color: #004150;">compresiones cardiacas</b>: <b style="font-size:16px;"> De 100 a 120 por minuto (con la menor cantidad de interrupciones) </b></p>';
 				// Frecuencia para VE paro
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Frecuencia de ventilaciones exclusivas  (paro respiratorio): <b style="font-size:16px;">';
-					if(peso>=40){insert+='8 a 10 por minuto (1 cada 6 - 8 seg)';}else{insert+='De 12 a 20 ventilaciones por minuto. Es decir 1 ventilación cada 3 a 5 segundos. Duracción de cada ventilación 1 segundo';}
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Frecuencia de <b style="color: #004150;">ventilaciones</b> exclusivas  (paro respiratorio): <b style="font-size:16px;">';
+					if(peso>=40){insert+='8 a 10 por minuto (1 cada 6 - 8 seg)';}else{insert+='De 12 a 20 <b style="color: #004150;">ventilaciones</b> por minuto. Es decir 1 ventilación cada 3 a 5 segundos. Duracción de cada ventilación 1 segundo';}
 				insert+=' </b></p>';
 				// Frecuencia para Frecuencia para VE paro
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Frecuencia ventilaciones con dispositivo avanzado de vía aérea: <b style="font-size:16px;"> De 8 a 10 ventilaciones por minuto. Es decir 1 ventilación cada 6 a 8 segundos. Duración de cada ventilación 1 segundo.</b></p>';
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación compresiones cardíacas / ventilaciones 1 reanimador, sin dispositivo avanzado de vía aérea colocado : <b style="font-size:16px;"> 30/2 </b></p>';
-				// Comp Card / ventilaciones
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Relación compresiones cardíacas / ventilaciones 2 reanimador, sin dispositivo avanzado de vía aérea colocado :  <b style="font-size:16px;">';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Frecuencia <b style="color: #004150;">ventilaciones</b> con dispositivo avanzado de vía aérea: <b style="font-size:16px;"> De 8 a 10 <b style="color: #004150;">ventilaciones</b> por minuto. Es decir 1 ventilación cada 6 a 8 segundos. Duración de cada ventilación 1 segundo.</b></p>';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Relación <b style="color: #004150;">compresiones cardiacas</b> / <b style="color: #004150;"><b style="color: #004150;">ventilaciones</b> 1</b> reanimador, sin dispositivo avanzado de vía aérea colocado : <b style="font-size:16px;"> 30/2 </b></p>';
+				// Comp Card / <b style="color: #004150;">ventilaciones</b>
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Relación <b style="color: #004150;">compresiones cardiacas</b> / <b style="color: #004150;"><b style="color: #004150;">ventilaciones</b> 2</b> reanimadores, sin dispositivo avanzado de vía aérea colocado :  <b style="font-size:16px;">';
 					if(peso>=40){insert+='30/2';}else{insert+='15/2';}
 				insert+=' </b></p>';
-				// Fin Comp Card / ventilaciones
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Profundidad de las compresiones cardíacas (del diámetro anteroposterior del tórax): <b style="font-size:16px;"> desde 1/3 hasta 1/2 </b></p>';
+				// Fin Comp Card / <b style="color: #004150;">ventilaciones</b>
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Profundidad de las <b style="color: #004150;">compresiones cardiacas</b> (del diámetro anteroposterior del tórax): <b style="font-size:16px;"> desde 1/3 hasta 1/2 </b></p>';
 				// Tamaño bolsa
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Tamaño de la bolsa de RCP (autoinflable):  <b style="font-size:16px;">';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Tamaño de la <b style="color: #004150;">bolsa</b> de RCP (autoinflable):  <b style="font-size:16px;">';
 					if(peso>=40){insert+='1500ml';}else{insert+='500ml';}
 				insert+=' </b></p>';
 				// Fin Tamaño bolsa
 				// Num ramas Laring
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Número de rama de laringoscopio recta (Miller):  <b style="font-size:16px;">';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Número de rama de <b style="color: #004150;">laringoscopio</b> recta (Miller):  <b style="font-size:16px;">';
 					if(peso>=40){insert+='3';}else{if(peso>=12.5){insert+='2';}else{insert+='1';}}
 				insert+=' </b></p>';
 				// Fin Num ramas Laring
 				// Num ramas Macin
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Número de rama de laringoscopio curva (Macintosh):  <b style="font-size:16px;">';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Número de rama de <b style="color: #004150;">laringoscopio</b> curva (Macintosh):  <b style="font-size:16px;">';
 					if(peso>=30){insert+='3';}else{if(peso>=12.5){insert+='2';}else{insert+='-';}}
 				insert+=' </b></p>';
 				// Fin Num ramas Macin
 				// Tamaño del TET Sin
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Tamaño del TET sin manguito (mm de diámetro interno):  <b style="font-size:16px;">';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Tamaño del <b style="color: #004150;">TET sin manguito</b> (mm de diámetro interno):  <b style="font-size:16px;">';
 					if(peso>=22.5){insert+='-';}else{if(peso<=7.5){insert+='3,5';}else{ if(peso>=20){insert+='5,5';}else{ if(peso>=15){insert+='5';}else{if(peso>=12.5){insert+='4,5';}else{insert+='4';} } } } }
 				insert+=' </b></p>';
 				// Fin Tamaño del TET Sin
-				// Tamaño del TET con manguito
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Tamaño del TET con manguito (mm de diámetro interno):  <b style="font-size:16px;">';
+				// Tamaño del <b style="color: #004150;">TET con manguito</b>
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Tamaño del <b style="color: #004150;">TET con manguito</b> (mm de diámetro interno):  <b style="font-size:16px;">';
 					if(peso>=30){insert+='6,5';}else{
 							if(peso>=25){insert+='6';}else{
 								if(peso>=20){insert+='5';}else{
@@ -389,9 +399,9 @@
 							}
 						}
 				insert+=' </b></p>';
-				// Fin Tamaño del TET con manguito
+				// Fin Tamaño del <b style="color: #004150;">TET con manguito</b>
 				// Distancia punta TET
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Distancia punta TET  - labio. Fórmula tubo x3 (profundidad) :  <b style="font-size:16px;">';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Distancia <b style="color: #004150;">Punta TET-labio</b>. Fórmula <b style="color: #004150;">tubo</b> x3 (profundidad) :  <b style="font-size:16px;">';
 					if(peso>=30){insert+='19,5';}else{
 							if(peso>=25){insert+='18';}else{
 								if(peso>=20){insert+='16,5';}else{
@@ -407,8 +417,8 @@
 						}
 				insert+=' cm</b>, chequear siempre con la clínica</p>';
 				// Fin Distancia punta TET
-				// Máscara laríngea número
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Máscara laríngea número:  <b style="font-size:16px;">';
+				// <b style="color: #004150;">Máscara</b> laríngea número
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  <b style="color: #004150;">Máscara</b> laríngea número:  <b style="font-size:16px;">';
 					if(peso>=32.5){insert+='3';}else{
 							if(peso>=30){insert+='2 1/2 - 3';}else{
 								if(peso>=22.5){insert+='2 1/2';}else{
@@ -423,9 +433,9 @@
 							}
 						}
 				insert+=' </b></p>';
-				// Fin Máscara laríngea número
-				// Máscara laríngea volumen
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Máscara laríngea volumen de insuflación máx. para no superar los 60 cm H2O :  <b style="font-size:16px;">';
+				// Fin <b style="color: #004150;">Máscara</b> laríngea número
+				// <b style="color: #004150;">Máscara</b> laríngea <b style="color: #004150;">volumen</b>
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  <b style="color: #004150;">Máscara</b> laríngea <b style="color: #004150;">volumen</b> de insuflación máx. para no superar los 60 cm H2O :  <b style="font-size:16px;">';
 					if(peso>=32.5){insert+='20';}else{
 							if(peso>=30){insert+='14 - 20';}else{
 								if(peso>=22.5){insert+='14';}else{
@@ -442,9 +452,9 @@
 							}
 						}
 				insert+=' ml</b>, corroborar con las indicaciones del fabricante</p>';
-				// Fin Máscara laríngea volumen
-				//  Tubo pleural (French)
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Tubo pleural (French):  <b style="font-size:16px;">';
+				// Fin <b style="color: #004150;">Máscara</b> laríngea <b style="color: #004150;">volumen</b>
+				//  <b style="color: #004150;">Tubo</b> pleural (French)
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  <b style="color: #004150;">Tubo</b> pleural (French):  <b style="font-size:16px;">';
 					if(peso>=30){insert+='20';}else{
 							if(peso>=22.5){insert+='14';}else{
 								if(peso>=10){insert+='10';}else{
@@ -453,9 +463,9 @@
 							}
 						}
 				insert+=' </b></p>';
-				// Fin Tubo pleural (French)
+				// Fin <b style="color: #004150;">Tubo</b> pleural (French)
 				// Tensión arterial sistólica
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Tensión arterial sistólica para considerar hipotensión:  <b style="font-size:16px;">';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b>  Tensión arterial sistólica para considerar <b style="color: #004150;">hipotensión</b>:  <b style="font-size:16px;">';
 					if(peso>=32.5){insert+='<90';}else{
 							if(peso>=30){insert+='<88';}else{
 								if(peso>=25){insert+='<86';}else{
@@ -478,11 +488,11 @@
 							}
 						}
 				insert+=' </b></p>';
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Desfibrilación (2 - 4 joules/kg): <b style="font-size:16px;">';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> <b style="color: #004150;">Desfibrilación</b> (2 - 4 joules/kg): <b style="font-size:16px;">';
 					insert+=parseInt(peso*2)+' a '+parseInt(peso*4)+' joules';
 				insert+='</b></p>';
 				//  Fin TET punta
-				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> Cardioversión  (0,5 - 1 joules/kg): <b style="font-size:16px;">';
+				insert+='<p style="text-align:left;"><b style="font-size:16px;">-</b> <b style="color: #004150;">Cardioversión</b>  (0,5 - 1 joules/kg): <b style="font-size:16px;">';
 					insert+=parseInt(peso*0.5)+' a '+parseInt(peso)+' joules';
 				insert+='</b></p>';
 		}// semana en 0
