@@ -1,13 +1,13 @@
 ﻿<?xml version='1.0' encoding='utf-8' ?>
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.cenpecRcp"
-        version   = "3.0.2">
+        id        = "com.RCP"
+        version   = "3.0.4">
 
-    <name>RCP</name>
+    <name>Urgencias pediatricas</name>
 
     <description>
-        RCP App, es una herramienta de trabajo e información en el campo del RCP
+        Urgencias pediatricas App, es una herramienta de trabajo e información en el campo del RCP
     </description>
 
     <author href="http://www.cenpec.com.ar" email="info@cenpec.com.ar">
