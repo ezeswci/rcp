@@ -1,4 +1,8 @@
-setTimeout(function(){window.ga.startTrackerWithId('UA-70907455-3');}, 600);
+document.addEventListener('deviceready', function () {
+    // Analytics para club House
+	window.ga.startTrackerWithId('UA-70907455-3');// Analytics para RCP
+	window.ga.trackView('Ev start');
+}, false);
 function initPage (t) {
 	$('div.app-nav', t).off('click').on('click', function () {
 		$("#navpanel", t).panel("toggle");
