@@ -33,7 +33,7 @@ Arregla los selects en ios 7
 		}
 	//}
 }, 1000);*/
-setTimeout(function(){window.ga.startTrackerWithId('UA-70907455-3');
-var name=$.mobile.activePage[0].baseURI;
-window.ga.trackView(name);
+setTimeout(function(){
+window.ga.startTrackerWithId('UA-70907455-3');
+window.ga.trackView(window.location);
 }, 500);
