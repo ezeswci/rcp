@@ -1,4 +1,4 @@
-setTimeout(function(){window.analytics.startTrackerWithId('UA-70907455-3');}, 600);
+setTimeout(function(){window.ga.startTrackerWithId('UA-70907455-3');}, 600);
 function initPage (t) {
 	$('div.app-nav', t).off('click').on('click', function () {
 		$("#navpanel", t).panel("toggle");
