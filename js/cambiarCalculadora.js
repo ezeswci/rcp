@@ -1,8 +1,11 @@
 function cambiarCalculadora(pagina)
-{ 
+{
+  window.analytics.trackEvent('Cambio de pantalla', 'Pantalla', pagina.substring(0, pagina.length - 5), 1);
+	window.analytics.trackView('Pantalla: '+pagina.substring(0, pagina.length - 5));
   window.location=pagina;
+
  //avisarPremium();
-} 
+}
 function avisarPremium(){
 /*BootstrapDialog.show({
 			type:BootstrapDialog.TYPE_INFO,
@@ -21,7 +24,7 @@ function avisarPremium(){
                 action: function(dialogItself){
                     comprobarClave(dialogItself);
                 },
-            }]		 
+            }]
 		 });*/
 }
 function continuarPrueba(dialog){
@@ -50,7 +53,7 @@ function codigoErroneo(){
                 action: function(dialogItself){
                     dialogItself.close();
                 },
-            }]		 
+            }]
 		 });*/
 }
 function finVersionDePrueba(){
@@ -63,7 +66,7 @@ function finVersionDePrueba(){
                 action: function(dialogItself){
                     dialogItself.close();
                 },
-            }]		 
+            }]
 		 });*/
 }
 function resetTimeOfLastTableAskToServer(){
@@ -83,14 +86,14 @@ function daysToRun(){
 	var date1 = new Date(JSON.parse(getCookie("dateInstall")));
     var date2 = new Date();
     var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-    var diffDays = Math.ceil(timeDiff / (86400000)); 
+    var diffDays = Math.ceil(timeDiff / (86400000));
     return(31-diffDays);
 }
 function hasToCheck(){
 	var date1 = new Date(JSON.parse(getCookie("dateChecked")));
     var date2 = new Date();
     var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-    var diffDays = Math.ceil(timeDiff / (86400000))-1; 
+    var diffDays = Math.ceil(timeDiff / (86400000))-1;
     return(diffDays>=1);
 }
 function acceptsLocalStorage(){

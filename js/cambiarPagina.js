@@ -1,5 +1,7 @@
 function cambiarPagina(pagina)
 {
+	window.analytics.trackEvent('Cambio de pantalla', 'Pantalla', pagina.substring(0, pagina.length - 5), 1);
+	window.analytics.trackView('Pantalla: '+pagina.substring(0, pagina.length - 5));
 	window.location=pagina;
 /*var xmlhttp;
 if (window.XMLHttpRequest)
