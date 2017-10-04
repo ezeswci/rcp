@@ -34,12 +34,10 @@ Arregla los selects en ios 7
 	//}
 }, 1000);*/
 setTimeout(function(){
-window.ga.startTrackerWithId('UA-70907455-3');
-setTimeout(function(){
-	var name=window.location;
+var name=window.location;
 alert(name):
+window.ga.startTrackerWithId('UA-70907455-3');
 window.ga.trackView(name);
 window.ga.trackEvent(name);
 window.analytics.trackEvent('Cambio de capitulo', 'Capitulos Abiertos');
-}
-}, 100);
+}, 600);
