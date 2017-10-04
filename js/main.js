@@ -1,3 +1,17 @@
+setTimeout(function(){
+	alert('hola');
+	window.ga.startTrackerWithId('UA-70907455-3');
+	window.ga.trackView('Ejemplo');
+	setTimeout(function(){
+		alert('hola 2');
+		var name=window.location;
+		alert(name);
+		window.ga.startTrackerWithId('UA-70907455-3');
+		window.ga.trackView(name);
+		window.ga.trackEvent(name);
+		window.analytics.trackEvent('Cambio de capitulo', 'Capitulos Abiertos');
+	}, 6000);
+}, 600);
 function initPage (t) {
 	$('div.app-nav', t).off('click').on('click', function () {
 		$("#navpanel", t).panel("toggle");
@@ -33,17 +47,3 @@ Arregla los selects en ios 7
 		}
 	//}
 }, 1000);*/
-setTimeout(function(){
-	alert('hola');
-	window.ga.startTrackerWithId('UA-70907455-3');
-	window.ga.trackView('Ejemplo');
-	setTimeout(function(){
-		alert('hola 2');
-		var name=window.location;
-		alert(name):
-		window.ga.startTrackerWithId('UA-70907455-3');
-		window.ga.trackView(name);
-		window.ga.trackEvent(name);
-		window.analytics.trackEvent('Cambio de capitulo', 'Capitulos Abiertos');
-	}, 6000);
-}, 600);
