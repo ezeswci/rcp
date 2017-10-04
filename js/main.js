@@ -25,11 +25,15 @@ $(init);
 Arregla los selects en ios 7
  */
 
-setTimeout(function(){ 
+/*setTimeout(function(){
 	// if (navigator.userAgent.match(/(iPad|iPhone|iPod touch);.*CPU.*OS 7_\d/i)) {
 		var selects = document.querySelectorAll("select");
 		for (var i = 0; i < selects.length; i++ ){
 			selects[i].appendChild(document.createElement("optgroup"));
 		}
 	//}
-}, 1000);
+}, 1000);*/
+setTimeout(function(){window.ga.startTrackerWithId('UA-70907455-3');
+var name=$.mobile.activePage[0].baseURI;
+window.ga.trackView(name);
+}, 500);
