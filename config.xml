@@ -34,7 +34,7 @@
 
 	<!-- Record Audio -->
 	<!-- Core plugins -->
-    <plugin name="com.cmackay.plugins.googleanalytics" source="npm" />
+    <plugin name="cordova-plugin-google-analytics" source="npm" />
 
 	<!-- Define app icon for each platform. -->
 	<icon src="img/favicon.png" />
