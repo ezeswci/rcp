@@ -23,10 +23,10 @@
 	<script src="js/main.js"></script>
     <link href="css/simple-sidebar.css" rel="stylesheet">
     <link href="css/fibrilacion.css" rel="stylesheet">
-     
-       
-	 
-   
+
+
+
+
 
 </head>
 
@@ -42,11 +42,11 @@
                 <li class="calculadora"><a href="#" onClick="cambiarCalculadora('neonatologia_drogas.html');">Drogas</a></li>
                 <li class="algoritmo txt-green" style="text-align: center;font-size:12px; color:#04142b ;background: #b6bcce;">PEDIATRÍA</li>
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_acciones.html');">Intervenciones en RCP </a></li>
-                <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_drogas.html');">Drogas</a></li> 
+                <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_drogas.html');">Drogas</a></li>
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_glasgow.html');">Glasgow</a></li>
-                <li style="text-align: center; color:#1a53a5;font-size:12px; color:#665b00; background:#fafafa;">OTROS</li>      
+                <li style="text-align: center; color:#1a53a5;font-size:12px; color:#665b00; background:#fafafa;">OTROS</li>
                 <li><a onClick="cambiarCalculadora('situaciones.html');">Situaciones de uso</a></li>
-                <li><a onClick="cambiarCalculadora('autores.html');">Autores</a></li> 
+                <li><a onClick="cambiarCalculadora('autores.html');">Autores</a></li>
                 <li><a onClick="cambiarCalculadora('bibliografia.html');">Bibliografía</a></li>
                 <li><a onClick="cambiarCalculadora('sugerencias.html');">Sugerencias y comentarios</a></li>
                 <li><a onClick="cambiarCalculadora('terminos.html');">Términos y condiciones</a></li>
@@ -80,8 +80,8 @@
                                                 <option value="1"> Edad </option>
                                             </select>
                                         </div>
-                                        <div class="input-label"><label for="sel-type">Resultados en base a:</label></div>                                       
-                                   </div>                                       
+                                        <div class="input-label"><label for="sel-type">Resultados en base a:</label></div>
+                                   </div>
                                     <div class="input-line" id="sel-kg">
                                         <div data-role="fieldcontain">
                                             <label for="peso">Peso (Kg)</label>
@@ -121,8 +121,8 @@
                                         <div class="result_title" style="color:#333333;">Resultados</div>
                                         </br>
                                         <div id="situacion" style=" text-align:left;">
-                                        
-                                        </div>     
+
+                                        </div>
                                     </div>
                                     <!-- /result_container -->
                                     <!--p></p>
@@ -149,7 +149,7 @@
 	<script src="js/cambiarPagina.js"></script>
 	<script src="js/cambiarCalculadora.js"></script>
 
-    <!-- jQuery 
+    <!-- jQuery
     <script src="js/jquery.js"></script>-->
 
     <!-- Bootstrap Core JavaScript -->
@@ -225,7 +225,7 @@
 							if(peso>=25){insert+='6';}else{
 								if(peso>=20){insert+='5';}else{
 									if(peso>=15){insert+='4,5';}else{
-										if(peso>=12,5){insert+='4';}else{
+										if(peso>=12.5){insert+='4';}else{
 											if(peso>=10){insert+='3,5';}else{
 													insert+='3';
 											}
@@ -242,7 +242,7 @@
 							if(peso>=25){insert+='18';}else{
 								if(peso>=20){insert+='16,5';}else{
 									if(peso>=15){insert+='15';}else{
-										if(peso>=12,5){insert+='13,5';}else{
+										if(peso>=12.5){insert+='13,5';}else{
 												if(peso>=10){insert+='12';}else{
 													insert+='10,5';
 											}
@@ -260,7 +260,7 @@
 								if(peso>=22.5){insert+='2 1/2';}else{
 									if(peso>=12.5){insert+='2';}else{
 										if(peso>=10){insert+='1 1/2 - 2';}else{
-											if(peso>=7.5){insert+='1 1/2';}else{								
+											if(peso>=7.5){insert+='1 1/2';}else{
 												insert+='1';
 											}
 										}
@@ -278,7 +278,7 @@
 									if(peso>=20){insert+='12';}else{
 										if(peso>=12.5){insert+='10';}else{
 											if(peso>=10){insert+='7 - 10';}else{
-												if(peso>=7.5){insert+='7';}else{								
+												if(peso>=7.5){insert+='7';}else{
 													insert+='4';
 												}
 											}
@@ -308,10 +308,10 @@
 									if(peso>=22.5){insert+='<84';}else{
 										if(peso>=20){insert+='<82';}else{
 											if(peso>=17.5){insert+='<80';}else{
-												if(peso>=15){insert+='<76';}else{								
-													if(peso>=12.5){insert+='<74';}else{								
-														if(peso>=10){insert+='<72';}else{								
-															if(peso>=7.5){insert+='<70';}else{								
+												if(peso>=15){insert+='<76';}else{
+													if(peso>=12.5){insert+='<74';}else{
+														if(peso>=10){insert+='<72';}else{
+															if(peso>=7.5){insert+='<70';}else{
 																insert+='<60';
 															}
 														}
@@ -335,7 +335,7 @@
 			}// peso 0
 				// Else
 			}else{// edad
-				var peso=parseFloat(document.getElementById("semn").value);// Por como esta armado el Excel las tablas coinciden! 
+				var peso=parseFloat(document.getElementById("semn").value);// Por como esta armado el Excel las tablas coinciden!
 				var edad=document.getElementById("semn").options[document.getElementById("semn").selectedIndex].innerHTML;
 				$('#sel-kg').css("display", "none");
 				$('#sel-ag').css("display", "block");
@@ -389,7 +389,7 @@
 							if(peso>=25){insert+='6';}else{
 								if(peso>=20){insert+='5';}else{
 									if(peso>=15){insert+='4,5';}else{
-										if(peso>=12,5){insert+='4';}else{
+										if(peso>=12.5){insert+='4';}else{
 											if(peso>=10){insert+='3,5';}else{
 													insert+='3';
 											}
@@ -406,7 +406,7 @@
 							if(peso>=25){insert+='18';}else{
 								if(peso>=20){insert+='16,5';}else{
 									if(peso>=15){insert+='15';}else{
-										if(peso>=12,5){insert+='13,5';}else{
+										if(peso>=12.5){insert+='13,5';}else{
 												if(peso>=10){insert+='12';}else{
 													insert+='10,5';
 											}
@@ -424,7 +424,7 @@
 								if(peso>=22.5){insert+='2 1/2';}else{
 									if(peso>=12.5){insert+='2';}else{
 										if(peso>=10){insert+='1 1/2 - 2';}else{
-											if(peso>=7.5){insert+='1 1/2';}else{								
+											if(peso>=7.5){insert+='1 1/2';}else{
 												insert+='1';
 											}
 										}
@@ -442,7 +442,7 @@
 									if(peso>=20){insert+='12';}else{
 										if(peso>=12.5){insert+='10';}else{
 											if(peso>=10){insert+='7 - 10';}else{
-												if(peso>=7.5){insert+='7';}else{								
+												if(peso>=7.5){insert+='7';}else{
 													insert+='4';
 												}
 											}
@@ -472,10 +472,10 @@
 									if(peso>=22.5){insert+='<84';}else{
 										if(peso>=20){insert+='<82';}else{
 											if(peso>=17.5){insert+='<80';}else{
-												if(peso>=15){insert+='<76';}else{								
-													if(peso>=12.5){insert+='<74';}else{								
-														if(peso>=10){insert+='<72';}else{								
-															if(peso>=7.5){insert+='<70';}else{								
+												if(peso>=15){insert+='<76';}else{
+													if(peso>=12.5){insert+='<74';}else{
+														if(peso>=10){insert+='<72';}else{
+															if(peso>=7.5){insert+='<70';}else{
 																insert+='<60';
 															}
 														}
@@ -500,7 +500,7 @@
 		//  Fin TET punta
 	}
 	$('#situacion').html(insert);
-	
+
 	}
 
 	$(function () {
@@ -512,9 +512,9 @@
 	window.analytics.startTrackerWithId('UA-70907455-2');// Analytics para Fa Respuestas
 	window.analytics.trackView('Pantalla Calculadora Clearence de creatinina');
 }, false);*/
-</script>  
-    
-    
+</script>
+
+
 </body>
 <link href="plugins/dialog-master/css/bootstrap-dialog.css" rel="stylesheet" type="text/css" />
 <script src="plugins/dialog-master/js/bootstrap-dialog.js?190417"></script>
