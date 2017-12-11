@@ -23,10 +23,10 @@
 	<script src="js/main.js"></script>
     <link href="css/simple-sidebar.css" rel="stylesheet">
     <link href="css/fibrilacion.css" rel="stylesheet">
-     
-       
-	 
-   
+
+
+
+
 
 </head>
 
@@ -42,7 +42,7 @@
                 <li class="calculadora"><a href="#" onClick="cambiarCalculadora('neonatologia_drogas.html');">Drogas</a></li>
                 <li class="algoritmo txt-green" style="text-align: center;font-size:12px; color:#04142b ;background: #b6bcce;">PEDIATRÍA</li>
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_acciones.html');">Intervenciones en RCP </a></li>
-                <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_drogas.html');">Drogas</a></li> 
+                <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_drogas.html');">Drogas</a></li>
                 <li class="algoritmo"><a href="#" onClick="cambiarCalculadora('pediatria_glasgow.html');">Glasgow</a></li>
                 <li style="text-align: center; color:#1a53a5;font-size:12px; color:#665b00; background:#fafafa;">OTROS</li>
                 <li><a onClick="">Términos y condiciones</a></li><a onClick="">
@@ -77,11 +77,11 @@
                                             <select name="sel-type-pub" id="sel-type-pub">
                                                 <option value="no">No</option>
                                                 <option value="si">Si</option>
-                                            </select>      
+                                            </select>
                                         </div>
                                         <div class="input-label"><label for="sel-type">Signos de pubertad: </label></div>
-                                         <p style="color: red; display:none;" id="Ppub">Considere mejor alguna de sus opciones, no es común que pese menos de 25 Kg y tenga signos de pubertad. </p>                                       
-                                   </div> 
+                                         <p style="color: red; display:none;" id="Ppub">Considere mejor alguna de sus opciones, no es común que pese menos de 25 Kg y tenga signos de pubertad. </p>
+                                   </div>
                                     <div class="input-line">
                                         <div class="input-switch drogas" style="width: 98%;max-width: 98%;">
                                             <select name="sel-type" id="sel-type">
@@ -90,9 +90,9 @@
                                                 <option value="Adenosina"> Adenosina </option>
                                                 <option value="Lidocaína"> Lidocaína </option>
                                                 <option value="Sulfato de Magnesio"> Sulfato de Magnesio </option>
-                                            </select>      
+                                            </select>
                                         </div>
-                                        <div class="input-label" style="color: transparent;width: 1px;"><label for="sel-type">.</label></div>                                       
+                                        <div class="input-label" style="color: transparent;width: 1px;"><label for="sel-type">.</label></div>
                                    </div>
                                    <div class="input-line" id="selop-2" style="display:none;">
                                         <div class="input-switch">
@@ -101,9 +101,9 @@
                                                 <option value="1">Endovenosa</option>
                                                 <option value="2">Intraóseo</option>
                                                 <option value="3">Endotraqueal</option>
-                                            </select>      
+                                            </select>
                                         </div>
-                                        <div class="input-label"><label for="sel-type">Administración: </label></div>                                       
+                                        <div class="input-label"><label for="sel-type">Administración: </label></div>
                                    </div>
                                    <div class="input-line" id="selop-3" style="display:none;">
                                         <div class="input-switch">
@@ -112,18 +112,18 @@
                                                 <option value="1">TV sin pulso</option>
                                                 <option value="2">TV con pulso</option>
                                                 <option value="3">Asma grave</option>
-                                            </select>      
+                                            </select>
                                         </div>
-                                        <div class="input-label"><label for="sel-type">Indicación: </label></div>                                       
+                                        <div class="input-label"><label for="sel-type">Indicación: </label></div>
                                    </div>
                                 </form>
                                 <div class="result_frame" id="result-container" style="display:none;">
                                     <div class="result_container" style="min-width:220px;width: 100%;">
                                         <div class="result_title" style="color:#333333;">Resultados</div>
-                                        
+
                                         <div id="situacion" style=" text-align:left;color: #6a6a6a;">
-                                        
-                                        </div>     
+
+                                        </div>
                                     </div>
                                 <!-- /result_frame -->
                                 </div>
@@ -147,7 +147,7 @@
 	<script src="js/cambiarPagina.js"></script>
 	<script src="js/cambiarCalculadora.js"></script>
 
-    <!-- jQuery 
+    <!-- jQuery
     <script src="js/jquery.js"></script>-->
 
     <!-- Bootstrap Core JavaScript -->
@@ -244,7 +244,7 @@
 				//insert+='<b>Vía: </b> endovenoso</br>';
 				//insert+='<b>Administración: </b> lento (5 - 10 min)</br>';
 				insert+='<b>Aclaración: </b> dosis máxima 2 g. Taquicardia ventricular sin pulso.</br>';
-				insert+='<b>Dosis: </b> 20 ml/kg para TV sin pulsos por Torsade de Pointes</br>';
+				insert+='<b>Dosis: </b> 25-50 mg/kg/dosis para TV sin pulsos por Torsade de Pointes</br>';
 				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+' en bolo</br></span>';
 				insert+='<b>Aclaración: </b> dosis máxima 2 g</br>';
 			}
@@ -255,7 +255,7 @@
 				//insert+='<b>Vía: </b> endovenoso</br>';
 				insert+='<b>Administración: </b> en 10 a 20 minutos</br>';
 				insert+='<b>Aclaración: </b> dosis máxima 2 g. Taquicardia ventricular con pulso.</br>';
-				insert+='<b>Dosis: </b> 20 ml/kg para TV con pulsos por hipomagnesemia</br>';
+				insert+='<b>Dosis: </b> 25-50 mg/kg/dosis para TV con pulsos por hipomagnesemia</br>';
 				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 			}
 			if(seltype3==3){//asma grave
@@ -265,12 +265,12 @@
 				insert+='<b>Vía: </b> endovenoso</br>';
 				insert+='<b>Administración: </b> en 15 a 30 minutos</br>';
 				insert+='<b>Aclaración: </b> dosis máxima 2 g</br>';
-				insert+='<b>Dosis: </b> 20 ml/kg para asma grave</br>';
+				insert+='<b>Dosis: </b> 25-50 mg/kg/dosis para asma grave</br>';
 				insert+='<span style="font-size: 1.5em;color:#333333;"><b>Administrar: </b>'+dosis+'</br></span>';
 			}
 		}
 		$('#situacion').html(insert);
-	
+
 	}
 	function roundUp(num) {
 	  num=Math.round(num * 10);
@@ -285,9 +285,9 @@
 		result_initCal();
 	});
     </script>
-    
-    
-    
+
+
+
 </a><script>
 /*document.addEventListener('deviceready', function () {
     // Analytics para club House
