@@ -1,8 +1,8 @@
 function cambiarPagina(pagina)
 {
 	window.ga.trackEvent('Cambio de pantalla', 'Pantalla', pagina.substring(0, pagina.length - 5), 1);
-	window.ga.trackView('Pantalla: '+pagina.substring(0, pagina.length - 5));*/
-	window.location=pagina;
+	window.ga.trackView('Pantalla: '+pagina.substring(0, pagina.length - 5));
+  window.location=pagina;
 /*var xmlhttp;
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
